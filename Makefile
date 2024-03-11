@@ -6,4 +6,4 @@ all: paper.pdf
 
 .PHONY: clean
 clean:
-	git clean xfd
+	git clean -xfd
