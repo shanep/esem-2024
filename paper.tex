@@ -1,4 +1,12 @@
 \documentclass[sigconf]{acmart}
+\usepackage{listings, listings-rust}
+\usepackage{xcolor}
+
+\NewDocumentCommand{\codeword}{v}{%
+\texttt{\textcolor{blue}{#1}}
+}
+
+\lstset{language=Rust, keywordstyle={\bfseries \color{blue}}}
 
 %% Rights management information.
 \setcopyright{acmlicensed}
@@ -91,7 +99,7 @@
 The 1995 movie Hackers~\cite{Wikipedia_contributors2024-zr} prescient predictions regarding the ease
 of breaking into computing systems in cyberspace have came to fruition. The White House Office of
 the National Cyber Director (ONCD) released a report calling for the technical community to
-proactively reduce the attach surface in cyberspace with a two pronged approach. First we need to
+proactively reduce the attack surface in cyberspace with a two pronged approach. First we need to
 address the root cause of many of the most heinous cyber attacks, memory unsafe programming
 languages~\cite{United_States_Gov2024-pp}. Second, we need to establish better cybersecurity quality
 metrics so we can have a better understanding of the cyber security landscape.
@@ -105,25 +113,33 @@ provided and enforce memory safety eliminate whole classes of bugs such as buffe
 dangling pointers, and memory leaks which have been implicated in a myriad of security
 vulnerabilities and system crashes.
 
-This Systematic Literature Review aims to provide a comprehensive and up-to-date analysis of the
-existing body of research surrounding memory safety. By systematically reviewing and synthesizing
-the wealth of knowledge accumulated in this field, we seek to uncover the current state of
-understanding, identify emerging trends, and highlight gaps in our knowledge that warrant further
+This Systematic Literature Review (SLR) aims to provide a comprehensive and up-to-date analysis of
+the existing body of research surrounding memory safety. By systematically reviewing and
+synthesizing the wealth of knowledge accumulated in this field, we seek to uncover the current state
+of understanding, identify emerging trends, and highlight gaps in our knowledge that warrant further
 investigation.
 
 
 \section{Research Methodology}
 
-For our research methodolgy we ~\cite{Stuart2007-cc}
+For our research methodolgy we followed the advice of Kitchenham and Charters~\cite{Stuart2007-cc}
+and divided our review into the 3 discrete phases, planning the review, conducting the review, and
+reporting the review results.
 
 \subsection{Planning}
+
+Before we start researching we must first confirm the need for a SLR. The recent report released by
+ONCD~\cite{United_States_Gov2024-pp} has conveniently done this job for us by compiling a report
+detailing the need for research in the domain of memory safety. Thus, we must first define the most
+important aspect of the planning phase, the research questions.
+
 
 \subsubsection{Research Questions}
 
 \begin{itemize}
-    \item RQ1:
-    \item RQ2:
-    \item RQ3:
+    \item \textbf{RQ1:} How can \lstinline{unsafe} Rust derived from C be converted to safe Rust?
+    \item \textbf{RQ2:} How can we build Rust bindings into core abstractions?
+    \item \textbf{RQ3:} How can we better find vulnerabilities in \lstinline{unsafe} blocks
 \end{itemize}
 
 \subsubsection{Search Strategy:}
@@ -142,6 +158,8 @@ For our research methodolgy we ~\cite{Stuart2007-cc}
 
 
 \section{Results}
+
+In this section we address the proposed research questions.
 
 \subsection{RQ1}
 \subsection{RQ2}
