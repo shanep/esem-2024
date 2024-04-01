@@ -1,6 +1,7 @@
 \documentclass[sigconf]{acmart}
 \usepackage{listings, listings-rust}
 \usepackage{xcolor}
+\pagestyle{plain} %to show page numbers
 
 \NewDocumentCommand{\codeword}{v}{%
 \texttt{\textcolor{blue}{#1}}
@@ -105,20 +106,21 @@ languages~\cite{United_States_Gov2024-pp}. Second, we need to establish better c
 metrics so we can have a better understanding of the cyber security landscape.
 
 In the ever-evolving landscape of software development, the reliability and security of computer
-systems stand as paramount concerns for all parties involved. Modern software is constructed by
-building ever more complex abstractions. Each abstraction forms a layer that the next one it built
-upon. Thus, if we aim to have a secure system we must peel back all the layers and tackle one of the
-fundamental abstractions in computer science the programming language. Programming languages that
-provided and enforce memory safety eliminate whole classes of bugs such as buffer overflows,
-dangling pointers, and memory leaks which have been implicated in a myriad of security
-vulnerabilities and system crashes.
+systems stands as a paramount concern for all parties involved. Modern software is constructed by
+building ever more complex abstractions, one on top of the other. Thus, if we aim to have a secure
+system we must start to peel back all the layers and tackle one of the fundamental abstractions in
+computer science, the programming language. Programming languages that provided and enforce memory
+safety eliminate whole classes of bugs such as buffer overflows, dangling pointers, and memory leaks
+which have been implicated in a myriad of security vulnerabilities and system crashes.
 
-This Systematic Literature Review (SLR) aims to provide a comprehensive and up-to-date analysis of
-the existing body of research surrounding memory safety. By systematically reviewing and
-synthesizing the wealth of knowledge accumulated in this field, we seek to uncover the current state
-of understanding, identify emerging trends, and highlight gaps in our knowledge that warrant further
-investigation.
-
+The migration of legacy C codebases to memory-safe programming languages like Rust is of paramount
+importance in modern software development, aiming to mitigate common security vulnerabilities and
+memory-related errors. This paper presents a systematic literature review (SLR) focusing on
+strategies and methodologies for converting C code to Rust while minimizing the utilization of
+unsafe blocks. Our study aims to provide a comprehensive overview of existing research, identify
+gaps, and suggest future directions in this domain. Through a rigorous search process, we
+synthesized relevant studies and extracted key findings to offer insights into effective approaches
+for ensuring memory safety during code migration.
 
 \section{Research Methodology}
 
@@ -132,35 +134,94 @@ Before we start researching we must first confirm the need for a SLR. The recent
 ONCD~\cite{United_States_Gov2024-pp} has conveniently done this job for us by compiling a report
 detailing the need for research in the domain of memory safety. While the ONCD report detailed a two
 pronged approach for this SLR we will be focusing on a memory safe programming language,
-specifically Rust.
+specifically Rust. While there are many memory safe programming languages available for software
+developers to use Rust is the only language that has support in kernel
+space~\cite{The_kernel_development_community_undated-iw} thus is a primary candidate to replace the
+aging C programming language.
 
 \subsubsection{Research Questions}
 We have defined the following research questions to drive this study.
 
 \begin{itemize}
-    \item \textbf{RQ1:} How can \lstinline{unsafe} Rust derived from C be converted to safe Rust?
-    \item \textbf{RQ2:} How can we build Rust bindings into core abstractions?
-    \item \textbf{RQ3:} How can we better find vulnerabilities in \lstinline{unsafe} blocks
+
+    \item \textbf{RQ1:} What are the existing methodologies and strategies for converting C code to
+      Rust?
+    \item \textbf{RQ2:} How do these methodologies address memory safety concerns and minimize the
+      use of \lstinline{unsafe} blocks?
+    \item \textbf{RQ3:} What are the challenges and limitations encountered in the conversion process?
 \end{itemize}
 
 \subsubsection{Search Strategy:}
 
+We employed a robust multi-step search strategy across three digital databases, ACM Digital Library,
+IEEE Xplore, and Google Scholar in order to find all the current research that has been done. These
+databases cover a wide range of current software engineering and computer science literature. We
+leveraged the advanced search features of both the ACM Digital Library and IEEE Xplore to search the
+titles and abstracts for keywords using boolean search operators. We then searched Google Scholar
+using the same keywords and operators sorted by relevance and took the top 250 results.
+
 \subsubsection{Search criteria:}
 
+The search criteria for each database is shown in table~\ref{tab:keywords}.  First, we searched
+titles and abstracts in the ACM Digital Library and IEEE Xplore with the keywords ``C rust convert
+unsafe'' from May 2015 to the present~\footnote{This was the release date of rust 1.0}. Then we
+searched on google Google Scholar using the same keywords and dates in order to to cast as wide a
+net as possible.
+
+
+\begin{table}
+\begin{tabular}{|| p{3cm}| p{5cm} ||}
+ \hline
+ Database & Query \\
+ \hline\hline
+ ACM Digital Library & Title:(C conver* unsafe rust) AND Abstract:(C conver* unsafe rust)  \\
+ IEEE Xplore & TBD \\
+ Google Scholar & TBD \\
+ \hline
+\end{tabular}
+\caption{Search Queries used for each Database.}
+\label{tab:keywords}
+\end{table}
+
+
+Search keywords: "C to Rust conversion", "memory-safe Rust", "legacy code migration", "unsafe blocks
+mitigation", "safe programming practices".
+
 \subsubsection{Inclusion and exclusion criteria:}
+
+Inclusion criteria: Papers published between 2012 and 2024, written in English, focusing on
+converting C code to Rust with a focus on memory safety.
+
+Exclusion criteria: Duplicate studies, non-peer-reviewed articles, unrelated topics.
+
+Manual search: Relevant conference proceedings, journals, and citations of selected papers.
 
 \subsection{Conducting the review}
 
 \subsubsection{Study search and selection:}
 
+Initial screening based on titles and abstracts.  Full-text assessment for eligibility based on
+inclusion and exclusion criteria.  Selection of final studies for data extraction and analysis.
+
 \subsubsection{Data extraction:}
+
+Extraction of relevant data including methodologies, tools, challenges, and outcomes.
 
 \subsubsection{Data synthesis:}
 
+Synthesis of key findings and categorization based on common themes.
+Identification of trends, gaps, and areas for further investigation.
 
 \section{Results}
 
-In this section we address the proposed research questions.
+Presentation of synthesized findings on existing methodologies and strategies.  Discussion on the
+effectiveness of approaches in ensuring memory safety and minimizing unsafe blocks.  Analysis of
+challenges and limitations encountered in the conversion process.  Comparison of different tools and
+techniques used in C to Rust migration.
+
+Implications of the findings for software developers, researchers, and practitioners.
+Recommendations for improving existing methodologies and addressing identified gaps.
+Suggestions for future research directions in the field of C to Rust conversion.
 
 \subsection{RQ1}
 \subsection{RQ2}
@@ -168,6 +229,10 @@ In this section we address the proposed research questions.
 
 
 \section{Conclusion}
+
+Summary of key findings and insights obtained from the systematic literature review.
+Concluding remarks on the significance of memory-safe programming languages in mitigating security vulnerabilities.
+Closing thoughts on the importance of minimizing unsafe blocks during code migration.
 
 \section{Threats to Validity}
 \balance
