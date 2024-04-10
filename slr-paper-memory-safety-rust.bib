@@ -1,9 +1,65 @@
+@PROCEEDINGS{S-F_Chen2022-rk,
+  title    = "Linux Kernel Module Development with Rust",
+  author   = "{S. -F. Chen} and {Y. -S. Wu}",
+  abstract = "The Linux system has become an indispensable component of today's
+              Internet services, network backbones, and IoT devices. The Linux
+              kernel is primarily implemented in the C language for efficiency,
+              creating opportunities for memory bugs and synchronization bugs.
+              We introduce the use of the Rust programming language in kernel
+              development, where the safety features of the Rust language are
+              leveraged to prevent the introduction of memory bugs or
+              synchronization bugs when writing kernel code. We showcase the
+              key steps in developing a Linux kernel module in Rust and discuss
+              how the memory bugs and synchronization bugs are prevented. The
+              evaluation demonstrates that the performance overhead of the Rust
+              kernel modules is on par with the C kernel modules.",
+  year     =  2022,
+  keywords = "Codes; Linux; Computer bugs; Memory management; Web and internet
+              services; Writing; Safety; Linux kernel; Rust; memory bug;
+              synchronization bug; compile-time
+              check;slr-paper-memory-safety-rust-kernel;IEEE-kernel-rust-2019-2024"
+}
+
+@MISC{John_Baublitz_Nick_Desaulniers_Alex_Gaynor_Miguel_Ojeda_Geoffrey_Thomas_Josh_Triplett2020-kb,
+  title        = "Barriers to in-tree Rust",
+  author       = "{John Baublitz, Nick Desaulniers, Alex Gaynor, Miguel Ojeda,
+                  Geoffrey Thomas, Josh Triplett}",
+  month        =  aug,
+  year         =  2020,
+  howpublished = "Linux Plumbers Conf 2020",
+  keywords     = "slr-paper-memory-safety-rust-kernel"
+}
+
+@MISC{Gaynor2019-dk,
+  title        = "Writing Linux Kernel Modules in Safe Rust",
+  author       = "Gaynor, Geoffrey Thomas And",
+  abstract     = "With 65\% of recent Linux kernel vulnerabilities being the
+                  result of memory unsafety (buffer overflows, pointers used
+                  after being freed, etc.) and not logic errors, both kernel
+                  developers and downstream users have wondered whether it's
+                  possible to use a safer language than C for kernel
+                  development. This talk will explore the presenters' work
+                  building a framework for writing kernel modules in Rust and
+                  accessing kernel APIs in safe Rust. In particular, the talk
+                  will discuss some of the challenges of building
+                  binary-compatible kernel modules in Rust, techniques for
+                  working with existing C code, and how to design safe bindings
+                  over raw kernel APIs. It will also discuss advantages and
+                  difficulties for integrating Rust in upstream kernel
+                  development and possible directions the upstream kernel
+                  community could go.",
+  year         =  2019,
+  howpublished = "Linux Security Summit NA",
+  keywords     = "slr-paper-memory-safety-rust-kernel",
+  location     = "San Diego"
+}
+
 @MANUAL{Stuart2007-cc,
   title        = "Guidelines for performing Systematic Literature Reviews in
                   Software Engineering",
   author       = "Stuart, Kitchenham, Barbara And",
   year         =  2007,
-  keywords     = "slr-paper-memory-safety-rust;Example SLR;SLR",
+  keywords     = "slr-paper-memory-safety-rust-kernel;Rust Memory Safety - SLR",
   organization = "School of Computer Science and Mathematics, Keele University"
 }
 
@@ -12,7 +68,7 @@
   author       = "{The kernel development community}",
   howpublished = "\url{https://docs.kernel.org/rust/index.html}",
   note         = "Accessed: 2024-4-1",
-  keywords     = "slr-paper-memory-safety-rust",
+  keywords     = "slr-paper-memory-safety-rust-kernel",
   language     = "en"
 }
 
@@ -32,7 +88,7 @@
   year         =  2024,
   howpublished = "\url{https://www.whitehouse.gov/oncd/briefing-room/2024/02/26/press-release-technical-report/}",
   note         = "Accessed: 2024-3-13",
-  keywords     = "slr-paper-memory-safety-rust;SLR",
+  keywords     = "slr-paper-memory-safety-rust-kernel;Rust Memory Safety - SLR",
   language     = "en"
 }
 
@@ -57,5 +113,5 @@
   year         =  2024,
   howpublished = "\url{https://en.wikipedia.org/w/index.php?title=Hackers_(film)&oldid=1211833509}",
   note         = "Accessed: NA-NA-NA",
-  keywords     = "slr-paper-memory-safety-rust"
+  keywords     = "slr-paper-memory-safety-rust-kernel"
 }

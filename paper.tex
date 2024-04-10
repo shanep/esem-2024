@@ -1,7 +1,8 @@
 \documentclass[sigconf]{acmart}
 \usepackage{listings, listings-rust}
 \usepackage{xcolor}
-\pagestyle{plain} %to show page numbers
+\usepackage[raggedrightboxes]{ragged2e}
+
 
 \NewDocumentCommand{\codeword}{v}{%
 \texttt{\textcolor{blue}{#1}}
@@ -17,23 +18,23 @@
 \acmSubmissionID{123-A56-BU3}
 
 \begin{document}
-\title{Memory Safety: A Systematic Literature Review}
+\title{Rust for Operating System Development: A Systematic Literature Review}
 
-\author{Shane Panter}
-    \affiliation{%
-    \institution{Boise State University}
-    \city{Boise}
-    \state{Idaho}
-    \country{USA}}
-    \email{shanepanter@boisestate.edu}
+%% \author{Shane Panter}
+%%     \affiliation{%
+%%     \institution{Boise State University}
+%%     \city{Boise}
+%%     \state{Idaho}
+%%     \country{USA}}
+%%     \email{shanepanter@boisestate.edu}
 
-\author{Nasir U. Eisty}
-    \affiliation{%
-    \institution{Boise State University}
-    \city{Boise}
-    \state{Idaho}
-    \country{USA}}
-    \email{nasireisty@boisestate.edu}
+%% \author{Nasir U. Eisty}
+%%     \affiliation{%
+%%     \institution{Boise State University}
+%%     \city{Boise}
+%%     \state{Idaho}
+%%     \country{USA}}
+%%     \email{nasireisty@boisestate.edu}
 
 \renewcommand{\shortauthors}{Panter et al.}
 
@@ -116,11 +117,11 @@ which have been implicated in a myriad of security vulnerabilities and system cr
 The migration of legacy C codebases to memory-safe programming languages like Rust is of paramount
 importance in modern software development, aiming to mitigate common security vulnerabilities and
 memory-related errors. This paper presents a systematic literature review (SLR) focusing on
-strategies and methodologies for converting C code to Rust while minimizing the utilization of
-unsafe blocks. Our study aims to provide a comprehensive overview of existing research, identify
-gaps, and suggest future directions in this domain. Through a rigorous search process, we
-synthesized relevant studies and extracted key findings to offer insights into effective approaches
-for ensuring memory safety during code migration.
+strategies and methodologies for integrating Rust into one of the most fundamental C codebases in
+the world, the Linux Kernel.  Our study aims to provide a comprehensive overview of existing
+research, identify gaps, and suggest future directions in this domain. Through a rigorous search
+process, we synthesized relevant studies and extracted key findings to offer insights into effective
+approaches for ensuring memory safety during code migration.
 
 \section{Research Methodology}
 
@@ -140,16 +141,40 @@ space~\cite{The_kernel_development_community_undated-iw} thus is a primary candi
 aging C programming language.
 
 \subsubsection{Research Questions}
+\label{sec:researchQuestions}
+
 We have defined the following research questions to drive this study.
 
 \begin{itemize}
-
-    \item \textbf{RQ1:} What are the existing methodologies and strategies for converting C code to
-      Rust?
-    \item \textbf{RQ2:} How do these methodologies address memory safety concerns and minimize the
-      use of \lstinline{unsafe} blocks?
-    \item \textbf{RQ3:} What are the challenges and limitations encountered in the conversion process?
+    \item \textbf{RQ1:} What are the existing approaches, methodologies, and best practices for
+      implementing operating system kernels in Rust?
+    \item \textbf{RQ2:} What are the performance implications of using Rust for operating system
+      kernel development in terms of throughput, latency, and resource utilization?
+    \item \textbf{RQ3:} What are the major challenges and limitations encountered when developing
+      operating system kernels in Rust, particularly in comparison to other languages?
 \end{itemize}
+
+%% Other RQ's
+%% \item What are the key motivations and advantages for developing operating system kernels in Rust
+%% compared to traditional languages like C or C++?
+%% \item What are the fundamental design principles and features of Rust that make it suitable for
+%% building operating system kernels?
+%% \item What are the existing approaches, methodologies, and best practices for implementing operating
+%% system kernels in Rust?
+%% \item What are the major challenges and limitations encountered when developing operating system
+%% kernels in Rust, particularly in comparison to other languages?
+%% \item How does the safety, security, and reliability of operating system kernels developed in Rust
+%% compare to those developed using other programming languages?
+%% \item What are the performance implications of using Rust for operating system kernel development in
+%% terms of throughput, latency, and resource utilization?
+%% \item What is the current state of adoption and usage of Rust in real-world operating system kernel
+%% projects, and what are the lessons learned from these experiences?
+%% \item How does the Rust ecosystem support operating system kernel development, including libraries,
+%% tools, and community resources?
+%% \item What are the potential future directions and research opportunities for improving the development
+%% of operating system kernels in Rust?
+%% \item What are the implications of using Rust for operating system kernel development in terms of
+%% maintenance, extensibility, and compatibility with existing hardware and software architectures?
 
 \subsubsection{Search Strategy:}
 
@@ -157,44 +182,39 @@ We employed a robust multi-step search strategy across three digital databases, 
 IEEE Xplore, and Google Scholar in order to find all the current research that has been done. These
 databases cover a wide range of current software engineering and computer science literature. We
 leveraged the advanced search features of both the ACM Digital Library and IEEE Xplore to search the
-titles and abstracts for keywords using boolean search operators. We then searched Google Scholar
-using the same keywords and operators sorted by relevance and took the top 250 results.
+titles and abstracts for keywords using boolean search operators. The ACM Digital Library and IEEE
+Xplore formed the core of our keyword search and we used Google Scholar for backward and forward
+snowballing.
 
 \subsubsection{Search criteria:}
 
-The search criteria for each database is shown in table~\ref{tab:keywords}.  First, we searched
-titles and abstracts in the ACM Digital Library and IEEE Xplore with the keywords ``C rust convert
-unsafe'' from May 2015 to the present~\footnote{This was the release date of rust 1.0}. Then we
-searched on google Google Scholar using the same keywords and dates in order to to cast as wide a
-net as possible.
-
+We first searched abstracts in the ACM Digital Library and metadata in IEEE Xplore with the keywords
+listed in table~\ref{tab:keywords} between the years 2019~\cite{Gaynor2019-dk} and 2024. We then
+used Google Scholar for forward and backward snowballing.
 
 \begin{table}
-\begin{tabular}{|| p{3cm}| p{5cm} ||}
+\begin{tabular}{|| p{2cm}| p{4cm} | p{1cm} ||}
  \hline
- Database & Query \\
+ Database & Query & Results \\
  \hline\hline
- ACM Digital Library & Title:(C conver* unsafe rust) AND Abstract:(C conver* unsafe rust)  \\
- IEEE Xplore & TBD \\
- Google Scholar & TBD \\
+ ACM  & Abstract:("operating system" kernel linux) AND Abstract:(rust) & 22 \\
+ IEEE & ("All Metadata":"operating system" AND "All Metadata":rust) OR ("All Metadata":kernel AND
+ "All Metadata":rust) OR ("All Metadata":linux AND "All Metadata":rust) & 37 \\
  \hline
 \end{tabular}
 \caption{Search Queries used for each Database.}
 \label{tab:keywords}
 \end{table}
 
-
-Search keywords: "C to Rust conversion", "memory-safe Rust", "legacy code migration", "unsafe blocks
-mitigation", "safe programming practices".
-
 \subsubsection{Inclusion and exclusion criteria:}
 
-Inclusion criteria: Papers published between 2012 and 2024, written in English, focusing on
-converting C code to Rust with a focus on memory safety.
-
-Exclusion criteria: Duplicate studies, non-peer-reviewed articles, unrelated topics.
-
-Manual search: Relevant conference proceedings, journals, and citations of selected papers.
+Following the guidelines outlined by Kitchenham and Charters~\cite{Stuart2007-cc} we set the
+inclusion and exclusion criteria based on our research questions outlined in
+section~\ref{sec:researchQuestions}. We only consider papers that are written in English, published
+in conferences or journals, and within the time frame of 2019 and 2024. The published papers should
+describe using the Rust programming language for either developing a new kernel, extending an
+existing kernel, or authoring drivers. We will include any type of kernel architecture including
+monolithic, micro, or uni as long as the paper is using the Rust programming language.
 
 \subsection{Conducting the review}
 
