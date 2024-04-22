@@ -110,7 +110,7 @@ In the ever-evolving landscape of software development, the reliability and secu
 systems stands as a paramount concern for all parties involved. Modern software is constructed by
 building ever more complex abstractions, one on top of the other. Thus, if we aim to have a secure
 system we must start to peel back all the layers and tackle one of the fundamental abstractions in
-computer science, the programming language. Programming languages that provided and enforce memory
+computer science, the programming language. Programming languages that provide and enforce memory
 safety eliminate whole classes of bugs such as buffer overflows, dangling pointers, and memory leaks
 which have been implicated in a myriad of security vulnerabilities and system crashes.
 
@@ -134,7 +134,7 @@ reporting the review results.
 Before we start researching we must first confirm the need for a SLR. The recent report released by
 ONCD~\cite{United_States_Gov2024-pp} has conveniently done this job for us by compiling a report
 detailing the need for research in the domain of memory safety. While the ONCD report detailed a two
-pronged approach for this SLR we will be focusing on a memory safe programming language,
+pronged approach, for this SLR we will be focusing on a memory safe programming language,
 specifically Rust. While there are many memory safe programming languages available for software
 developers to use Rust is the only language that has support in kernel
 space~\cite{The_kernel_development_community_undated-iw} thus is a primary candidate to replace the
@@ -180,27 +180,30 @@ We have defined the following research questions to drive this study.
 \subsubsection{Search Strategy:}
 
 We employed a robust multi-step search strategy across three digital databases, ACM Digital Library,
-IEEE Xplore, and Google Scholar in order to find all the current research that has been done. These
+IEEE Xplore, and Scopus in order to find all the current research that has been done. These
 databases cover a wide range of current software engineering and computer science literature. We
-leveraged the advanced search features of both the ACM Digital Library and IEEE Xplore to search the
-titles and abstracts for keywords using boolean search operators. The ACM Digital Library and IEEE
-Xplore formed the core of our keyword search and we used Google Scholar for backward and forward
-snowballing.
+leveraged the advanced search features of all three databases to search the titles and abstracts for
+keywords using boolean search operators.
 
 \subsubsection{Search criteria:}
 
-We first searched abstracts in the ACM Digital Library and metadata in IEEE Xplore with the keywords
-listed in table~\ref{tab:keywords} between the years 2019~\cite{Gaynor2019-dk} and 2024. We then
-used Google Scholar for forward and backward snowballing.
+We search all three databases with the keywords listed in table~\ref{tab:keywords} between January
+1, 2019~\cite{Gaynor2019-dk} and April 1, 2024. While both ACM and IEEE had mutually exclusive
+results Scopus had 44 duplicates that needed to be removed. We then used Google Scholar for forward
+and backward snowballing.
 
 \begin{table}
 \begin{tabular}{|| p{2cm}| p{4cm} | p{1cm} ||}
  \hline
  Database & Query & Results \\
  \hline\hline
- ACM  & Abstract:("operating system" kernel linux) AND Abstract:(rust) & 22 \\
+ ACM  & (Abstract:("operating system" kernel linux) AND Abstract:(rust) )OR (Title:("operating
+ system" kernel linux) AND Title:(rust)) & 25 \\
  IEEE & ("All Metadata":"operating system" AND "All Metadata":rust) OR ("All Metadata":kernel AND
- "All Metadata":rust) OR ("All Metadata":linux AND "All Metadata":rust) & 37 \\
+ "All Metadata":rust) OR ("All Metadata":linux AND "All Metadata":rust) & 39 \\
+ Scopus & TITLE-ABS-KEY ( ( "operating system" OR kernel OR linux ) AND rust ) AND PUBYEAR > 2018
+ AND PUBYEAR < 2025 AND ( LIMIT-TO ( SUBJAREA , "COMP" ) ) AND ( LIMIT-TO ( LANGUAGE , "English" ) )
+ & 87 \\
  \hline
 \end{tabular}
 \caption{Search Queries used for each Database.}
