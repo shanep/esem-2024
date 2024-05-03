@@ -4,6 +4,9 @@
 \usepackage[raggedrightboxes]{ragged2e}
 
 
+
+
+
 \NewDocumentCommand{\codeword}{v}{%
 \texttt{\textcolor{blue}{#1}}
 }
@@ -219,7 +222,8 @@ section~\ref{sec:researchQuestions}. We only consider papers that are written in
 in conferences or journals, and within the time frame of 2019 and 2024. The published papers should
 describe using the Rust programming language for either developing a new kernel, extending an
 existing kernel, or authoring drivers. We will include any type of kernel architecture including
-monolithic, micro, or uni as long as the paper is using the Rust programming language.
+monolithic kernel, microkernel, or unikernel in both the embedded and non-embedded space as long as
+the paper is using the Rust programming language in some way.
 
 \subsection{Conducting the review}
 
@@ -248,10 +252,27 @@ Implications of the findings for software developers, researchers, and practitio
 Recommendations for improving existing methodologies and addressing identified gaps.
 Suggestions for future research directions in the field of C to Rust conversion.
 
-\subsection{RQ1}
-\subsection{RQ2}
-\subsection{RQ3}
+\begin{table}
+  \begin{tabular}{||c|c||}
+    \hline
+    System Type & Papers\\
+    \hline\hline
+    Embedded & ~\cite{Ayers2022-vk} \\
+    Non-Embedded & 0 \\
+    Unikernel & 0 \\
+    Kernel & 0 \\
+    \hline
+  \end{tabular}
+\end{table}
 
+
+This is a list of operating systems.
+\begin{itemize}
+\item \href{https://docs.kernel.org/rust/}{Linux kernel v6.1+}
+\item \href{https://github.com/tock/tock}{Tock}
+\item \href{https://hubris.oxide.computer/}{Hubris OS}
+\item Theseus
+\end{itemize}
 
 \section{Conclusion}
 

@@ -1,25 +1,3 @@
-@PROCEEDINGS{S-F_Chen2022-rk,
-  title    = "Linux Kernel Module Development with Rust",
-  author   = "{S. -F. Chen} and {Y. -S. Wu}",
-  abstract = "The Linux system has become an indispensable component of today's
-              Internet services, network backbones, and IoT devices. The Linux
-              kernel is primarily implemented in the C language for efficiency,
-              creating opportunities for memory bugs and synchronization bugs.
-              We introduce the use of the Rust programming language in kernel
-              development, where the safety features of the Rust language are
-              leveraged to prevent the introduction of memory bugs or
-              synchronization bugs when writing kernel code. We showcase the
-              key steps in developing a Linux kernel module in Rust and discuss
-              how the memory bugs and synchronization bugs are prevented. The
-              evaluation demonstrates that the performance overhead of the Rust
-              kernel modules is on par with the C kernel modules.",
-  year     =  2022,
-  keywords = "Codes; Linux; Computer bugs; Memory management; Web and internet
-              services; Writing; Safety; Linux kernel; Rust; memory bug;
-              synchronization bug; compile-time
-              check;slr-paper-memory-safety-rust-kernel;IEEE-kernel-rust-2019-2024"
-}
-
 @MISC{John_Baublitz_Nick_Desaulniers_Alex_Gaynor_Miguel_Ojeda_Geoffrey_Thomas_Josh_Triplett2020-kb,
   title        = "Barriers to in-tree Rust",
   author       = "{John Baublitz, Nick Desaulniers, Alex Gaynor, Miguel Ojeda,
@@ -59,7 +37,8 @@
                   Software Engineering",
   author       = "Stuart, Kitchenham, Barbara And",
   year         =  2007,
-  keywords     = "slr-paper-memory-safety-rust-kernel;Rust Memory Safety - SLR",
+  keywords     = "slr-paper-memory-safety-rust-kernel;Rust Kernel - SLR
+                  2019-2024",
   organization = "School of Computer Science and Mathematics, Keele University"
 }
 
@@ -88,7 +67,8 @@
   year         =  2024,
   howpublished = "\url{https://www.whitehouse.gov/oncd/briefing-room/2024/02/26/press-release-technical-report/}",
   note         = "Accessed: 2024-3-13",
-  keywords     = "slr-paper-memory-safety-rust-kernel;Rust Memory Safety - SLR",
+  keywords     = "slr-paper-memory-safety-rust-kernel;Rust Kernel - SLR
+                  2019-2024",
   language     = "en"
 }
 
@@ -114,4 +94,947 @@
   howpublished = "\url{https://en.wikipedia.org/w/index.php?title=Hackers_(film)&oldid=1211833509}",
   note         = "Accessed: NA-NA-NA",
   keywords     = "slr-paper-memory-safety-rust-kernel"
+}
+
+@INPROCEEDINGS{Miller2024-ff,
+  title     = "Enoki: High Velocity Linux Kernel Scheduler Development",
+  booktitle = "Proceedings of the Nineteenth European Conference on Computer
+               Systems",
+  author    = "Miller, Samantha and Kumar, Anirudh and Vakharia, Tanay and
+               Chen, Ang and Zhuo, Danyang and Anderson, Thomas",
+  abstract  = "Kernel task scheduling is important for application performance,
+               adaptability to new hardware, and complex user requirements.
+               However, developing, testing, and debugging new scheduling
+               algorithms in Linux, the most widely used cloud operating
+               system, is slow and difficult. We developed Enoki, a framework
+               for high velocity development of Linux kernel schedulers. Enoki
+               schedulers are written in safe Rust, and the system supports
+               live upgrade of new scheduling policies into the kernel,
+               userspace debugging, and bidirectional communication with
+               applications. A scheduler implemented with Enoki achieved near
+               identical performance (within 1\% on average) to the default
+               Linux scheduler CFS on a wide range of benchmarks. Enoki is also
+               able to support a range of research schedulers, specifically the
+               Shinjuku scheduler, a locality aware scheduler, and the Arachne
+               core arbiter, with good performance.",
+  publisher = "Association for Computing Machinery",
+  pages     = "962--980",
+  series    = "EuroSys '24",
+  year      =  2024,
+  address   = "New York, NY, USA",
+  keywords  = "development velocity, kernel development,
+               scheduling;slr-paper-memory-safety-rust-kernel;acm",
+  location  = "<conf-loc>, <city>Athens</city>, <country>Greece</country>,
+               </conf-loc>"
+}
+
+@INPROCEEDINGS{Ayers2022-vk,
+  title     = "Tighten rust's belt: shrinking embedded Rust binaries",
+  booktitle = "Proceedings of the 23rd {ACM} {SIGPLAN/SIGBED} International
+               Conference on Languages, Compilers, and Tools for Embedded
+               Systems",
+  author    = "Ayers, Hudson and Laufer, Evan and Mure, Paul and Park, Jaehyeon
+               and Rodelo, Eduardo and Rossman, Thea and Pronin, Andrey and
+               Levis, Philip and Van Why, Johnathan",
+  abstract  = "Rust is a promising programming language for embedded software,
+               providing low-level primitives and performance similar to C/C++
+               alongside type safety, memory safety, and modern high-level
+               language features. We find naive use of Rust leads to binaries
+               much larger than their C equivalents. For flash-constrained
+               embedded microcontrollers, this is prohibitive. We find four
+               major causes of this growth: monomorphization, inefficient
+               derivations, implicit data structures, and missing compiler
+               optimizations. We present a set of embedded Rust programming
+               principles which reduce Rust binary sizes. We apply these
+               principles to an industrial Rust firmware application, reducing
+               size by 76kB (19\%), and an open source Rust OS kernel binary,
+               reducing size by 23kB (26\%). We explore compiler optimizations
+               that could further shrink embedded Rust.",
+  publisher = "Association for Computing Machinery",
+  pages     = "121--132",
+  series    = "LCTES 2022",
+  year      =  2022,
+  address   = "New York, NY, USA",
+  keywords  = "embedded systems, binary size,
+               Rust;slr-paper-memory-safety-rust-kernel;acm",
+  location  = "San Diego, CA, USA"
+}
+
+@ARTICLE{Dixon2023-yp,
+  title     = "Position Paper on Teaching Operating Systems Using the Rust
+               Programming Language",
+  author    = "Dixon, Bryan",
+  abstract  = "In the past few years, the Rust Programming Language has quickly
+               gained adoption in a myriad of applications. This adoption,
+               especially into the Linux Kernel, is a clear motivation that
+               there may be a reason to have students learn Rust during their
+               computer science studies. This position paper will discuss a
+               case for why instructors should incorporate Rust as part of an
+               operating systems course and how one would accomplish this.",
+  journal   = "J. Comput. Sci. Coll.",
+  publisher = "Consortium for Computing Sciences in Colleges",
+  volume    =  39,
+  number    =  1,
+  pages     = "11--17",
+  month     =  oct,
+  year      =  2023,
+  address   = "Evansville, IN, USA",
+  keywords  = "slr-paper-memory-safety-rust-kernel;acm"
+}
+
+@INPROCEEDINGS{Matsui2023-ea,
+  title     = "Friend or Foe Inside? Exploring {In-Process} Isolation to
+               Maintain Memory Safety for Unsafe Rust",
+  booktitle = "2024 {IEEE} International Conference on Consumer Electronics
+               ({ICCE})",
+  author    = "Matsui, Shintaro and Kamimae, Katsuaki and Ikehara, Haruto and
+               Kawazu, Takuho and Yuwei, Huang and Nishimura, Masahiro and Abe,
+               Shuto and Okino, Kenyu and Hashiguchi, Yuta and Yanagihara,
+               Kengo and Obayashi, Takumi and Chaeseung, Kim and Shiota,
+               Tatsunosuke and Taguchi, Yukito and Tsuruda, Ryuki and Manabe,
+               Taito and Shibata, Yuichiro",
+  abstract  = "Rust is a popular memory-safe systems programming language. In
+               order to interact with hardware or call into non-Rust libraries,
+               Rust provides unsafe language features that shift responsibility
+               for ensuring memory safety to the developer. Failing to do so,
+               may lead to memory-safety violations in unsafe code which can
+               violate safety of the entire application. In this work we
+               explore in-process isolation with Memory Protection Keys as a
+               mechanism to shield safe program sections from safety violations
+               that may happen in unsafe sections. Our approach is easy to use
+               and comprehensive as it prevents heap and stack-based
+               violations. We further compare process-based and in-process
+               isolation mechanisms and the necessary requirements for data
+               serialization, communication, and context switching. Our results
+               show that in-process isolation can be effective and efficient,
+               permits for a high degree of automation, and also enables a
+               notion of application rewinding where the safe program section
+               may detect and safely handle violations in unsafe code.",
+  pages     = "54--66",
+  year      =  2023,
+  keywords  = "Codes; Prototypes; Switches; Licenses; Libraries; Hardware;
+               Safety; rust; in process isolations; intel mpk; memory
+               protection keys;slr-paper-memory-safety-rust-kernel;IEEE"
+}
+
+@ARTICLE{Culic2022-bk,
+  title    = "A {Low-Latency} Optimization of a {Rust-Based} Secure Operating
+              System for Embedded Devices",
+  author   = "Culic, Ioana and Vochescu, Alexandru and Radovici, Alexandru",
+  journal  = "Sensors",
+  volume   =  22,
+  number   =  22,
+  year     =  2022,
+  keywords = "slr-paper-memory-safety-rust-kernel;scopus"
+}
+
+@ARTICLE{Li2024-be,
+  title    = "{rOOM}: A {Rust-Based} Linux Out of Memory Kernel Component",
+  author   = "Li, Linhan and Zhang, Qianying and Xu, Zekun and Zhao, Shijun and
+              Shi, Zhiping and Guan, Yong",
+  journal  = "IEICE Trans. Inf. Syst.",
+  volume   = "E107.D",
+  number   =  3,
+  pages    = "245 -- 256",
+  year     =  2024,
+  keywords = "slr-paper-memory-safety-rust-kernel;scopus"
+}
+
+@INPROCEEDINGS{Miller2021-pg,
+  title    = "High velocity kernel file systems with bento",
+  author   = "Miller, Samantha and Zhang, Kaiyuan and Chen, Mengqi and
+              Jennings, Ryan and Chen, Ang and Zhuo, Danyang and Anderson,
+              Thomas",
+  pages    = "65 -- 78",
+  year     =  2021,
+  keywords = "slr-paper-memory-safety-rust-kernel;scopus"
+}
+
+@INPROCEEDINGS{Boos2020-zh,
+  title    = "Theseus: An experiment in operating system structure and state
+              management",
+  author   = "Boos, Kevin and Liyanage, Namitha and Ijaz, Ramla and Zhong, Lin",
+  pages    = "1 -- 19",
+  year     =  2020,
+  keywords = "slr-paper-memory-safety-rust-kernel;scopus"
+}
+
+@ARTICLE{Vishnunaryan2022-yd,
+  title    = "{HarSaRK\_multi\_rs}: A Hard Real-time Kernel for Multi-core
+              Microcontrollers in Rust Language",
+  author   = "Vishnunaryan, K I and Banda, Gourinath",
+  journal  = "Smart Innovation, Systems and Technologies",
+  volume   =  283,
+  pages    = "21 -- 32",
+  year     =  2022,
+  keywords = "slr-paper-memory-safety-rust-kernel;scopus"
+}
+
+@ARTICLE{Oikawa2023-ms,
+  title    = "The Experience of Developing a {FAT} File System Module in the
+              Rust Programming Language",
+  author   = "Oikawa, Shuichi",
+  journal  = "Stud. Comput. Intell.",
+  volume   =  1074,
+  pages    = "45 -- 58",
+  year     =  2023,
+  keywords = "slr-paper-memory-safety-rust-kernel;scopus"
+}
+
+@ARTICLE{Liu2024-xe,
+  title    = "An {OS} Kernel Based on {RISC-V} Architecture",
+  author   = "Liu, Guojun and Huang, Jili and Liu, Xiaoyan",
+  journal  = "Commun. Comput. Inf. Sci.",
+  volume   =  1899,
+  pages    = "3 -- 16",
+  year     =  2024,
+  keywords = "slr-paper-memory-safety-rust-kernel;scopus"
+}
+
+@ARTICLE{Shin2024-iw,
+  title    = "A Comparative Analysis of {Rust-Based} {SGX} Frameworks:
+              Implications for Building {SGX} Applications",
+  author   = "Shin, Heekyung and Ock, Jiwon and No, Hyeon and Kim, Seongmin",
+  journal  = "Lect. Notes Comput. Sci.",
+  volume   = "14562 LNCS",
+  pages    = "3 -- 19",
+  year     =  2024,
+  keywords = "slr-paper-memory-safety-rust-kernel;scopus"
+}
+
+@INPROCEEDINGS{Narayanan2020-gs,
+  title    = "Red Leaf: Isolation and communication in a safe operating system",
+  author   = "Narayanan, Vikram and Detweiler, David and Huang, Tianjiao and
+              Appel, Dan and Li, Zhaofeng and Zellweger, Gerd and Burtsev,
+              Anton",
+  pages    = "21 -- 39",
+  year     =  2020,
+  keywords = "slr-paper-memory-safety-rust-kernel;scopus"
+}
+
+@INPROCEEDINGS{Emmerich2019-jz,
+  title    = "The case for writing network drivers in high-level programming
+              languages",
+  author   = "Emmerich, Paul and Voit, Sebastian and Carle, Georg and Ellmann,
+              Simon and Bonk, Fabian and Egger, Alex and Sanchez-Torija, Esau
+              Garcia and Gunzel, Thomas and Di Luzio, Sebastian and Obada,
+              Alexandru and Stadlmeier, Maximilian",
+  abstract = "Drivers are written in C or restricted subsets of C++ on all
+              production-grade server, desktop, and mobile operating systems.
+              They account for 66 \% of the code in Linux, but 39 out of 40
+              security bugs related to memory safety found in Linux in 2017 are
+              located in drivers. These bugs could have been prevented by using
+              high-level languages for drivers. We present user space drivers
+              for the Intel ixgbe 10 Gbit/s network cards implemented in Rust,
+              Go, C\#, Java, OCaml, Haskell, Swift, JavaScript, and Python
+              written from scratch in idiomatic style for the respective
+              languages. We quantify costs and benefits of using these
+              languages: High-level languages are safer (fewer bugs, more
+              safety checks), but run-time safety checks reduce throughput and
+              garbage collection leads to latency spikes. Out-of-order CPUs
+              mitigate the cost of safety checks: Our Rust driver executes 63
+              \% more instructions per packet but is only 4 \% slower than a
+              reference C implementation. Go's garbage collector keeps
+              latencies below 100 $\mu$s even under heavy load. Other languages
+              fare worse, but their unique properties make for an interesting
+              case study. All implementations are available as free and open
+              source at https://githud.com/ixy-languages/ixy-languages.",
+  year     =  2019,
+  keywords = "Rust; Go; C\#; Java; OCaml; Haskell; Swift; JavaScript;
+              Python;slr-paper-memory-safety-rust-kernel;scopus;IEEE"
+}
+
+@INPROCEEDINGS{Li2023-vb,
+  title     = "{W-Kernel}: An {OS} Kernel Architecture Designed With Isolation
+               and Customizability",
+  booktitle = "Proceedings of the 2023 5th International Conference on Software
+               Engineering and Development",
+  author    = "Li, Shaowen and Sato, Hiroyuki",
+  abstract  = "We propose a new operating system architecture called W-kernel.
+               Traditional commodity operating systems are monolithic which is
+               easy to design and offers decent performance. However, as system
+               complexity increases, the lack of isolation in a monolithic
+               kernel compromises the system's availability, reliability, and
+               maintainability. System designers have been exploring various
+               approaches to enhancing isolation in operating systems.
+               Achieving isolation requires a balance of its overheads,
+               flexibility, and strength. Furthermore, due to the enhanced
+               capabilities of hardware as well as the stronger performance
+               requirement from applications, we have witnessed many proposals
+               working on blurring the boundary between the kernel space and
+               the user space, i.e., user-level jobs are being moved inside the
+               kernel or directly onto the hardware. The next-generation kernel
+               should be customizable so that different parties can construct
+               their own kernel according to their specific needs by including
+               only necessary components implemented using whatever languages
+               they prefer. W-kernel is designed with these two goals:
+               isolation and customizability. W-kernel is developed from
+               scratch in Rust to leverage the power of modern safe language
+               and it further implements a separation of heaps. In combination,
+               these provide low-cost and flexible isolation. In addition,
+               W-kernel adopts the design of an exokernel to separate resource
+               protection from management and embeds a WebAssembly(WASM)
+               runtime inside the kernel space for organizing and customizing
+               kernel components.WebAssembly is a portable execution
+               environment and was originally proposed as a web platform to
+               support the deployment of applications developed in diverse
+               programming languages. We leverage this and exploit the
+               opportunity of using WASM as a platform for kernel components.
+               We are the first to discuss its practicability as being built
+               into the kernel space for kernel component management. With the
+               absence of any costly hardware isolation mechanisms and a
+               combination of Rust's safety, exokernel's separation, and
+               WebAssembly's modularity, we argue that W-kernel is an effective
+               option for building more complex operating systems.",
+  publisher = "Association for Computing Machinery",
+  pages     = "42 -- 50",
+  series    = "ICSED '23",
+  year      =  2023,
+  address   = "New York, NY, USA",
+  keywords  = "Isolation, Operating systems, Security,
+               WebAssembly;slr-paper-memory-safety-rust-kernel;scopus;acm",
+  location  = "<conf-loc>, <city>Singapore</city>,
+               <country>Singapore</country>, </conf-loc>"
+}
+
+@INPROCEEDINGS{Li2021-oe,
+  title     = "Understanding the Overheads of Hardware and {Language-Based}
+               {IPC} Mechanisms",
+  booktitle = "Proceedings of the 11th Workshop on Programming Languages and
+               Operating Systems",
+  author    = "Li, Zhaofeng and Huang, Tianjiao and Narayanan, Vikram and
+               Burtsev, Anton",
+  abstract  = "A recent surge of security attacks has triggered a renewed
+               interest in hardware support for isolation. Extended page table
+               switching with VMFUNC, memory protection keys (MPK), and memory
+               tagging extensions (MTE) are just a few of the hardware
+               isolation mechanisms that promise support for low-overhead
+               isolation in recent CPUs. Along with the restored interest in
+               lightweight hardware isolation mechanisms, safe programming
+               languages like Rust has made a leap towards practical,
+               zero-overhead safety implemented without garbage collection.Both
+               lightweight hardware mechanisms and zero-overhead language
+               safety can be leveraged to enforce the isolation of subsystems,
+               e.g., browser plugins, device drivers and kernel extensions,
+               user-defined database and network functions, etc. However, as
+               both technologies are still young, their relative advantages are
+               still unknown. In this work, we study the overheads of hardware
+               and software isolation mechanisms with the goal to understand
+               their relative advantages and disadvantages for fine-grained
+               isolation of subsystems with tight performance budgets. We ask
+               two questions: What is the overhead of hardware isolation in an
+               ideal scenario where the hardware isolation mechanism takes zero
+               cycles? And if the safety of the Rust language can lower the
+               overhead of cross-subsystem invocations, can the language on its
+               own introduce overheads that might outweigh isolation
+               advantages? To answer these questions, we develop and compare
+               two carefully optimized versions of inter-process communication
+               (IPC) mechanisms (one in safe Rust and one in a
+               carefully-optimized assembly), and two identical (to the degree
+               possible) DPDK-based network packet processing frameworks (one
+               in C++ and one in Rust). Our analysis shows that for systems
+               requiring frequent boundary crossings, a safe language is still
+               beneficial even if the overheads of hardware isolation
+               mechanisms drop to zero.",
+  publisher = "Association for Computing Machinery",
+  pages     = "53 -- 61",
+  series    = "PLOS '21",
+  year      =  2021,
+  address   = "New York, NY, USA",
+  keywords  = "slr-paper-memory-safety-rust-kernel;scopus;acm",
+  location  = "Virtual Event, Germany"
+}
+
+@INPROCEEDINGS{Li2019-mb,
+  title     = "Securing the device drivers of your embedded systems: Framework
+               and prototype",
+  booktitle = "Proceedings of the 14th International Conference on
+               Availability, Reliability and Security",
+  author    = "Li, Zhuohua and Wang, Jincheng and Sun, Mingshen and Lui, John C
+               S",
+  abstract  = "Device drivers on Linux-powered embedded or IoT systems execute
+               in kernel space thus must be fully trusted. Any fault in drivers
+               may significantly impact the whole system. However, third-party
+               embedded hardware manufacturers usually ship their proprietary
+               device drivers with their embedded devices. These out-of-tree
+               device drivers are generally of poor quality because of a lack
+               of code audit. In this paper, we propose a new approach that
+               helps third-party developers to improve the reliability and
+               safety of device drivers without modifying the kernel: Rewriting
+               device drivers in a memory-safe programming language called
+               Rust. Rust's rigorous language model assists the device driver
+               developers to detect many security issues at compile time. We
+               designed a framework to help developers to quickly build device
+               drivers in Rust. We also utilized Rust's security features to
+               provide several useful infrastructures for developers so that
+               they can easily handle kernel memory allocation and concurrency
+               management, at the same time, some common bugs (e.g.
+               use-after-free) can be alleviated. We demonstrate the generality
+               of our framework by implementing a real-world device driver on
+               Raspberry Pi 3, and our evaluation shows that device drivers
+               generated by our framework have acceptable binary size for
+               canonical embedded systems and the runtime overhead is
+               negligible.",
+  publisher = "Association for Computing Machinery",
+  series    = "ARES '19",
+  year      =  2019,
+  address   = "New York, NY, USA",
+  keywords  = "Rust, Linux Kernel, Device
+               Drivers;slr-paper-memory-safety-rust-kernel;scopus;acm",
+  location  = "Canterbury, CA, United Kingdom"
+}
+
+@INPROCEEDINGS{Rivera2021-ke,
+  title     = "Keeping Safe Rust Safe with Galeed",
+  booktitle = "Proceedings of the 37th Annual Computer Security Applications
+               Conference",
+  author    = "Rivera, Elijah and Mergendahl, Samuel and Shrobe, Howard and
+               Okhravi, Hamed and Burow, Nathan",
+  abstract  = "Rust is a programming language that simultaneously offers high
+               performance and strong security guarantees. Safe Rust (i.e.,
+               Rust code that does not use the unsafe keyword) is memory and
+               type safe. However, these guarantees are violated when safe Rust
+               interacts with unsafe code, most notably code written in other
+               programming languages, including in legacy C/C++ applications
+               that are incrementally deploying Rust. This is a significant
+               problem as major applications such as Firefox, Chrome, AWS,
+               Windows, and Linux have either deployed Rust or are exploring
+               doing so. It is important to emphasize that unsafe code is not
+               only unsafe itself, but also it breaks the safety guarantees of
+               `safe' Rust; e.g., a dangling pointer in a linked C/C++ library
+               can access and overwrite memory allocated to Rust even when the
+               Rust code is fully safe. This paper presents Galeed, a technique
+               to keep safe Rust safe from interference from unsafe code.
+               Galeed has two components: a runtime defense to prevent
+               unintended interactions between safe Rust and unsafe code and a
+               sanitizer to secure intended interactions. The runtime component
+               works by isolating Rust's heap from any external access and is
+               enforced using Intel Memory Protection Key (MPK) technology. The
+               sanitizer uses a smart data structure that we call
+               pseudo-pointer along with automated code transformation to avoid
+               passing raw pointers across safe/unsafe boundaries during
+               intended interactions (e.g., when Rust and C++ code exchange
+               data). We implement and evaluate the effectiveness and
+               performance of Galeed via micro- and macro-benchmarking, and use
+               it to secure a widely used component of Firefox.",
+  publisher = "Association for Computing Machinery",
+  pages     = "824 -- 836",
+  series    = "ACSAC '21",
+  year      =  2021,
+  address   = "New York, NY, USA",
+  keywords  = "slr-paper-memory-safety-rust-kernel;scopus;acm",
+  location  = "<conf-loc>, <city>Virtual Event</city>, <country>USA</country>,
+               </conf-loc>"
+}
+
+@INPROCEEDINGS{Lindgren2023-rz,
+  title    = "Static and Dynamic Memory Protection using {Type-Based} Memory
+              Layout in Rust",
+  author   = "Lindgren, Per and Dzialo, Pawel and Nurmi, Antti and Lunnikivi,
+              Henri",
+  abstract = "Hardware supported memory protection is a commonly adopted
+              approach to runtime verification of memory accesses. However,
+              protection is typically coarse grained where trusted drivers and
+              kernel code is given access to unnecessarily large portions of
+              the memory space. This approach implies huge costs to
+              verification, validation and certification of trusted code.In
+              this paper we propose an alternative approach, leveraging on
+              memory safety guarantees of the Rust systems level programming
+              language together with a novel type-based method to statically
+              determine the memory layout of the application. The memory layout
+              information can be used for further static code analysis, proving
+              access pattern properties, and is used as an outset for fine
+              grained hardware supported memory protection.While the proposed
+              approach is novel and breaks with traditional and industrial
+              practice, our results are applicable to existing hardware
+              platforms and holds the potential to provide leap-step
+              improvements to safety and security of embedded devices.",
+  year     =  2023,
+  keywords = "Codes; Runtime; Layout; Hardware; Safety; Security;
+              Kernel;slr-paper-memory-safety-rust-kernel;scopus;IEEE"
+}
+
+@INPROCEEDINGS{Jia2023-oy,
+  title     = "Kernel extension verification is untenable",
+  booktitle = "Proceedings of the 19th Workshop on Hot Topics in Operating
+               Systems",
+  author    = "Jia, Jinghao and Sahu, Raj and Oswald, Adam and Williams, Dan
+               and Le, Michael V and Xu, Tianyin",
+  abstract  = "The emergence of verified eBPF bytecode is ushering in a new era
+               of safe kernel extensions. In this paper, we argue that eBPF's
+               verifier---the source of its safety guarantees---has become a
+               liability. In addition to the well-known bugs and
+               vulnerabilities stemming from the complexity and ad hoc nature
+               of the in-kernel verifier, we highlight a concerning trend in
+               which escape hatches to unsafe kernel functions (in the form of
+               helper functions) are being introduced to bypass
+               verifier-imposed limitations on expressiveness, unfortunately
+               also bypassing its safety guarantees. We propose safe kernel
+               extension frameworks using a balance of not just static but also
+               lightweight runtime techniques. We describe a design centered
+               around kernel extensions in safe Rust that will eliminate the
+               need of the in-kernel verifier, improve expressiveness, allow
+               for reduced escape hatches, and ultimately improve the safety of
+               kernel extensions.",
+  publisher = "Association for Computing Machinery",
+  pages     = "150 -- 157",
+  series    = "HOTOS '23",
+  year      =  2023,
+  address   = "New York, NY, USA",
+  keywords  = "safety, verification, eBPF, kernel extension, operating
+               system;slr-paper-memory-safety-rust-kernel;scopus;acm",
+  location  = "Providence, RI, USA"
+}
+
+@INPROCEEDINGS{Klimt2023-eu,
+  title     = "On the Challenge of Sound Code for Operating Systems",
+  booktitle = "Proceedings of the 12th Workshop on Programming Languages and
+               Operating Systems",
+  author    = "Klimt, Jonathan and Kr{\"o}ning, Martin and Lankes, Stefan and
+               Monti, Antonello",
+  abstract  = "The memory-safe systems programming language Rust is gaining
+               more and more attention in the operating system development
+               communities, as it provides memory safety without sacrificing
+               performance or control. However, these safety guarantees only
+               apply to the safe subset of Rust, while bare-metal programming
+               requires some parts of the program to be written in unsafe Rust.
+               Writing abstractions for these parts of the software that are
+               sound, meaning that they guarantee the absence of undefined
+               behavior and thus uphold the invariants of safe Rust, can be
+               challenging. Producing sound code, however, is essential to
+               avoid breakage when the code is used in new ways or the compiler
+               behavior changes.In this paper, we present common patterns of
+               unsound abstractions derived from the experience of reworking
+               soundness in our kernel. During this process, we were able to
+               remove over 400 unsafe expressions while discovering and fixing
+               several hard-to-spot concurrency bugs along the way.",
+  publisher = "Association for Computing Machinery",
+  pages     = "83 -- 90",
+  series    = "PLOS '23",
+  month     =  oct,
+  year      =  2023,
+  address   = "New York, NY, USA",
+  keywords  = "unsafe, systems programming, soundness, safe, operating system,
+               memory safety,
+               Rust;slr-paper-memory-safety-rust-kernel;scopus;acm",
+  location  = "<conf-loc>, <city>Koblenz</city>, <country>Germany</country>,
+               </conf-loc>"
+}
+
+@INPROCEEDINGS{Li2022-jz,
+  title     = "Friend or Foe Inside? Exploring {In-Process} Isolation to
+               Maintain Memory Safety for Unsafe Rust",
+  booktitle = "2023 {IEEE} Secure Development Conference ({SecDev})",
+  author    = "Li, Linhan and Zhang, Qianying and Zhao, Shijun and Shi, Zhiping
+               and Guan, Yong",
+  abstract  = "The Linux kernel plays an important role in various application
+               scenarios such as computers, mobile devices, and vehicles, in
+               which security-sensitive information is stored. Undefined
+               behavior in the C programming language is usually the cause of
+               Linux kernel vulnerabilities, among which memory safety
+               vulnerabilities are the most threatening. At present, the
+               methods based on static/dynamic analysis and runtime software
+               and hardware defense to ensure memory safety have the problems
+               of poor performance, false positives, and poor compatibility.
+               This paper presents the design and implementation of the OOM
+               (out of memory) module based on the safe programming language
+               Rust. We leverage the Rust FFI mechanism to design a foreign
+               interface layer and a safe foreign interface layer to enable the
+               reconstructed OOM module to invoke other Linux functionalities,
+               and then use Rust to reconstruct the OOM module. The safety
+               features of Rust language are used to avoid undefined behaviors,
+               so as to improve the safety of the kernel. Finally, we export
+               the C interface of the module to enable the invocation by the
+               Linux kernel. Tests show that the OOM module performance and
+               memory consumption after reconstruction are comparable to the
+               original module.",
+  pages     = "774 -- 775",
+  month     =  dec,
+  year      =  2022,
+  keywords  = "Computer languages; Linux; Memory management; Software quality;
+               Safety; Behavioral sciences; Software reliability; Linux kernel;
+               memory safety; undefined behavior; OOM module;
+               Rust;slr-paper-memory-safety-rust-kernel;scopus;IEEE"
+}
+
+@INPROCEEDINGS{Liang2021-bo,
+  title    = "Rustpi: A Rust-powered Reliable Micro-kernel Operating System",
+  author   = "Liang, Yuanzhi and Wang, Lei and Li, Siran and Jiang, Bo",
+  abstract = "Rustpi is a micro-kernel operating system implemented in Rust to
+              explore how modern language features can help to build a reliable
+              operating system. In our system, isolations between micro-kernel
+              servers are achieved by Rust language instead of expensive
+              hardware mechanisms. Moreover, Rust language features such as
+              control-flow integrity and unwinding enable hardware transient
+              fault detection and error recovery without resource leaking.
+              Rustpi creatively integrates these features to enhance its
+              reliability. Moreover, our design is also applicable to other
+              Rust micro-kernel systems or even the Linux kernel.",
+  pages    = "272 -- 273",
+  year     =  2021,
+  keywords = "Linux; Fault detection; Conferences; Reliability engineering;
+              Feature extraction; Hardware; Software reliability; Operating
+              Systems; reliability; fault
+              tolerance;slr-paper-memory-safety-rust-kernel;scopus;IEEE"
+}
+
+@INPROCEEDINGS{Hu2022-to,
+  title    = "Comprehensiveness, Automation and Lifecycle: A New Perspective
+              for Rust Security",
+  author   = "Hu, Shuang and Hua, Baojian and Wang, Yang",
+  abstract = "Rust is an emerging programming language designed for secure
+              system programming that provides both security guarantees and
+              runtime efficiency and has been increasingly used to build
+              software infrastructures such as OS kernels, web browsers,
+              databases, and blockchains. To support arbitrary low-level
+              programming and to provide more flexibility, Rust introduced the
+              unsafe feature, which may lead to security issues such as memory
+              or concurrency vulnerabilities. Although there have been a
+              significant number of studies on Rust security utilizing diverse
+              techniques such as program analysis, fuzzing, privilege
+              separation, and formal verification, existing studies suffer from
+              three problems: 1) they only partially solve specific security
+              issues but lack comprehensiveness; 2) most of them require manual
+              interventions or annotations thus are not automated; and 3) they
+              only cover a specific phase instead of the full lifecycle.In this
+              perspective paper, we first survey current research progress on
+              Rust security from 5 aspects, namely, empirical studies,
+              vulnerability prevention, vulnerability detection, vulnerability
+              rectification, and formal verification, and note the limitations
+              of current studies. Then, we point out key challenges for Rust
+              security. Finally, we offer our vision of a Rust security
+              infrastructure guided by three principles: Comprehensiveness,
+              Automation, and Lifecycle (CAL). Our work intends to promote the
+              Rust security studies by proposing new research challenges and
+              future research directions.",
+  volume   = "2022-December",
+  pages    = "982 -- 991",
+  year     =  2022,
+  keywords = "Computer languages; Automation; Runtime; Program processors;
+              Software quality; Manuals; Programming; Perspective; Rust;
+              Security;slr-paper-memory-safety-rust-kernel;scopus;IEEE"
+}
+
+@INPROCEEDINGS{Narayanan2019-el,
+  title     = "{RedLeaf}: Towards An Operating System for Safe and Verified
+               Firmware",
+  booktitle = "Proceedings of the Workshop on Hot Topics in Operating Systems",
+  author    = "Narayanan, Vikram and Baranowski, Marek S and Ryzhyk, Leonid and
+               Rakamari{\'c}, Zvonimir and Burtsev, Anton",
+  abstract  = "RedLeaf is a new operating system being developed from scratch
+               to utilize formal verification for implementing provably secure
+               firmware. RedLeaf is developed in a safe language, Rust, and
+               relies on automated reasoning using satisfiability modulo
+               theories (SMT) solvers for formal verification. RedLeaf builds
+               on two premises: (1) Rust's linear type system enables practical
+               language safety even for systems with tightest performance and
+               resource budgets (e.g., firmware), and (2) a combination of
+               SMT-based reasoning and pointer discipline enforced by linear
+               types provides a unique way to automate and simplify
+               verification effort scaling it to the size of a small OS kernel.",
+  publisher = "Association for Computing Machinery",
+  pages     = "37 -- 44",
+  series    = "HotOS '19",
+  year      =  2019,
+  address   = "New York, NY, USA",
+  keywords  = "rust-os-new;slr-paper-memory-safety-rust-kernel;scopus;acm",
+  location  = "Bertinoro, Italy"
+}
+
+@INPROCEEDINGS{Chen2023-xv,
+  title     = "{OOM-Guard}: Towards Improving the Ergonomics of Rust {OOM}
+               Handling via a {Reservation-Based} Approach",
+  booktitle = "Proceedings of the 31st {ACM} Joint European Software
+               Engineering Conference and Symposium on the Foundations of
+               Software Engineering",
+  author    = "Chen, Chengjun and Zhang, Zhicong and Tian, Hongliang and Yan,
+               Shoumeng and Xu, Hui",
+  abstract  = "Out of memory (OOM) is an exceptional system state where any
+               further memory allocation requests may fail. Such allocation
+               failures would crash the process or system if not handled
+               properly, and they may also lead to an inconsistent program
+               state that cannot be recovered easily. Current mechanisms for
+               preventing such hazards highly rely on the manual effort of the
+               programmers themselves. This paper studies the OOM issues of
+               Rust, which is an emerging system programming language that
+               stresses the importance of memory safety but still lacks handy
+               mechanisms to handle OOM well. Even worse, Rust employs an
+               infallible mode of memory allocations by default. As a result,
+               the program written by Rust would simply abort itself when OOM
+               occurs. Such crashes would lead to critical robustness issues
+               for services or modules of operating systems. We propose
+               OOM-Guard, a handy approach for Rust programmers to handle OOM.
+               OOM-Guard is by nature a reservation-based approach that aims to
+               convert the handlings for many possible failed memory
+               allocations into handlings for a smaller number of reservations.
+               In order to achieve efficient reservation, OOM-Guard
+               incorporates a subtle cost analysis algorithm based on static
+               analysis and a proxy allocator. We then apply OOM-Guard to two
+               well-known Rust projects, Bento and rCore. Results show that
+               OOM-Guard can largely reduce developers' efforts for handling
+               OOM and incurs trivial overhead in both memory space and
+               execution time.",
+  publisher = "Association for Computing Machinery",
+  pages     = "733 -- 744",
+  series    = "ESEC/FSE 2023",
+  year      =  2023,
+  address   = "New York, NY, USA",
+  keywords  = "Static Analysis, Software Reliability, Reservation, Out Of
+               Memory;slr-paper-memory-safety-rust-kernel;scopus",
+  location  = "<conf-loc>, <city>San Francisco</city>, <state>CA</state>,
+               <country>USA</country>, </conf-loc>"
+}
+
+@INPROCEEDINGS{Miller2019-lv,
+  title     = "Practical Safe Linux Kernel Extensibility",
+  booktitle = "Proceedings of the Workshop on Hot Topics in Operating Systems",
+  author    = "Miller, Samantha and Zhang, Kaiyuan and Zhuo, Danyang and Xu,
+               Shibin and Krishnamurthy, Arvind and Anderson, Thomas",
+  abstract  = "The ability to extend kernel functionality safely has long been
+               a design goal for operating systems. Modern operating systems,
+               such as Linux, are structured for extensibility to enable
+               sharing a single code base among many environments.
+               Unfortunately, safety has lagged behind, and bugs in kernel
+               extensions continue to cause problems. We study three recent
+               kernel extensions critical to Docker containers (Overlay File
+               System, Open vSwitch Datapath, and AppArmor) to guide further
+               research in extension safety. We find that all the studied
+               kernel extensions suffer from the same set of low-level memory,
+               concurrency, and type errors. Though safe kernel extensibility
+               is a well-studied area, existing solutions are heavyweight,
+               requiring extensive changes to the kernel and/or expensive
+               runtime checks. We then explore the feasibility of writing
+               kernel extensions in a high-level, type safe language (i.e.,
+               Rust) while preserving compatibility with Linux and find this to
+               be an appealing approach. We show that there are key challenges
+               to implementing this approach and propose potential solutions.",
+  publisher = "Association for Computing Machinery",
+  pages     = "170 -- 176",
+  series    = "HotOS '19",
+  year      =  2019,
+  address   = "New York, NY, USA",
+  keywords  = "operating systems, extensibility,
+               Rust;slr-paper-memory-safety-rust-kernel;scopus;acm",
+  location  = "Bertinoro, Italy"
+}
+
+@INPROCEEDINGS{Ma2023-hv,
+  title     = "Panic Recovery in Rust-based Embedded Systems",
+  booktitle = "Proceedings of the 12th Workshop on Programming Languages and
+               Operating Systems",
+  author    = "Ma, Zhiyao and Chen, Guojun and Zhong, Lin",
+  abstract  = "Stack unwinding is a well-established approach for handling
+               panics in Rust programs. However, its feasibility on
+               resource-constrained embedded systems has been unclear due to
+               the associated overhead and complexity. This paper presents our
+               experience of implementing stack unwinding and panic recovery
+               within a Rust-based soft real-time embedded operating system. We
+               describe several novel optimizations that help achieve adequate
+               performance for a flying drone with a CPU overhead of 2.6\% and
+               a storage overhead of 26.0\% to recover from panics in
+               application tasks and interrupt handlers.",
+  publisher = "Association for Computing Machinery",
+  pages     = "66 -- 73",
+  series    = "PLOS '23",
+  year      =  2023,
+  address   = "New York, NY, USA",
+  keywords  = "slr-paper-memory-safety-rust-kernel;scopus;acm",
+  location  = "<conf-loc>, <city>Koblenz</city>, <country>Germany</country>,
+               </conf-loc>"
+}
+
+@INPROCEEDINGS{Sung2020-dh,
+  title     = "Intra-unikernel isolation with Intel memory protection keys",
+  booktitle = "Proceedings of the 16th {ACM} {SIGPLAN/SIGOPS} International
+               Conference on Virtual Execution Environments",
+  author    = "Sung, Mincheol and Olivier, Pierre and Lankes, Stefan and
+               Ravindran, Binoy",
+  abstract  = "Unikernels are minimal, single-purpose virtual machines. This
+               new operating system model promises numerous benefits within
+               many application domains in terms of lightweightness,
+               performance, and security. Although the isolation between
+               unikernels is generally recognized as strong, there is no
+               isolation within a unikernel itself. This is due to the use of a
+               single, unprotected address space, a basic principle of
+               unikernels that provide their lightweightness and performance
+               benefits. In this paper, we propose a new design that brings
+               memory isolation inside a unikernel instance while keeping a
+               single address space. We leverage Intel's Memory Protection Key
+               to do so without impacting the lightweightness and performance
+               benefits of unikernels. We implement our isolation scheme within
+               an existing unikernel written in Rust and use it to provide
+               isolation between trusted and untrusted components: we isolate
+               (1) safe kernel code from unsafe kernel code and (2) kernel code
+               from user code. Evaluation shows that our system provides such
+               isolation with very low performance overhead. Notably, the
+               unikernel with our isolation exhibits only 0.6\% slowdown on a
+               set of macro-benchmarks.",
+  publisher = "Association for Computing Machinery",
+  pages     = "143 -- 156",
+  series    = "VEE '20",
+  year      =  2020,
+  address   = "New York, NY, USA",
+  keywords  = "unikernels, memory safety, memory protection
+               keys;slr-paper-memory-safety-rust-kernel;scopus;acm",
+  location  = "Lausanne, Switzerland"
+}
+
+@INPROCEEDINGS{Gonzalez2023-wg,
+  title     = "Takeaways of Implementing a Native Rust {UDP} Tunneling Network
+               Driver in the Linux Kernel",
+  booktitle = "Proceedings of the 12th Workshop on Programming Languages and
+               Operating Systems",
+  author    = "Gonzalez, Am{\'e}lie and Mvondo, Djob and Bromberg,
+               Y{\'e}rom-David",
+  abstract  = "C is the primary programming language used in the Linux kernel.
+               Recently, the Linux developer community oversaw the experimental
+               addition of Rust into the kernel's build system. Networking is
+               one of the areas often mentioned when discussing the adoption of
+               Rust. In networking, both perfect memory management and
+               performance are critical.In this paper, we present a Rust UDP
+               tunneling driver for Linux, which provides UDP encapsulation
+               between two peers. We use this driver to discuss design
+               considerations of writing Rust networking code for Linux. We
+               then compare the performance of our driver against a similar
+               driver written in C. We find that our Rust driver performs
+               slightly worse on a gigabit link for both latency (+0.1906\%,
+               p-value = 1.464e--15) and throughput (--0.00090\%, p-value =
+               6.004e--5). We then discuss potential causes for that loss.",
+  publisher = "Association for Computing Machinery",
+  pages     = "18 -- 25",
+  series    = "PLOS '23",
+  year      =  2023,
+  address   = "New York, NY, USA",
+  keywords  = "slr-paper-memory-safety-rust-kernel;scopus;acm",
+  location  = "<conf-loc>, <city>Koblenz</city>, <country>Germany</country>,
+               </conf-loc>"
+}
+
+@INPROCEEDINGS{Eiling2023-mo,
+  title     = "{GPU} Acceleration in Unikernels Using Cricket {GPU}
+               Virtualization",
+  booktitle = "Proceedings of the {SC} '23 Workshops of The International
+               Conference on High Performance Computing, Network, Storage, and
+               Analysis",
+  author    = "Eiling, Niklas and Kr{\"o}ning, Martin and Klimt, Jonathan and
+               Fensch, Philipp and Lankes, Stefan and Monti, Antonello",
+  abstract  = "Today, large compute clusters increasingly move towards
+               heterogeneous architectures by employing accelerators, such as
+               GPUs, to realize ever-increasing performance. To achieve maximum
+               performance on these architectures, applications have to be
+               tailored to the available hardware by using special APIs to
+               interact with the hardware resources, such as the CUDA APIs for
+               NVIDIA GPUs. Simultaneously, unikernels emerge as a solution for
+               the increasing overhead introduced by the complexity of modern
+               operating systems and their inability to optimize for specific
+               application profiles. Unikernels allow for better static code
+               checking and enable optimizations impossible with monolithic
+               kernels, yielding more robust and faster programs. Despite this,
+               there is a lack of support for using GPUs in unikernels. Due to
+               the proprietary nature of the CUDA APIs, direct support for
+               interacting with NVIDIA GPUs from unikernels is infeasible,
+               resulting in applications requiring GPUs being unsuitable for
+               deployment in unikernels. We propose using Cricket GPU
+               virtualization to introduce GPU support to the unikernels
+               RustyHermit and Unikraft. To interface with Cricket, we
+               implement a generic library for using ONC RPCs in Rust. With
+               Cricket and our RPC library, unikernels become able to use GPU
+               resources, even when they are installed in remote machines. This
+               way, we enable the use of unikernels for applications that
+               require the high parallel performance of GPUs to achieve
+               manageable execution times.",
+  publisher = "Association for Computing Machinery",
+  pages     = "1588 -- 1595",
+  series    = "SC-W '23",
+  year      =  2023,
+  address   = "New York, NY, USA",
+  keywords  = "Virtualization, Unikraft, Unikernel, RustyHermit,
+               High-Performance Computing, Heterogeneous Computing, GPUs, Cloud
+               Computing, CUDA;slr-paper-memory-safety-rust-kernel;scopus;acm",
+  location  = "<conf-loc>, <city>Denver</city>, <state>CO</state>,
+               <country>USA</country>, </conf-loc>"
+}
+
+@INPROCEEDINGS{Lankes2019-jn,
+  title     = "Exploring rust for unikernel development",
+  booktitle = "Proceedings of the 10th Workshop on Programming Languages and
+               Operating Systems",
+  author    = "Lankes, Stefan and Breitbart, Jens and Pickartz, Simon",
+  abstract  = "System-level development has been dominated by programming
+               languages like C/C++ for decades. These languages are inherently
+               unsafe, error-prone, and a major reason for vulnerabilities.
+               High-level programming languages with a secure memory model and
+               strong type system are able to improve the quality of the system
+               software. In this paper, we explore the programming language
+               Rust for kernel development and present RustyHermit, which is a
+               unikernel completely written in Rust without any C/C++. We show
+               that the support for RustyHermit can be transparently
+               integratable in the Rust toolchain and common Rust applications
+               are build-able on top of RustyHermit. Previously, we developed
+               the C-based unikernel HermitCore with a similar design to
+               RustyHermit and we are able to compare both kernels. We show
+               that the performance of both kernels is similar and only 3.27 \%
+               of RustyHermit relies on unsafe code, that cannot be checked by
+               the compiler in detail.",
+  publisher = "Association for Computing Machinery",
+  pages     = "8 -- 15",
+  series    = "PLOS '19",
+  year      =  2019,
+  address   = "New York, NY, USA",
+  keywords  = "slr-paper-memory-safety-rust-kernel;scopus;acm",
+  location  = "Huntsville, ON, Canada"
+}
+
+@INPROCEEDINGS{Chen2022-it,
+  title    = "Linux Kernel Module Development with Rust",
+  author   = "Chen, Shao-Fu and Wu, Yu-Sung",
+  abstract = "The Linux system has become an indispensable component of today's
+              Internet services, network backbones, and IoT devices. The Linux
+              kernel is primarily implemented in the C language for efficiency,
+              creating opportunities for memory bugs and synchronization bugs.
+              We introduce the use of the Rust programming language in kernel
+              development, where the safety features of the Rust language are
+              leveraged to prevent the introduction of memory bugs or
+              synchronization bugs when writing kernel code. We showcase the
+              key steps in developing a Linux kernel module in Rust and discuss
+              how the memory bugs and synchronization bugs are prevented. The
+              evaluation demonstrates that the performance overhead of the Rust
+              kernel modules is on par with the C kernel modules.",
+  year     =  2022,
+  keywords = "Codes; Linux; Computer bugs; Memory management; Web and internet
+              services; Writing; Safety; Linux kernel; Rust; memory bug;
+              synchronization bug; compile-time
+              check;slr-paper-memory-safety-rust-kernel;scopus;IEEE"
+}
+
+@INPROCEEDINGS{Burtsev2021-rq,
+  title     = "Isolation in Rust: What is Missing?",
+  booktitle = "Proceedings of the 11th Workshop on Programming Languages and
+               Operating Systems",
+  author    = "Burtsev, Anton and Appel, Dan and Detweiler, David and Huang,
+               Tianjiao and Li, Zhaofeng and Narayanan, Vikram and Zellweger,
+               Gerd",
+  abstract  = "Rust is the first practical programming language that has the
+               potential to provide fine-grained isolation of untrusted
+               computations at the language level. A combination of
+               zero-overhead safety, i.e., safety without a managed runtime and
+               garbage collection, and a unique ownership discipline enable
+               isolation in systems with tight performance budgets, e.g.,
+               databases, network processing frameworks, browsers, and even
+               operating system kernels.Unfortunately, Rust was not designed
+               with isolation in mind. Today, implementing isolation in Rust is
+               possible but requires complex, ad hoc, and arguably error-prone
+               mechanisms to enforce it outside of the language. We examine
+               several recent systems that implement isolation in Rust but
+               struggle with the shortcomings of the language. As a result of
+               our analysis we identify a collection of mechanisms that can
+               enable isolation as a first class citizen in the Rust ecosystem
+               and suggest directions for implementing them.",
+  publisher = "Association for Computing Machinery",
+  pages     = "76 -- 83",
+  series    = "PLOS '21",
+  year      =  2021,
+  address   = "New York, NY, USA",
+  keywords  = "slr-paper-memory-safety-rust-kernel;scopus;acm",
+  location  = "Virtual Event, Germany"
 }
