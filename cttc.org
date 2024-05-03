@@ -43,9 +43,29 @@ difficult to follow code.
 
 ** Important Points
 
+This paper is about an experimental operating system that is aimed at addressing the state spill
+problem. State spill happens when a single service in an operating system can harbor a state change,
+induced by interacting with other services, that can eventually cause a system crash or system
+instability. The operating system is built in Rust and leverages the properties of Rust to construct
+a safer system.
+
+The OS operates in a single address space and single privilege level and uses properties of the Rust
+programming language to realize isolation instead of relying on hardware. The design of the OS uses
+a novel cell based structure where ownership of memory and resources is enforced by the compiler. In
+short the Theseus OS is an operating system that was designed to match the Rust language instead of
+the more traditional route of matching the hardware.
+
 ** Points not Addressed
 
+Because Theseus does not implement a POSIX interface it is unclear as to how you would execute
+existing software on this OS. While this OS is very unique I believe it is critical to somehow
+support the billions of lines of existing code all ready out there.
+
 ** Three meaningful questions
+
+1. How would you isolate a POSIX C based program?
+2. Does operating in a single privilege layer improve performance?
+
 
 * References
 
