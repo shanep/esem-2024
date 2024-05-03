@@ -1,0 +1,52 @@
+#+title: SLR CTTC
+#+bibliography: slr-paper-memory-safety-rust.bib
+
+
+* Tighten rust's belt: shrinking embedded Rust
+
+- [cite:@Ayers2022-vk]
+
+** Important Points
+
+This paper focused on the size of rust binaries in the embedded environment. Their work primary
+focused on the size of binaries produced using the embedded OS Tock. The authors identified four
+major causes of binary growth:
+- Deeply ingrained monomorphization
+- Suboptimal compiler generated support code
+- Hidden data structures and data
+- Fewer compiler optimizations
+
+In addition to the identified causes of binary growth the authors have the following 5
+recommendations when using Rust in a size constrained environment:
+- Minimize Length + Instantiations of Generic Code
+- Use Trait Objects Sparingly
+- Don't Panic
+- Carefully Use Compiler Generated Support Code
+- Don't use static mut
+
+** Points not Addressed
+
+One point that the Authors did not address is how these changes impacted code maintainability and
+readability. As with any optimization technique the final binary may have been smaller at a cost of
+difficult to follow code.
+
+** Three meaningful questions
+
+1. Can the 5 techniques that the authors identified be applied to the C->rust translators?
+2. Have these techniques been integrated into the Linux Kernel?
+3. Can we add the 5 techniques to the clippy static checker?
+4. Can we take the embedded_data_analyzer and use it in Linux?
+
+* Theseus: an Experiment in Operating System  Structure and State Management
+
+- [cite:@Boos2020-zh]
+
+** Important Points
+
+** Points not Addressed
+
+** Three meaningful questions
+
+* References
+
+#+print_bibliography:
