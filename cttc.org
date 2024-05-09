@@ -1,8 +1,9 @@
 #+title: SLR CTTC
 #+bibliography: slr-paper-memory-safety-rust.bib
+#+tags: rustlang osimpl
 
 
-* Tighten rust's belt: shrinking embedded Rust
+* Tighten rust's belt: shrinking embedded Rust                     :rustlang:
 
 - [cite:@Ayers2022-vk]
 
@@ -30,14 +31,14 @@ One point that the Authors did not address is how these changes impacted code ma
 readability. As with any optimization technique the final binary may have been smaller at a cost of
 difficult to follow code.
 
-** Three meaningful questions
+** Meaningful questions
 
 1. Can the 5 techniques that the authors identified be applied to the C->rust translators?
 2. Have these techniques been integrated into the Linux Kernel?
 3. Can we add the 5 techniques to the clippy static checker?
 4. Can we take the embedded_data_analyzer and use it in Linux?
 
-* Theseus: an Experiment in Operating System  Structure and State Management
+* Theseus: an Experiment in Operating System  Structure and State Management :osimpl:
 
 - [cite:@Boos2020-zh]
 
@@ -61,12 +62,38 @@ Because Theseus does not implement a POSIX interface it is unclear as to how you
 existing software on this OS. While this OS is very unique I believe it is critical to somehow
 support the billions of lines of existing code all ready out there.
 
-** Three meaningful questions
+** Meaningful questions
 
 1. How would you isolate a POSIX C based program?
 2. Does operating in a single privilege layer improve performance?
 
+* Isolation in Rust: What is Missing?                              :rustlang:
 
+- [cite:@Burtsev2021-rq]
+
+** Important Points
+
+This paper explores what is missing in the Rust programming language to help solve the isolation
+problem. Currently Rust lacks the ability to express isolation in the heap without external
+support. The RedLeaf experiential operating system realize on an complex interface definition
+language (IDL) to enforce isolated heaps. The paper enumerates several properties of the Rust
+Language that could help with Isolation. 1) Supporting trait bounds on functions and closures with
+any number of arguments 2) Expose type information in procedural macros 3) Support a collision-free,
+unique type identifier 4) Support extendable, no_std unwind library 5) Support typed assembly
+language for Rust 6) Support trusted build environments 7) Provide software-only stack guard with
+extensible probing interface 8) Develop zero-copy serialization of “plain- old” data structures.
+
+** Points not addressed
+
+This paper outlines some of the features that rust would need however, as the authors noted some of
+the requested features such as supporting trait bounds on functions were closed due to lack of
+interest from the community.
+
+** Meaningful questions
+
+1. How can thread unwinding be better supporting in no_std environments?
+
+*
 * References
 
 #+print_bibliography:
