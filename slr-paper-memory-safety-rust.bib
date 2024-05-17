@@ -1,44 +1,10 @@
-@MISC{John_Baublitz_Nick_Desaulniers_Alex_Gaynor_Miguel_Ojeda_Geoffrey_Thomas_Josh_Triplett2020-kb,
-  title        = "Barriers to in-tree Rust",
-  author       = "{John Baublitz, Nick Desaulniers, Alex Gaynor, Miguel Ojeda,
-                  Geoffrey Thomas, Josh Triplett}",
-  month        =  aug,
-  year         =  2020,
-  howpublished = "Linux Plumbers Conf 2020",
-  keywords     = "slr-paper-memory-safety-rust-kernel"
-}
-
-@MISC{Gaynor2019-dk,
-  title        = "Writing Linux Kernel Modules in Safe Rust",
-  author       = "Gaynor, Geoffrey Thomas And",
-  abstract     = "With 65\% of recent Linux kernel vulnerabilities being the
-                  result of memory unsafety (buffer overflows, pointers used
-                  after being freed, etc.) and not logic errors, both kernel
-                  developers and downstream users have wondered whether it's
-                  possible to use a safer language than C for kernel
-                  development. This talk will explore the presenters' work
-                  building a framework for writing kernel modules in Rust and
-                  accessing kernel APIs in safe Rust. In particular, the talk
-                  will discuss some of the challenges of building
-                  binary-compatible kernel modules in Rust, techniques for
-                  working with existing C code, and how to design safe bindings
-                  over raw kernel APIs. It will also discuss advantages and
-                  difficulties for integrating Rust in upstream kernel
-                  development and possible directions the upstream kernel
-                  community could go.",
-  year         =  2019,
-  howpublished = "Linux Security Summit NA",
-  keywords     = "slr-paper-memory-safety-rust-kernel",
-  location     = "San Diego"
-}
-
 @MANUAL{Stuart2007-cc,
   title        = "Guidelines for performing Systematic Literature Reviews in
                   Software Engineering",
   author       = "Stuart, Kitchenham, Barbara And",
   year         =  2007,
-  keywords     = "slr-paper-memory-safety-rust-kernel;Rust Kernel - SLR
-                  2019-2024",
+  keywords     = "slr-paper-memory-safety-rust-kernel;slr-rust-read;Rust Kernel
+                  - SLR 2019-2024",
   organization = "School of Computer Science and Mathematics, Keele University"
 }
 
@@ -47,7 +13,7 @@
   author       = "{The kernel development community}",
   howpublished = "\url{https://docs.kernel.org/rust/index.html}",
   note         = "Accessed: 2024-4-1",
-  keywords     = "slr-paper-memory-safety-rust-kernel",
+  keywords     = "slr-paper-memory-safety-rust-kernel;slr-rust-read",
   language     = "en"
 }
 
@@ -58,9 +24,9 @@
   journal  = "IEICE Trans. Inf. Syst.",
   volume   = "E107.D",
   number   =  3,
-  pages    = "245 -- 256",
+  pages    = "245--256",
   year     =  2024,
-  keywords = "slr-paper-memory-safety-rust-kernel;scopus"
+  keywords = "slr-paper-memory-safety-rust-kernel;slr-rust-read;scopus"
 }
 
 % The entry below contains non-ASCII chars that could not be converted
@@ -92,7 +58,7 @@
   month    =  nov,
   year     =  2022,
   keywords = "RTOS; Tock; eBPF; embedded; low-latency; real-time; rust;
-              security;slr-paper-memory-safety-rust-kernel;scopus",
+              security;slr-paper-memory-safety-rust-kernel;slr-rust-read;scopus",
   language = "en"
 }
 
@@ -112,8 +78,8 @@
   year         =  2024,
   howpublished = "\url{https://www.whitehouse.gov/oncd/briefing-room/2024/02/26/press-release-technical-report/}",
   note         = "Accessed: 2024-3-13",
-  keywords     = "slr-paper-memory-safety-rust-kernel;Rust Kernel - SLR
-                  2019-2024",
+  keywords     = "slr-paper-memory-safety-rust-kernel;slr-rust-read;Rust Kernel
+                  - SLR 2019-2024",
   language     = "en"
 }
 
@@ -138,7 +104,7 @@
   year         =  2024,
   howpublished = "\url{https://en.wikipedia.org/w/index.php?title=Hackers_(film)&oldid=1211833509}",
   note         = "Accessed: NA-NA-NA",
-  keywords     = "slr-paper-memory-safety-rust-kernel"
+  keywords     = "slr-paper-memory-safety-rust-kernel;slr-rust-read"
 }
 
 @INPROCEEDINGS{Matsui2023-ea,
@@ -250,38 +216,6 @@
   keywords = "slr-paper-memory-safety-rust-kernel;scopus"
 }
 
-@INPROCEEDINGS{Emmerich2019-jz,
-  title    = "The case for writing network drivers in high-level programming
-              languages",
-  author   = "Emmerich, Paul and Voit, Sebastian and Carle, Georg and Ellmann,
-              Simon and Bonk, Fabian and Egger, Alex and Sanchez-Torija, Esau
-              Garcia and Gunzel, Thomas and Di Luzio, Sebastian and Obada,
-              Alexandru and Stadlmeier, Maximilian",
-  abstract = "Drivers are written in C or restricted subsets of C++ on all
-              production-grade server, desktop, and mobile operating systems.
-              They account for 66 \% of the code in Linux, but 39 out of 40
-              security bugs related to memory safety found in Linux in 2017 are
-              located in drivers. These bugs could have been prevented by using
-              high-level languages for drivers. We present user space drivers
-              for the Intel ixgbe 10 Gbit/s network cards implemented in Rust,
-              Go, C\#, Java, OCaml, Haskell, Swift, JavaScript, and Python
-              written from scratch in idiomatic style for the respective
-              languages. We quantify costs and benefits of using these
-              languages: High-level languages are safer (fewer bugs, more
-              safety checks), but run-time safety checks reduce throughput and
-              garbage collection leads to latency spikes. Out-of-order CPUs
-              mitigate the cost of safety checks: Our Rust driver executes 63
-              \% more instructions per packet but is only 4 \% slower than a
-              reference C implementation. Go's garbage collector keeps
-              latencies below 100 $\mu$s even under heavy load. Other languages
-              fare worse, but their unique properties make for an interesting
-              case study. All implementations are available as free and open
-              source at https://githud.com/ixy-languages/ixy-languages.",
-  year     =  2019,
-  keywords = "Rust; Go; C\#; Java; OCaml; Haskell; Swift; JavaScript;
-              Python;slr-paper-memory-safety-rust-kernel;scopus;IEEE"
-}
-
 @INPROCEEDINGS{Lindgren2023-rz,
   title    = "Static and Dynamic Memory Protection using {Type-Based} Memory
               Layout in Rust",
@@ -309,42 +243,6 @@
               Kernel;slr-paper-memory-safety-rust-kernel;scopus;IEEE"
 }
 
-@INPROCEEDINGS{Li2022-jz,
-  title     = "Friend or Foe Inside? Exploring {In-Process} Isolation to
-               Maintain Memory Safety for Unsafe Rust",
-  booktitle = "2023 {IEEE} Secure Development Conference ({SecDev})",
-  author    = "Li, Linhan and Zhang, Qianying and Zhao, Shijun and Shi, Zhiping
-               and Guan, Yong",
-  abstract  = "The Linux kernel plays an important role in various application
-               scenarios such as computers, mobile devices, and vehicles, in
-               which security-sensitive information is stored. Undefined
-               behavior in the C programming language is usually the cause of
-               Linux kernel vulnerabilities, among which memory safety
-               vulnerabilities are the most threatening. At present, the
-               methods based on static/dynamic analysis and runtime software
-               and hardware defense to ensure memory safety have the problems
-               of poor performance, false positives, and poor compatibility.
-               This paper presents the design and implementation of the OOM
-               (out of memory) module based on the safe programming language
-               Rust. We leverage the Rust FFI mechanism to design a foreign
-               interface layer and a safe foreign interface layer to enable the
-               reconstructed OOM module to invoke other Linux functionalities,
-               and then use Rust to reconstruct the OOM module. The safety
-               features of Rust language are used to avoid undefined behaviors,
-               so as to improve the safety of the kernel. Finally, we export
-               the C interface of the module to enable the invocation by the
-               Linux kernel. Tests show that the OOM module performance and
-               memory consumption after reconstruction are comparable to the
-               original module.",
-  pages     = "774 -- 775",
-  month     =  dec,
-  year      =  2022,
-  keywords  = "Computer languages; Linux; Memory management; Software quality;
-               Safety; Behavioral sciences; Software reliability; Linux kernel;
-               memory safety; undefined behavior; OOM module;
-               Rust;slr-paper-memory-safety-rust-kernel;scopus;IEEE"
-}
-
 @INPROCEEDINGS{Liang2021-bo,
   title    = "Rustpi: A Rust-powered Reliable Micro-kernel Operating System",
   author   = "Liang, Yuanzhi and Wang, Lei and Li, Siran and Jiang, Bo",
@@ -364,121 +262,6 @@
               Feature extraction; Hardware; Software reliability; Operating
               Systems; reliability; fault
               tolerance;slr-paper-memory-safety-rust-kernel;scopus;IEEE"
-}
-
-@INPROCEEDINGS{Hu2022-to,
-  title    = "Comprehensiveness, Automation and Lifecycle: A New Perspective
-              for Rust Security",
-  author   = "Hu, Shuang and Hua, Baojian and Wang, Yang",
-  abstract = "Rust is an emerging programming language designed for secure
-              system programming that provides both security guarantees and
-              runtime efficiency and has been increasingly used to build
-              software infrastructures such as OS kernels, web browsers,
-              databases, and blockchains. To support arbitrary low-level
-              programming and to provide more flexibility, Rust introduced the
-              unsafe feature, which may lead to security issues such as memory
-              or concurrency vulnerabilities. Although there have been a
-              significant number of studies on Rust security utilizing diverse
-              techniques such as program analysis, fuzzing, privilege
-              separation, and formal verification, existing studies suffer from
-              three problems: 1) they only partially solve specific security
-              issues but lack comprehensiveness; 2) most of them require manual
-              interventions or annotations thus are not automated; and 3) they
-              only cover a specific phase instead of the full lifecycle.In this
-              perspective paper, we first survey current research progress on
-              Rust security from 5 aspects, namely, empirical studies,
-              vulnerability prevention, vulnerability detection, vulnerability
-              rectification, and formal verification, and note the limitations
-              of current studies. Then, we point out key challenges for Rust
-              security. Finally, we offer our vision of a Rust security
-              infrastructure guided by three principles: Comprehensiveness,
-              Automation, and Lifecycle (CAL). Our work intends to promote the
-              Rust security studies by proposing new research challenges and
-              future research directions.",
-  volume   = "2022-December",
-  pages    = "982 -- 991",
-  year     =  2022,
-  keywords = "Computer languages; Automation; Runtime; Program processors;
-              Software quality; Manuals; Programming; Perspective; Rust;
-              Security;slr-paper-memory-safety-rust-kernel;scopus;IEEE"
-}
-
-@INPROCEEDINGS{Eiling2023-op,
-  title     = "{GPU} Acceleration in Unikernels Using Cricket {GPU}
-               Virtualization",
-  booktitle = "Proceedings of the {SC} '23 Workshops of The International
-               Conference on High Performance Computing, Network, Storage, and
-               Analysis",
-  author    = "Eiling, Niklas and Kr{\"o}ning, Martin and Klimt, Jonathan and
-               Fensch, Philipp and Lankes, Stefan and Monti, Antonello",
-  abstract  = "Today, large compute clusters increasingly move towards
-               heterogeneous architectures by employing accelerators, such as
-               GPUs, to realize ever-increasing performance. To achieve maximum
-               performance on these architectures, applications have to be
-               tailored to the available hardware by using special APIs to
-               interact with the hardware resources, such as the CUDA APIs for
-               NVIDIA GPUs. Simultaneously, unikernels emerge as a solution for
-               the increasing overhead introduced by the complexity of modern
-               operating systems and their inability to optimize for specific
-               application profiles. Unikernels allow for better static code
-               checking and enable optimizations impossible with monolithic
-               kernels, yielding more robust and faster programs. Despite this,
-               there is a lack of support for using GPUs in unikernels. Due to
-               the proprietary nature of the CUDA APIs, direct support for
-               interacting with NVIDIA GPUs from unikernels is infeasible,
-               resulting in applications requiring GPUs being unsuitable for
-               deployment in unikernels. We propose using Cricket GPU
-               virtualization to introduce GPU support to the unikernels
-               RustyHermit and Unikraft. To interface with Cricket, we
-               implement a generic library for using ONC RPCs in Rust. With
-               Cricket and our RPC library, unikernels become able to use GPU
-               resources, even when they are installed in remote machines. This
-               way, we enable the use of unikernels for applications that
-               require the high parallel performance of GPUs to achieve
-               manageable execution times.",
-  publisher = "Association for Computing Machinery",
-  pages     = "1588 -- 1595",
-  series    = "SC-W '23",
-  year      =  2023,
-  address   = "New York, NY, USA",
-  keywords  = "Virtualization, Unikraft, Unikernel, RustyHermit,
-               High-Performance Computing, Heterogeneous Computing, GPUs, Cloud
-               Computing,
-               CUDA;slr-paper-memory-safety-rust-kernel;acm.bib;scopus",
-  location  = "<conf-loc>, <city>Denver</city>, <state>CO</state>,
-               <country>USA</country>, </conf-loc>"
-}
-
-@INPROCEEDINGS{Jia2023-qp,
-  title     = "Kernel extension verification is untenable",
-  booktitle = "Proceedings of the 19th Workshop on Hot Topics in Operating
-               Systems",
-  author    = "Jia, Jinghao and Sahu, Raj and Oswald, Adam and Williams, Dan
-               and Le, Michael V and Xu, Tianyin",
-  abstract  = "The emergence of verified eBPF bytecode is ushering in a new era
-               of safe kernel extensions. In this paper, we argue that eBPF's
-               verifier---the source of its safety guarantees---has become a
-               liability. In addition to the well-known bugs and
-               vulnerabilities stemming from the complexity and ad hoc nature
-               of the in-kernel verifier, we highlight a concerning trend in
-               which escape hatches to unsafe kernel functions (in the form of
-               helper functions) are being introduced to bypass
-               verifier-imposed limitations on expressiveness, unfortunately
-               also bypassing its safety guarantees. We propose safe kernel
-               extension frameworks using a balance of not just static but also
-               lightweight runtime techniques. We describe a design centered
-               around kernel extensions in safe Rust that will eliminate the
-               need of the in-kernel verifier, improve expressiveness, allow
-               for reduced escape hatches, and ultimately improve the safety of
-               kernel extensions.",
-  publisher = "Association for Computing Machinery",
-  pages     = "150 -- 157",
-  series    = "HOTOS '23",
-  year      =  2023,
-  address   = "New York, NY, USA",
-  keywords  = "safety, verification, eBPF, kernel extension, operating
-               system;slr-paper-memory-safety-rust-kernel;acm.bib;scopus",
-  location  = "Providence, RI, USA"
 }
 
 @INPROCEEDINGS{Li2021-ld,
@@ -547,15 +330,16 @@
                are build-able on top of RustyHermit. Previously, we developed
                the C-based unikernel HermitCore with a similar design to
                RustyHermit and we are able to compare both kernels. We show
-               that the performance of both kernels is similar and only 3.27 \%
-               of RustyHermit relies on unsafe code, that cannot be checked by
-               the compiler in detail.",
+               that the performance of both kernels is similar and only ~3.27
+               \% of RustyHermit relies on unsafe code, that cannot be checked
+               by the compiler in detail.",
   publisher = "Association for Computing Machinery",
-  pages     = "8 -- 15",
+  pages     = "8--15",
   series    = "PLOS '19",
+  month     =  oct,
   year      =  2019,
   address   = "New York, NY, USA",
-  keywords  = "slr-paper-memory-safety-rust-kernel;acm.bib;scopus",
+  keywords  = "slr-paper-memory-safety-rust-kernel;slr-rust-read;acm.bib;scopus",
   location  = "Huntsville, ON, Canada"
 }
 
@@ -707,28 +491,6 @@
   location  = "Canterbury, CA, United Kingdom"
 }
 
-@ARTICLE{Dixon2023-uy,
-  title     = "Position Paper on Teaching Operating Systems Using the Rust
-               Programming Language",
-  author    = "Dixon, Bryan",
-  abstract  = "In the past few years, the Rust Programming Language has quickly
-               gained adoption in a myriad of applications. This adoption,
-               especially into the Linux Kernel, is a clear motivation that
-               there may be a reason to have students learn Rust during their
-               computer science studies. This position paper will discuss a
-               case for why instructors should incorporate Rust as part of an
-               operating systems course and how one would accomplish this.",
-  journal   = "J. Comput. Sci. Coll.",
-  publisher = "Consortium for Computing Sciences in Colleges",
-  volume    =  39,
-  number    =  1,
-  pages     = "11--17",
-  month     =  oct,
-  year      =  2023,
-  address   = "Evansville, IN, USA",
-  keywords  = "slr-paper-memory-safety-rust-kernel;acm.bib"
-}
-
 @INPROCEEDINGS{Li2024-yb,
   title     = "{W-Kernel}: An {OS} Kernel Architecture Designed With Isolation
                and Customizability",
@@ -866,14 +628,14 @@
                remove over 400 unsafe expressions while discovering and fixing
                several hard-to-spot concurrency bugs along the way.",
   publisher = "Association for Computing Machinery",
-  pages     = "83 -- 90",
+  pages     = "83--90",
   series    = "PLOS '23",
   month     =  oct,
   year      =  2023,
   address   = "New York, NY, USA",
   keywords  = "unsafe, systems programming, soundness, safe, operating system,
                memory safety,
-               Rust;slr-paper-memory-safety-rust-kernel;acm.bib;scopus",
+               Rust;slr-paper-memory-safety-rust-kernel;slr-rust-read;acm.bib;scopus",
   location  = "<conf-loc>, <city>Koblenz</city>, <country>Germany</country>,
                </conf-loc>"
 }
@@ -955,9 +717,10 @@
   publisher = "Association for Computing Machinery",
   pages     = "1--8",
   series    = "KISV '23",
+  month     =  oct,
   year      =  2023,
   address   = "New York, NY, USA",
-  keywords  = "slr-paper-memory-safety-rust-kernel;acm.bib",
+  keywords  = "slr-paper-memory-safety-rust-kernel;slr-rust-read;acm.bib",
   location  = "Koblenz, Germany"
 }
 
@@ -983,11 +746,12 @@
                p-value = 1.464e--15) and throughput (--0.00090\%, p-value =
                6.004e--5). We then discuss potential causes for that loss.",
   publisher = "Association for Computing Machinery",
-  pages     = "18 -- 25",
+  pages     = "18--25",
   series    = "PLOS '23",
+  month     =  oct,
   year      =  2023,
   address   = "New York, NY, USA",
-  keywords  = "slr-paper-memory-safety-rust-kernel;acm.bib;scopus",
+  keywords  = "slr-paper-memory-safety-rust-kernel;slr-rust-read;acm.bib;scopus",
   location  = "<conf-loc>, <city>Koblenz</city>, <country>Germany</country>,
                </conf-loc>"
 }
@@ -1023,4 +787,41 @@
   address   = "New York, NY, USA",
   keywords  = "slr-paper-memory-safety-rust-kernel;slr-rust-read;acm.bib;scopus",
   location  = "Virtual Event, Germany"
+}
+
+@INPROCEEDINGS{Chen2023-wb,
+  title     = "Atmosphere: Towards Practical Verified Kernels in Rust",
+  booktitle = "Proceedings of the 1st Workshop on Kernel Isolation, Safety and
+               Verification",
+  author    = "Chen, Xiangdong and Li, Zhaofeng and Mesicek, Lukas and
+               Narayanan, Vikram and Burtsev, Anton",
+  abstract  = "Historically, development of formally-verified operating systems
+               was a challenging, time-consuming undertaking that relied on a
+               narrow formal verification expertise and required many
+               person-years of effort. We argue, however, that the balance of
+               practicality is finally changing with development of automated
+               verification tools that leverage a unique combination of the
+               linear type system of Rust and automated verification based on
+               satisfiability modulo theories (SMT). Our work leverages, Verus,
+               a new SMT-based verifier for Rust, for development of a minimal
+               yet practical microkernel, Atmosphere. Atmosphere is designed as
+               a full-featured microkernel conceptually similar to the line of
+               early L4 microkernels. We develop all code in Rust and prove its
+               functional correctness, i.e., refinement of a high-level
+               specification with Verus. Our experience shows that Verus
+               provides a collection of practical features that significantly
+               lower the burden of a verification effort making it possible to
+               reason about correctness of the low-level systems code, e.g.,
+               low-level memory and address space management, recursive data
+               structures like linked lists and page tables, etc. On average
+               our code has proof-to-code ratio of 7.5:1 which is significantly
+               lower than in prior approaches.",
+  publisher = "Association for Computing Machinery",
+  pages     = "9--17",
+  series    = "KISV '23",
+  month     =  oct,
+  year      =  2023,
+  address   = "New York, NY, USA",
+  keywords  = "slr-paper-memory-safety-rust-kernel;slr-rust-read;acm.bib;scopus",
+  location  = "Koblenz, Germany"
 }
