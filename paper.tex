@@ -173,7 +173,7 @@ keywords using boolean search operators.
 We search all three databases with the keywords listed in table~\ref{tab:keywords} between January
 1, 2019 and April 1, 2024. While both ACM and IEEE had mutually exclusive results Scopus had 44
 duplicates that needed to be removed. We then used Google Scholar for forward and backward
-snowballing.
+snowballing. We choose to look at only the previous 5 years of research in order to capture the bleeding edge research that is currently being done.
 
 \begin{table}
 \begin{tabular}{|| p{2cm}| p{4cm} | p{1cm} ||}
@@ -217,7 +217,10 @@ we needed an in depth reading.
 
 In this section we present our findings. We address each research question from RQ1 to RQ3.
 
-\subsection{RQ1}
+\subsection{RQ1 What are the existing approaches and methodologies for implementing
+      operating system kernels in Rust?}
+
+Table~\ref{tab:RQ1} summarizes our findings regarding what existing approaches researchers are using to integrate rust into the kernel.
 
 Boos et al.~\cite{Boos2020-zh} is about an experimental operating system that is aimed at addressing
 the state spill problem. State spill happens when a single service in an operating system can harbor
@@ -239,9 +242,41 @@ CeriKOS, which both have proof-tocode ratio of 19:1 and 20:1 respectively.
 Lankes et al.~\cite{Lankes2019-cm} detailed their experiences with developing a Unikernel in
 Rust. Originally written in C and called HermitCore the authors ported the Kernel to the Rust
 programming language in order to take advantage of Rust's memory safe features. The new Unikernel
-consists of only 3.27\% unsafe Rust with the rest of the code base consisting of safe Rust
+consists of only 3.27\% unsafe Rust with the rest of the code base consisting of safe Rust.
 
-\subsection{RQ2}
+\begin{table*}
+    \begin{tabular}{||p{2cm}|p{2cm}|p{8cm}||}
+    \hline
+    Approach & Papers & Operating System\\
+    \hline\hline
+    Monolithic  & ~\cite{The_kernel_development_community_undated-iw} & \href{https://docs.kernel.org/rust/}{Linux kernel v6.1+}\\
+    Micro-kernel & ~\cite{Chen2023-wb} & Atmosphere, Redox, Redleaf\\
+    Embedded & ~\cite{Culic2022-bk} & \href{https://github.com/tock/tock}{Tock} \\
+    Unikernel & ~\cite{Lankes2019-cm} & RustyHermit \\
+    Prototype & ~\cite{Boos2020-zh, Ijaz2023-da} & Thesus \\
+    \hline
+  \end{tabular}
+  \caption{Approaches and Methodologies for Rust in the Kernel}
+    \label{tab:RQ1}
+\end{table*}
+
+This is a list of operating systems.
+\begin{itemize}
+\item 
+\item 
+\item \href{https://hubris.oxide.computer/}{Hubris OS}
+\item Theseus (Mono)
+
+\item Splinter
+
+\item Drone OS
+\item Bern RTOS
+
+
+\end{itemize}
+
+\subsection{RQ2  What are the performance implications of using Rust for operating system
+      kernel development in terms of throughput, latency, and resource utilization?}
 
 Culic et al.~\cite{Culic2022-bk} looked at latency issues in the Tock OS. Tock is a new operating
 system that is designed to run on embedded systems but does not provide Real time capabilities. The
@@ -265,18 +300,18 @@ be careful to keep the size of the Rust component as close as we can to the C co
 still run on all the same hardware. The authors found that there was only a 0.06\% size increase
 when compared to the original C implementation.
 
-\subsection{RQ3}
+\subsection{RQ3 What are the major challenges, limitations, and lessons learned when
+      developing operating system kernels in Rust, particularly in comparison to other languages?}
 
 Ayers et al.~\cite{Ayers2022-sf} focused on the size of rust binaries in the embedded
 environment. Their work primary focused on the size of binaries produced using the embedded OS
 Tock. The authors identified four major causes of binary growth:
 
 \begin{itemize}
-
-\item Deeply ingrained monomorphization
-\item Suboptimal compiler generated support code
-\item Hidden data structures and data
-\item Fewer compiler optimizations
+    \item Deeply ingrained monomorphization
+    \item Suboptimal compiler generated support code
+    \item Hidden data structures and data
+    \item Fewer compiler optimizations
 \end{itemize}
 
 In addition to the identified causes of binary growth the Ayers et al.~\cite{Ayers2022-sf} have the
@@ -327,34 +362,10 @@ the kernel provides the ownership root to applications running on top, finding a
 is a open research question with regards to using Rust for operating system development.
 
 
-\begin{table}
-  \begin{tabular}{||c|c||}
-    \hline
-    System Type & Papers\\
-    \hline\hline
-    Embedded & ~\cite{Ayers2022-vk} \\
-    Non-Embedded & 0 \\
-    Unikernel & 0 \\
-    Kernel & 0 \\
-    \hline
-  \end{tabular}
-\end{table}
 
 
-This is a list of operating systems.
-\begin{itemize}
-\item \href{https://docs.kernel.org/rust/}{Linux kernel v6.1+}
-\item \href{https://github.com/tock/tock}{Tock}
-\item \href{https://hubris.oxide.computer/}{Hubris OS}
-\item Theseus (Mono)
-\item Redleaf
-\item Splinter
-\item Redox
-\item Drone OS
-\item Bern RTOS
-\item Hermit (unikernel)
-  \item Atmoshpere (Micro)
-\end{itemize}
+
+
 
 \section{Conclusion}
 
