@@ -107,41 +107,6 @@
   keywords     = "slr-paper-memory-safety-rust-kernel;slr-rust-read"
 }
 
-@INPROCEEDINGS{Matsui2023-ea,
-  title     = "Friend or Foe Inside? Exploring {In-Process} Isolation to
-               Maintain Memory Safety for Unsafe Rust",
-  booktitle = "2024 {IEEE} International Conference on Consumer Electronics
-               ({ICCE})",
-  author    = "Matsui, Shintaro and Kamimae, Katsuaki and Ikehara, Haruto and
-               Kawazu, Takuho and Yuwei, Huang and Nishimura, Masahiro and Abe,
-               Shuto and Okino, Kenyu and Hashiguchi, Yuta and Yanagihara,
-               Kengo and Obayashi, Takumi and Chaeseung, Kim and Shiota,
-               Tatsunosuke and Taguchi, Yukito and Tsuruda, Ryuki and Manabe,
-               Taito and Shibata, Yuichiro",
-  abstract  = "Rust is a popular memory-safe systems programming language. In
-               order to interact with hardware or call into non-Rust libraries,
-               Rust provides unsafe language features that shift responsibility
-               for ensuring memory safety to the developer. Failing to do so,
-               may lead to memory-safety violations in unsafe code which can
-               violate safety of the entire application. In this work we
-               explore in-process isolation with Memory Protection Keys as a
-               mechanism to shield safe program sections from safety violations
-               that may happen in unsafe sections. Our approach is easy to use
-               and comprehensive as it prevents heap and stack-based
-               violations. We further compare process-based and in-process
-               isolation mechanisms and the necessary requirements for data
-               serialization, communication, and context switching. Our results
-               show that in-process isolation can be effective and efficient,
-               permits for a high degree of automation, and also enables a
-               notion of application rewinding where the safe program section
-               may detect and safely handle violations in unsafe code.",
-  pages     = "54--66",
-  year      =  2023,
-  keywords  = "Codes; Prototypes; Switches; Licenses; Libraries; Hardware;
-               Safety; rust; in process isolations; intel mpk; memory
-               protection keys;slr-paper-memory-safety-rust-kernel;IEEE"
-}
-
 @INPROCEEDINGS{Miller2021-pg,
   title    = "High velocity kernel file systems with bento",
   author   = "Miller, Samantha and Zhang, Kaiyuan and Chen, Mengqi and
@@ -192,7 +157,7 @@
   volume   =  1899,
   pages    = "3 -- 16",
   year     =  2024,
-  keywords = "slr-paper-memory-safety-rust-kernel;scopus"
+  keywords = "slr-paper-memory-safety-rust-kernel;slr-rust-read;scopus"
 }
 
 @ARTICLE{Shin2024-iw,
@@ -216,33 +181,6 @@
   keywords = "slr-paper-memory-safety-rust-kernel;scopus"
 }
 
-@INPROCEEDINGS{Lindgren2023-rz,
-  title    = "Static and Dynamic Memory Protection using {Type-Based} Memory
-              Layout in Rust",
-  author   = "Lindgren, Per and Dzialo, Pawel and Nurmi, Antti and Lunnikivi,
-              Henri",
-  abstract = "Hardware supported memory protection is a commonly adopted
-              approach to runtime verification of memory accesses. However,
-              protection is typically coarse grained where trusted drivers and
-              kernel code is given access to unnecessarily large portions of
-              the memory space. This approach implies huge costs to
-              verification, validation and certification of trusted code.In
-              this paper we propose an alternative approach, leveraging on
-              memory safety guarantees of the Rust systems level programming
-              language together with a novel type-based method to statically
-              determine the memory layout of the application. The memory layout
-              information can be used for further static code analysis, proving
-              access pattern properties, and is used as an outset for fine
-              grained hardware supported memory protection.While the proposed
-              approach is novel and breaks with traditional and industrial
-              practice, our results are applicable to existing hardware
-              platforms and holds the potential to provide leap-step
-              improvements to safety and security of embedded devices.",
-  year     =  2023,
-  keywords = "Codes; Runtime; Layout; Hardware; Safety; Security;
-              Kernel;slr-paper-memory-safety-rust-kernel;scopus;IEEE"
-}
-
 @INPROCEEDINGS{Liang2021-bo,
   title    = "Rustpi: A Rust-powered Reliable Micro-kernel Operating System",
   author   = "Liang, Yuanzhi and Wang, Lei and Li, Siran and Jiang, Bo",
@@ -261,55 +199,7 @@
   keywords = "Linux; Fault detection; Conferences; Reliability engineering;
               Feature extraction; Hardware; Software reliability; Operating
               Systems; reliability; fault
-              tolerance;slr-paper-memory-safety-rust-kernel;scopus;IEEE"
-}
-
-@INPROCEEDINGS{Li2021-ld,
-  title     = "Understanding the Overheads of Hardware and {Language-Based}
-               {IPC} Mechanisms",
-  booktitle = "Proceedings of the 11th Workshop on Programming Languages and
-               Operating Systems",
-  author    = "Li, Zhaofeng and Huang, Tianjiao and Narayanan, Vikram and
-               Burtsev, Anton",
-  abstract  = "A recent surge of security attacks has triggered a renewed
-               interest in hardware support for isolation. Extended page table
-               switching with VMFUNC, memory protection keys (MPK), and memory
-               tagging extensions (MTE) are just a few of the hardware
-               isolation mechanisms that promise support for low-overhead
-               isolation in recent CPUs. Along with the restored interest in
-               lightweight hardware isolation mechanisms, safe programming
-               languages like Rust has made a leap towards practical,
-               zero-overhead safety implemented without garbage collection.Both
-               lightweight hardware mechanisms and zero-overhead language
-               safety can be leveraged to enforce the isolation of subsystems,
-               e.g., browser plugins, device drivers and kernel extensions,
-               user-defined database and network functions, etc. However, as
-               both technologies are still young, their relative advantages are
-               still unknown. In this work, we study the overheads of hardware
-               and software isolation mechanisms with the goal to understand
-               their relative advantages and disadvantages for fine-grained
-               isolation of subsystems with tight performance budgets. We ask
-               two questions: What is the overhead of hardware isolation in an
-               ideal scenario where the hardware isolation mechanism takes zero
-               cycles? And if the safety of the Rust language can lower the
-               overhead of cross-subsystem invocations, can the language on its
-               own introduce overheads that might outweigh isolation
-               advantages? To answer these questions, we develop and compare
-               two carefully optimized versions of inter-process communication
-               (IPC) mechanisms (one in safe Rust and one in a
-               carefully-optimized assembly), and two identical (to the degree
-               possible) DPDK-based network packet processing frameworks (one
-               in C++ and one in Rust). Our analysis shows that for systems
-               requiring frequent boundary crossings, a safe language is still
-               beneficial even if the overheads of hardware isolation
-               mechanisms drop to zero.",
-  publisher = "Association for Computing Machinery",
-  pages     = "53 -- 61",
-  series    = "PLOS '21",
-  year      =  2021,
-  address   = "New York, NY, USA",
-  keywords  = "slr-paper-memory-safety-rust-kernel;acm.bib;scopus",
-  location  = "Virtual Event, Germany"
+              tolerance;slr-paper-memory-safety-rust-kernel;slr-rust-read;scopus;IEEE"
 }
 
 @INPROCEEDINGS{Lankes2019-cm,
@@ -487,7 +377,7 @@
   year      =  2019,
   address   = "New York, NY, USA",
   keywords  = "Rust, Linux Kernel, Device
-               Drivers;slr-paper-memory-safety-rust-kernel;acm.bib;scopus",
+               Drivers;slr-paper-memory-safety-rust-kernel;slr-rust-read;acm.bib;scopus",
   location  = "Canterbury, CA, United Kingdom"
 }
 
@@ -539,7 +429,7 @@
   year      =  2024,
   address   = "New York, NY, USA",
   keywords  = "Isolation, Operating systems, Security,
-               WebAssembly;slr-paper-memory-safety-rust-kernel;acm.bib;scopus",
+               WebAssembly;slr-paper-memory-safety-rust-kernel;slr-rust-read;acm.bib;scopus",
   location  = "<conf-loc>, <city>Singapore</city>,
                <country>Singapore</country>, </conf-loc>"
 }
@@ -600,7 +490,7 @@
   series    = "PLOS '23",
   year      =  2023,
   address   = "New York, NY, USA",
-  keywords  = "slr-paper-memory-safety-rust-kernel;acm.bib;scopus",
+  keywords  = "slr-paper-memory-safety-rust-kernel;slr-rust-read;acm.bib;scopus",
   location  = "<conf-loc>, <city>Koblenz</city>, <country>Germany</country>,
                </conf-loc>"
 }
