@@ -23,7 +23,8 @@
 
 \begin{document}
 \title{Kernel Development Using Rust: A Systematic Literature Review}
-%\title{}
+
+\author{Anonymous Authors}
 
 %% \author{Shane Panter}
 %%     \affiliation{%
@@ -41,18 +42,33 @@
 %%     \country{USA}}
 %%     \email{nasireisty@boisestate.edu}
 
-\renewcommand{\shortauthors}{Panter et al.}
+%\renewcommand{\shortauthors}{Panter et al.}
 
 \begin{abstract}
-    \textit{Context:}
-    TODO:
-    \textit{Objective:}
-    TODO:
-    \textit{Method:}
-    TODO:
-    \textit{Results:}
-    TODO:
-    \textit{Conclusions:}
+
+  \textit{Context:} The integration of Rust into kernel development is a transformative endeavor aimed
+  at enhancing system security and reliability by leveraging Rust's strong memory safety
+  guarantees. This systematic literature review examines the current state of research and practice
+  regarding the use of Rust in the kernel development.
+  \textit{Objective:} We aim to find the current edge of research regarding using Rust in Kernel
+  development so we can push the research forward and reduce the number of memory safety
+  vulnerabilities in one of the most critical pieces of software that underpins all modern
+  applications.
+  \textit{Method:} By analyzing a broad spectrum of studies, we identify the advantages Rust offers,
+  such as reducing vulnerabilities like buffer overflows and use-after-free errors, which are
+  prevalent in C-based kernel development. The review also highlights the challenges faced,
+  including integration hurdles with existing C codebases, performance considerations, and the need
+  for community consensus on Rust's adoption.
+  \textit{Results:} Our findings suggest that while the initial implementations of Rust in the kernel
+  shows promising results in terms of safety and stability, significant challenges remain. These
+  include achieving seamless interoperability with existing kernel components, maintaining
+  performance, and ensuring adequate support and tooling for developers.
+  \textit{Conclusions:} In conclusion, this review provides a comprehensive overview of the
+  potential and challenges of incorporating Rust into kernel development. It underscores the need for
+  continued research and practical implementation efforts to fully realize the benefits of Rust. By
+  addressing these challenges, the integration of Rust could mark a significant step forward in the
+  evolution of operating system development towards safer and more reliable systems.
+
 \end{abstract}
 
 %%
@@ -87,7 +103,7 @@
 %%
 %% Keywords. The author(s) should pick words that accurately describe
 %% the work being presented. Separate the keywords with commas.
-\keywords{Memory safety, Rust, Kernel, Operating System}
+\keywords{Memory safety, Rust, Kernel, Operating System, Linux}
 
 \received{30 May 2024}
 \received[revised]{TBD}
@@ -98,19 +114,68 @@
 
 \section{Introduction}
 
-The 1995 movie Hackers~\cite{Wikipedia_contributors2024-zr} prescient predictions regarding the ease of breaking into computing systems in cyberspace have came to fruition. The White House Office of the National Cyber Director (ONCD) released a report calling for the technical community to proactively reduce the attack surface in cyberspace with a two pronged approach. First we need to address the root cause of many of the most heinous cyber attacks, memory unsafe programming languages~\cite{United_States_Gov2024-pp}. Second, we need to establish better cybersecurity quality metrics so we can have a better understanding of the cyber security landscape.
+The 1995 movie Hackers~\cite{Wikipedia_contributors2024-zr} prescient predictions regarding the ease
+of breaking into computing systems in cyberspace have came to fruition. The White House Office of
+the National Cyber Director (ONCD) released a report calling for the technical community to
+proactively reduce the attack surface in cyberspace with a two pronged approach. First we need to
+address the root cause of many of the most heinous cyber attacks, memory unsafe programming
+languages~\cite{United_States_Gov2024-pp}. Second, we need to establish better cybersecurity quality
+metrics so we can have a better understanding of the cyber security landscape.
 
-In the ever-evolving landscape of software development, the reliability and security of computer systems stands as a paramount concern for all parties involved. Modern software is constructed by building ever more complex abstractions, one on top of the other. Thus, if we aim to have a secure system we must start to peel back all the layers and tackle one of the fundamental abstractions in computer science, the programming language. Programming languages that provide and enforce memory safety eliminate whole classes of bugs such as buffer overflows, dangling pointers, and memory leaks which have been implicated in a myriad of security vulnerabilities and system crashes.
+In the ever-evolving landscape of software development, the reliability and security of computer
+systems stands as a paramount concern for all parties involved. Modern software is constructed by
+building ever more complex abstractions, one on top of the other. Thus, if we aim to have a secure
+system we must start to peel back all the layers and tackle one of the fundamental abstractions in
+computer science, the programming language. Programming languages that provide and enforce memory
+safety eliminate whole classes of bugs such as buffer overflows, dangling pointers, and memory leaks
+which have been implicated in a myriad of security vulnerabilities and system crashes.
 
-The migration of legacy C code bases to memory-safe programming languages like Rust is of paramount importance in modern software development, aiming to mitigate common security vulnerabilities and memory-related errors. This paper presents a systematic literature review (SLR) focusing on strategies and methodologies for integrating Rust into one of the most fundamental areas that are typically dominated by unsafe languages the operating system kernel. Our study aims to provide a comprehensive overview of existing research, identify gaps, and suggest future directions in this domain. Through a rigorous search process, we synthesized relevant studies and extracted key findings to offer insights into effective approaches for ensuring memory safety when working closely with hardware.
+Most operating system kernels are predominantly written in the C programming language with bits of
+assembly. C has been favored for its low-level capabilities and performance efficiency, crucial for
+kernel development. However, the inherent lack of memory safety in C has led to numerous security
+vulnerabilities, including buffer overflows and use-after-free errors, which have plagued operation
+system development for decades~\cite{noauthor_undated-bf}. Addressing these vulnerabilities is
+paramount to enhancing the security and reliability of all operating systems.
+
+Rust, a systems programming language developed by Mozilla, has garnered significant attention for
+its strong emphasis on memory safety without sacrificing performance. Rust's ownership model and its
+compile-time checks effectively prevent common programming errors that lead to security
+vulnerabilities. What makes Rust unique is the fact that it accomplishes these tasks without the use
+of a garbage collector, making it an ideal candidate for kernel development where safety and
+performance are critical.
+
+The potential integration of Rust into kernel development represents a significant shift in the
+landscape of operating system development. This shift prompts a comprehensive evaluation of both the
+opportunities and challenges associated with using Rust in such a foundational component of modern
+computing. This systematic literature review aims to synthesize existing research and practical
+experiences related to the use of Rust in the kernel, providing a detailed understanding of
+the current state of this emerging field.
+
+This paper presents a systematic literature review (SLR) focusing on strategies and methodologies
+for integrating Rust into one of the most fundamental areas that are typically dominated by unsafe
+languages the operating system kernel. Our study aims to provide a comprehensive overview of
+existing research, identify gaps, and suggest future directions in this domain. Through a rigorous
+search process, we synthesized relevant studies and extracted key findings to offer insights into
+effective approaches for ensuring memory safety when working closely with hardware.
 
 \section{Research Methodology}
 
-For our research methodolgy we followed the advice of Kitchenham and Charters~\cite{Stuart2007-cc} and divided our review into the 3 discrete phases, planning the review, conducting the review, and reporting the review results. The following sections detail our review process.
+For our research methodolgy we followed the advice of Kitchenham and Charters~\cite{Stuart2007-cc}
+and divided our review into the 3 discrete phases, planning the review, conducting the review, and
+reporting the review results. The following sections detail our review process.
 
 \subsection{Planning}
 
-Before we start researching we must first confirm the need for a SLR. The recent report released by ONCD~\cite{United_States_Gov2024-pp} has conveniently done this job for us by compiling a report detailing the need for research in the domain of memory safety. While the ONCD report detailed a two pronged approach, for this SLR we will be focusing on a memory safe programming language, specifically Rust. While there are many modern memory safe programming languages available for software developers to use Rust is one of the few languages that is feasible to use when developing operating system kernels due to is lack of runtime and garbage collector. Even the Linux kernel is in the early stages of adding real support for Rust~\cite{The_kernel_development_community_undated-iw} thus, we will focus on Rust as a primary candidate to replace the aging C programming language.
+Before we start researching we must first confirm the need for a SLR. The recent report released by
+ONCD~\cite{United_States_Gov2024-pp} has conveniently done this job for us by compiling a report
+detailing the need for research in the domain of memory safety. While the ONCD report detailed a two
+pronged approach, for this SLR we will be focusing on a memory safe programming language,
+specifically Rust. While there are many modern memory safe programming languages available for
+software developers to use Rust is one of the few languages that is feasible to use when developing
+operating system kernels due to is lack of runtime and garbage collector. Even the Linux kernel is
+in the early stages of adding real support for
+Rust~\cite{The_kernel_development_community_undated-iw} thus, we will focus on Rust as a primary
+candidate to replace the aging C programming language.
 
 \subsubsection{Research Questions}
 \label{sec:researchQuestions}
@@ -128,11 +193,19 @@ We have defined the following research questions to drive this study.
 
 \subsubsection{Search Strategy:}
 
-We employed a robust multi-step search strategy across three digital databases, ACM Digital Library, IEEE Xplore, and Scopus in order to find all the current research that has been done. These databases cover a wide range of current software engineering and computer science literature. We leveraged the advanced search features of all three databases to search the titles and abstracts for keywords using boolean search operators.
+We employed a robust multi-step search strategy across three digital databases, ACM Digital Library,
+IEEE Xplore, and Scopus in order to find all the current research that has been done. These
+databases cover a wide range of current software engineering and computer science literature. We
+leveraged the advanced search features of all three databases to search the titles and abstracts for
+keywords using boolean search operators.
 
 \subsubsection{Search criteria:}
 
-We search all three databases with the keywords listed in table~\ref{tab:keywords} between January 1, 2019 and April 1, 2024. While both ACM and IEEE had mutually exclusive results Scopus had 44 duplicates that needed to be removed. We then used Google Scholar for forward and backward snowballing. We choose to look at only the previous 5 years of research in order to capture the bleeding edge research that is currently being done.
+We search all three databases with the keywords listed in table~\ref{tab:keywords} between January
+1, 2019 and April 1, 2024. While both ACM and IEEE had mutually exclusive results Scopus had 44
+duplicates that needed to be removed. We then used Google Scholar for forward and backward
+snowballing. We choose to look at only the previous 5 years of research in order to capture the
+bleeding edge research that is currently being done.
 
 \begin{table}
 \begin{tabular}{|| p{2cm}| p{4cm} | p{1cm} ||}
@@ -154,11 +227,25 @@ We search all three databases with the keywords listed in table~\ref{tab:keyword
 
 \subsubsection{Inclusion and exclusion criteria:}
 
-Following the guidelines outlined by Kitchenham and Charters~\cite{Stuart2007-cc} we set the inclusion and exclusion criteria based on our research questions outlined in section~\ref{sec:researchQuestions}. We only consider papers that are written in English, published in conferences or journals, and within the time frame of 2019 and 2024. The published papers should describe using the Rust programming language for either developing a new kernel, extending an existing kernel, or authoring drivers. We will include any type of kernel architecture including monolithic kernel, microkernel, or unikernel in both the embedded and non-embedded space as long as the paper is using the Rust programming language in some way. Papers that describe solutions that reside 100\% in user space will be excluded.
+Following the guidelines outlined by Kitchenham and Charters~\cite{Stuart2007-cc} we set the
+inclusion and exclusion criteria based on our research questions outlined in
+section~\ref{sec:researchQuestions}. We only consider papers that are written in English, published
+in conferences or journals, and within the time frame of 2019 and 2024. The published papers should
+describe using the Rust programming language for either developing a new kernel, extending an
+existing kernel, or authoring drivers. We will include any type of kernel architecture including
+monolithic kernel, microkernel, or unikernel in both the embedded and non-embedded space as long as
+the paper is using the Rust programming language in some way. Papers that describe solutions that
+reside 100\% in user space will be excluded. Early efforts to use Rust in kernel development
+were impacted by changes and updates in both the Rust language and compiler and relied on unstable
+features and thus are excluded from this review.
 
 \subsection{Conducting the review}
 
-Once we had our initial collection of papers from the databases we merged all duplicate papers into one record and then started our first pass which consisted of reading the title and abstract and either marking the paper as \textit{include} or \textit{exclude}. Once  the initial screening was completed we were left with 26 potential papers that we needed an in depth reading.
+Once we had our initial collection of papers from the databases we merged all duplicate papers into
+one record and then started our first pass which consisted of reading the title and abstract and
+either marking the paper as \textit{include} or \textit{exclude}. Once the initial screening was
+completed we were left with 26 potential papers that we needed an in depth reading with an
+additional 2 papers found during forward and backward snowballing.
 
 \section{Results}
 
@@ -166,19 +253,57 @@ In this section we present our findings. We address each research question from 
 
 \subsection{RQ1 What are the existing approaches and methodologies for implementing operating system kernels in Rust?}
 
-Table~\ref{tab:RQ1} summarizes our findings regarding what existing approaches researchers are using to integrate rust into the kernel.
+The integration of Rust into operating system kernel development has garnered significant attention
+due to Rust's promise of memory safety and concurrency guarantees. Several approaches and
+methodologies have emerged to leverage Rust for kernel development, each addressing different
+aspects of kernel functionality and integration.  We found several approaches that researches are
+taking to integrating Rust into kernel development.  The first approach is a greenfield approach
+were the operating system architecture is redesigned and built from the ground up in order to fully
+leverage the Rust programming language. The second approach is the incremental integration of Rust
+into existing kernels, such as the Linux
+kernel~\cite{The_kernel_development_community_undated-iw}. This methodology involves gradually
+rewriting or augmenting specific components of the kernel with Rust while maintaining compatibility
+with the existing C codebase. Table~\ref{tab:RQ1} summarizes our findings regarding what existing
+approaches researchers are using to integrate rust into the kernel.
 
-Boos et al.~\cite{Boos2020-zh} is about an experimental operating system that is aimed at addressing the state spill problem. State spill happens when a single service in an operating system can harbor a state change, induced by interacting with other services, that can eventually cause a system crash or system instability. The operating system is built in Rust and leverages the properties of Rust to construct a safer system. Theseus operates in a single address space and single privilege level and uses properties of the Rust programming language to realize isolation instead of relying on hardware. The design of the OS uses a novel cell based structure where ownership of memory and resources is enforced by the compiler. In short the Theseus OS is an operating system that was designed to match the Rust language instead of the more traditional route of matching the hardware.
+For the first approach, Boos et al.~\cite{Boos2020-zh} created an experimental operating system
+named Theseus that operates in a single address space and single privilege level and uses properties
+of the Rust programming language to realize isolation instead of relying on hardware. This novel
+approach pushes some of the roles that a traditional operating system would take onto the
+compiler. The design of Theseus uses a novel cell based structure where ownership of memory and
+resources are enforced by the compiler, thus avoiding these checks during runtime to get improved
+performance. In addition to memory safety, Theseus has a goal of addressing the state spill
+problem. State spill happens when a single service in an operating system can harbor a state change,
+induced by interacting with other services. That state change can eventually cause a system crash or
+system instability at some point in the future making it very difficult to track down the problem
+due to the separation between when the problem occurred and when it was observed. Theseus OS is an
+operating system that was designed to match the Rust language instead of the more traditional route
+of matching the hardware.
 
-Chen X et al.~\cite{Chen2023-wb} primary focused on developing a micro-kernel in Rust that could be formally verified by using both the liner type system or rust and a SMT solver. The new micro-kernel named Atmosphere follows the tradition of other micro-kernels by pushing most kernel functionally to users-space thus limiting the surface area that needs to be proved. The authors were able to get a 7.5:1 proof-to-code ratio which is higher that other formerly verified microkernels SeL4 and CeriKOS, which both have proof to code ratio of 19:1 and 20:1 respectively.
+While single address space operating systems present a unique opportunity to push more
+responsibility into the compiler a more traditional micro-kernel implementation was taken by Chen X
+et al.~\cite{Chen2023-wb} and Liang et al.~\cite{Liang2021-bo}. By pushing most kernel functionally
+to user space the authors limited the surface area that needs to be proved. Chen X et al. took
+their implementation one step further by formally verifying their new micro-kernel named Atmosphere
+by using both the liner type system of Rust in combination with a SMT solver. Chen X et al. were
+able to get a 7.5:1 proof-to-code ratio which is higher that other formerly verified micro-kernels
+SeL4 and CeriKOS, which both have proof to code ratio of 19:1 and 20:1 respectively. While this
+approach was novel drivers running in userspace are still not formally verified and don't have to be
+written in Rust.
 
-Lankes et al.~\cite{Lankes2019-cm} detailed their experiences with developing a Unikernel in Rust. Originally written in C and called HermitCore the authors ported the Kernel to the Rust programming language in order to take advantage of Rust's memory safe features. The new Unikernel consists of only 3.27\% unsafe Rust with the rest of the code base consisting of safe Rust.
+Unikernels present an ideal surface for prototyping Rust. Unikernels are designed to do one thing
+and one thing only, thus the limiting the complexity that a general purpose operating system has to
+deal with. This reduced complexity was explored by Lankes et al.~\cite{Lankes2019-cm}. The authors
+detailed their experiences with rewriting an existing Unikernel, HermitCore, in Rust. The new
+Unikernel named RustyHermit consists of only 3.27\% unsafe Rust with the rest
+of the code base consisting of safe Rust dramatically decreasing the surface area where memory errors
+could originate from.
 
-Li and Sato~\cite{Li2024-yb} explored using Rust to write an exokernel named W-Kernel. The authors proposed a novel architecture for an OS by embedding a WebAssembly(WASM) runtime into the kernel what can run programs written in any language that can compile down to WASM.
+Finally, Li and Sato~\cite{Li2024-yb} explored using Rust to write an exokernel named W-Kernel. The authors
+proposed a novel architecture for an OS by embedding a WebAssembly(WASM) runtime into the kernel
+what can run programs written in any language that can compile down to WASM.
 
-Liang et al.~\cite{Liang2021-bo} developed a new operating system named Rustpi with a micro-kernel architecture implemented in Rust to explore how modern language features can help with building reliable systems.
-
-\begin{table}
+\begin{table*}
     \begin{tabular}{||l|l|l||}
     \hline
     Approach & Papers & Operating System in Rust\\
@@ -192,19 +317,42 @@ Liang et al.~\cite{Liang2021-bo} developed a new operating system named Rustpi w
   \end{tabular}
   \caption{Approaches and Methodologies for Rust in the Kernel}
     \label{tab:RQ1}
-\end{table}
+\end{table*}
 
 
 \subsection{RQ2  What are the performance implications of using Rust for operating system
-      kernel development in terms of throughput, latency, and resource utilization?}
+      kernel development in terms of throughput, and  latency?}
 
-Comparing performance, throughput, latency, and resource utilization between different systems is very difficult. For example several of the operating systems written in Rust such as Tock are a complete rethinking of how an operating system is designed and Rust for Linux (RFL) is still relatively new and has not had the benefit of decades of incremental performance improvements like components that are written in C. Additionally, direct comparisons between a Monolithic kernel, Micro-kernel, and Unikernel, or comparisons between a Real Time Operation System (RTOS) and a General Purpose operating System are not directly meaningful due to the vastly different goals of each system. Therefore, we will focus more on the overall efforts that are specific to the Rust programming language and the challenges presented. We summarize our findings in table~\ref{tab:RQ2}.
+Comparing performance, throughput and latency between different systems is very difficult. For
+example several of the operating systems written in Rust such as Tock are a complete rethinking of
+how an operating system is designed and Rust for Linux (RFL) is still relatively new and has not had
+the benefit of decades of incremental performance improvements like components that are written in
+C. Additionally, direct comparisons between a Monolithic kernel, Micro-kernel, and Unikernel, or
+comparisons between a Real Time Operation System (RTOS) and a General Purpose operating System are
+not directly meaningful due to the vastly different goals of each system. Therefore, we will focus
+more on the overall efforts that are specific to the Rust programming language and the challenges
+presented. We summarize our findings in table~\ref{tab:RQ2}.
 
-Culic et al.~\cite{Culic2022-bk} looked at latency issues in the Tock OS. Tock is a new operating system that is designed to run on embedded systems but does not provide Real time capabilities. The authors attempted to add real time capabilities by integrating eBPF into the Tock kernel to improve the interrupt handlers response time. The Authors found that early work (still in the prototype stage) lowers the response times of the system and makes interrupt response times 3x.
+Culic et al.~\cite{Culic2022-bk} looked at latency issues in the Tock OS. Tock is a new operating
+system that is designed to run on embedded systems but does not provide Real time capabilities. The
+authors attempted to add real time capabilities by integrating eBPF into the Tock kernel to improve
+the interrupt handlers response time. The Authors found that early work (still in the prototype
+stage) lowers the response times of the system and makes interrupt response times 3x.
 
-Gonzalez et al.~\cite{Gonzalez2023-ek} explored using the Rust for Linux Project to implement a native UDP driver in Rust in order to explore the performance the Rust programming language. The authors were able to get a basic driver working with performance only slightly slower than C using the Rust for Linux (RFL) project. The RFL project is still to immature to get a full driver up and running but is at a stage were we researchers can start experimenting with different approaches.
+Gonzalez et al.~\cite{Gonzalez2023-ek} explored using the Rust for Linux Project to implement a
+native UDP driver in Rust in order to explore the performance the Rust programming language. The
+authors were able to get a basic driver working with performance only slightly slower than C using
+the Rust for Linux (RFL) project. The RFL project is still to immature to get a full driver up and
+running but is at a stage were we researchers can start experimenting with different approaches.
 
-Li et al.~\cite{Li2024-be} explored the feasibility of using Rust in kernel space. The authors took an existing component, the Out of Memory (OOM) and implemented a replacement using the Rust programming language. The non-encapsulated interface Rust component which was almost identical to the original C component only introduced a 0.7\% overhead. The encapsulated Rust component on the other hand added a 3\% performance overhead. Another important aspect of the kernel is size, we must be careful to keep the size of the Rust component as close as we can to the C component so we can still run on all the same hardware. The authors found that there was only a 0.06\% size increase when compared to the original C implementation.
+Li et al.~\cite{Li2024-be} explored the feasibility of using Rust in kernel space. The authors took
+an existing component, the Out of Memory (OOM) and implemented a replacement using the Rust
+programming language. The non-encapsulated interface Rust component which was almost identical to
+the original C component only introduced a 0.7\% overhead. The encapsulated Rust component on the
+other hand added a 3\% performance overhead. Another important aspect of the kernel is size, we must
+be careful to keep the size of the Rust component as close as we can to the C component so we can
+still run on all the same hardware. The authors found that there was only a 0.06\% size increase
+when compared to the original C implementation.
 
 \begin{table}
     \begin{tabular}{||l|l|l||}
@@ -214,7 +362,6 @@ Li et al.~\cite{Li2024-be} explored the feasibility of using Rust in kernel spac
     1 & Performance & \cite{Gonzalez2023-ek}, \cite{Li2024-be}, \cite{Ma2023-ef}\\
     2 & Throughput & \cite{Gonzalez2023-ek}\\
     3 & Latency & \cite{Culic2022-bk} \\
-    4 & Resource Utilization & 0 \\
     \hline
   \end{tabular}
   \caption{Performance Implications of using Rust in the Kernel}
@@ -229,7 +376,7 @@ Li et al.~\cite{Li2024-be} explored the feasibility of using Rust in kernel spac
         \hline
         No. & Challenge & Description\\
         \hline
-        1 & Binary Size~\cite{Ayers2022-sf}  & 
+        1 & Binary Size~\cite{Ayers2022-sf}  &
         \begin{itemize}
             \item Deeply ingrained monomorphization which increased the size of the rust binaries
             \item Compiler optimizations are not as mature as some C based compilers thus increasing binary size
@@ -243,9 +390,9 @@ Li et al.~\cite{Li2024-be} explored the feasibility of using Rust in kernel spac
             \item Supporting trait bounds on functions and closures with any number of arguments
             \item Expose type information in procedural macros
             \item Support a collision-free, unique type identifier
-            
+
             \item Support typed assembly language for Rust
-            \item Support trusted build environments 
+            \item Support trusted build environments
             \item Provide software-only stack guard with extensible probing interface
             \item Develop zero-copy serialization of “plain- old” data structures
         \end{itemize}
@@ -279,7 +426,17 @@ Li et al.~\cite{Li2024-be} explored the feasibility of using Rust in kernel spac
     \label{tab:RQ3}
 \end{table*}
 
-Ayers et al.~\cite{Ayers2022-sf} focused on the size of rust binaries in the embedded environment. Their work primary focused on the size of binaries produced using the embedded OS Tock. In addition to the identified causes of binary growth the authors have the following 5 recommendations when using Rust in a size constrained environment:
+The development of operating system kernels in Rust introduces several unique challenges and
+limitations compared to more traditional languages like C. These challenges arise from Rust’s strict
+safety guarantees, its relatively recent adoption in systems programming, and the inherent
+complexities of kernel development. This section discusses these challenges, limitations, and the
+lessons learned from various projects and research efforts.
+
+A primary concern for programming languages that are used for operating system development are the
+size of the binary especially in an embedded environment.  Ayers et al.~\cite{Ayers2022-sf} focused
+on reducing size of binaries produced by the rust compiler while working with Tock OS. They were
+able to identify several  causes of binary growth that are specific to the Rust programming language
+and have the following 5 recommendations when using Rust in a size constrained environment:
 \begin{itemize}
   \item Minimize Length + Instantiations of Generic Code
   \item Use Trait Objects Sparingly
@@ -288,17 +445,127 @@ Ayers et al.~\cite{Ayers2022-sf} focused on the size of rust binaries in the emb
   \item Don't use static mut
 \end{itemize}
 
-Burtsev et al.~\cite{Burtsev2021-mh} explores what is missing in the Rust programming language to help solve the isolation problem in an operating system. Currently Rust lacks the ability to express isolation in the heap without external support. The RedLeaf experiential operating system relied on an complex interface definition language (IDL) to enforce isolated heaps. The paper enumerates several properties of the Rust Language that could help with isolation with regards to operating system development that are detailed in table~\ref{tab:RQ3}. The authors argue that with these changes or inclusions to the Rust programming language developing operating system kernels would be much easier and safer.
+Burtsev et al.~\cite{Burtsev2021-mh} explored what is missing in the Rust programming language to
+help solve the isolation problem in an operating system. Currently Rust lacks the ability to express
+isolation in the heap without external support. For example, the RedLeaf experiential operating
+system which is written in Rust relied on an complex interface definition language (IDL) to enforce
+isolated heaps. The paper enumerates several properties of the Rust Language that could help with
+isolation with regards to operating system development that are detailed in table~\ref{tab:RQ3}. The
+authors argue that with these changes or inclusions to the Rust programming language developing
+operating system kernels would be much easier and safer.
 
-Klimt et al.~\cite{Klimt2023-ob} details the lessons learned and challenges when implementing Theseus, an operating system written in Rust. First they found that it is impossible to write a complete operating system in 100\% safe rust. For example when writing a memory management system raw pointers must be used in order to modify the hardware. Despite the limitations imposed by the hardware the authors describe how Theseus leveraged intralingual design to maximize the compilers role in enforcing correctness. By leveraging Rusts type system and borrow checker memory safety and correct ownership transfer can be achieved at a higher level than what could be done in C. The authors also detailed some of the limitations of intralingual design such as not being as expressive as many other formal verification techniques due to the limited invariant that can be enforced by the type system. One of the most important lessons learned was the insight that a linear type system itself cannot guarantee uniqueness of the resource represented, such when a memory resources may overlap. The authors introduce the idea of using a hybrid approach of verification where they leverage both the linear type system and an SMT solver. The authors also explore the bootstrapping problem with rust systems. How do we ensure that ownership of memory is sound in the operating system itself? In operating systems written in C the kernel provides the ownership root to applications running on top, finding a new ownership root is a open research question with regards to using Rust for operating system development.
+Klimt et al.~\cite{Klimt2023-ob} details the lessons learned and challenges when implementing
+Theseus. First they found that it is impossible to write a complete operating system in 100\% safe
+Rust. For example when writing a memory management system raw pointers must be used in order to
+modify the hardware. Despite the limitations imposed by the hardware the authors describe how
+Theseus leveraged intralingual design to maximize the compilers role in enforcing correctness. By
+leveraging Rusts type system and borrow checker memory safety and correct ownership transfer can be
+achieved at a higher level than what could be done in C. The authors also detailed some of the
+limitations of intralingual design such as not being as expressive as many other formal verification
+techniques due to the limited invariant that can be enforced by the type system. One of the most
+important lessons learned was the insight that a linear type system itself cannot guarantee
+uniqueness of the resource represented, such when a memory resources may overlap. The authors
+introduce the idea of using a hybrid approach of verification where they leverage both the linear
+type system and an SMT solver. The authors also explore the bootstrapping problem with rust
+systems. How do we ensure that ownership of memory is sound in the operating system itself? In
+operating systems written in C the kernel provides the ownership root to applications running on
+top, finding a new ownership root is a open research question with regards to using Rust for
+operating system development.
+
+\section{Threats to Validity}
+
+In conducting this systematic literature review on the use of Rust for operating system development,
+several potential threats to validity must be acknowledged. These threats are categorized into
+internal, external, and conclusion validity, each presenting distinct challenges to the robustness
+and reliability of our findings.
+
+Definition Ambiguity: The term "Kernel development in Rust" encompasses a wide range of activities,
+from minor module development to complete subsystem rewrites. Variations in how researchers and
+developers interpret this integration could lead to inconsistent findings. Selection Criteria: The
+inclusion and exclusion criteria for selecting relevant studies might inadvertently bias the review
+towards certain types of research, such as those reporting successful integration while
+underrepresenting studies detailing challenges and failures. Compared to C Rust is a brand new
+language that is still finding its way in the world.
+
+Internal Validity: Internal validity refers to the degree to which the review accurately establishes
+causal relationships. Potential threats include:
+
+\begin{itemize}
+  \item Publication Bias: Studies demonstrating positive outcomes of using Rust for kernel
+    development may be more likely to be published and cited, leading to an overestimation of its
+    benefits.
+  \item Quality of Studies: The methodological rigor of the included studies varies, and some may
+    suffer from design flaws or biases that were not adequately controlled for, thus affecting the
+    reliability of their findings.
+\end{itemize}
+
+External Validity: External validity pertains to the generalizability of the review's findings
+beyond the specific context of the reviewed studies. Threats to external validity include:
+
+\begin{itemize}
+  \item Context-Specific Findings: Many studies focus on specific kernel modules or use-cases, which
+    may not be representative of the broader kernel environment. The success of Rust in isolated
+    components does not necessarily translate to the entire kernel.
+  \item Temporal Changes: The rapidly evolving nature of both the Rust programming language and the
+    Linux kernel means that findings from older studies may no longer be applicable, as improvements
+    and changes in both domains can alter the landscape significantly.
+\end{itemize}
+
+
+Conclusion Validity: Conclusion validity involves the degree to which the conclusions drawn from the
+review are credible and supported by the data. Potential threats include:
+
+\begin{itemize}
+  \item Heterogeneity of Studies: The diverse methodologies, metrics, and contexts of the included studies
+    can lead to challenges in synthesizing findings and drawing unified conclusions. For example, it
+    is very difficult to directly compare a micro-kernel, Unikernel, and hybrid Kernel.
+  \item Reviewer Bias: Personal biases of the reviewers in interpreting data and making judgments
+    about study quality and relevance may skew the results
+\end{itemize}
+
+Efforts were made to minimize this through predefined criteria and multiple reviewers, but some
+degree of subjectivity is inevitable.  In addressing these threats, we employed rigorous methods for
+study selection, data extraction, and analysis, and we remain transparent about the
+limitations. Future reviews could mitigate these threats further by incorporating a broader range of
+sources, using more precise definitions, and employing meta-analytic techniques to quantitatively
+synthesize findings. Despite these threats, our review provides a valuable synthesis of the current
+state of research on the use of Rust in kernel development, highlighting both its potential benefits
+and the challenges that need to be addressed.
 
 \section{Conclusion}
 
-Summary of key findings and insights obtained from the systematic literature review.
-Concluding remarks on the significance of memory-safe programming languages in mitigating security vulnerabilities.
-Closing thoughts on the importance of minimizing unsafe blocks during code migration.
+The integration of Rust into  kernel space represents a significant evolution in operating system
+development, promising to address long-standing issues related to memory safety and system
+reliability. This systematic literature review has synthesized the current state of research and
+practice concerning the use of Rust in multiple types of kernels including the venerable Linux
+kernel, highlighting both the progress made and the challenges that remain.
 
-\section{Threats to Validity}
+Our review indicates that Rust's strong guarantees of memory safety, enabled by its ownership model
+and strict compile-time checks, offer a compelling advantage over traditional C-based kernel
+development. These features have the potential to reduce common vulnerabilities such as buffer
+overflows and use-after-free errors, which are prevalent in C and have historically led to critical
+security exploits. Several case studies and prototype implementations have demonstrated that Rust
+can be successfully integrated into the kernel, providing safer interfaces and reducing the
+incidence of memory-related bugs without incurring significant performance penalties.
+
+However, the adoption of Rust for kernel development is not without its challenges. Truly the
+biggest challenge is existing codebases and mountains of legacy code. With extensive use of C and
+reliance on specific C idioms and low-level programming techniques researchers have substantial
+integration hurdles to overcome. Any efforts to rewrite substantial portions of an existing kernel
+such as Linux in Rust are constrained by the need for interoperability with existing C code and the
+necessity to maintain the kernel's performance characteristics. Furthermore, the operating system
+development community must reach consensus on Rust's role and ensure that sufficient tooling,
+documentation, and support are available for developers.
+
+In conclusion, while Rust's incorporation into the kernel space is still in its nascent stages, the
+initial results are promising. The potential for enhanced security and stability aligns with the
+long-term goals of kernel development, and continued research, coupled with practical implementation
+efforts, will be crucial in realizing these benefits. Future work should focus on addressing
+integration challenges, refining interoperability mechanisms, and expanding the body of empirical
+evidence on Rust's impact within the kernel environment. As the community navigates these
+challenges, the evolution of Rust in the kernel may well mark a transformative period in the pursuit
+of safer, more reliable operating systems.
+
 \balance
 
 \bibliographystyle{ACM-Reference-Format}
