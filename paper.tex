@@ -1,4 +1,5 @@
-\documentclass[sigconf]{acmart}
+%\documentclass[sigconf]{acmart}
+\documentclass[sigconf,review,anonymous]{acmart}
 \usepackage{listings, listings-rust}
 \usepackage{xcolor}
 \usepackage[raggedrightboxes]{ragged2e}
@@ -19,12 +20,13 @@
 \copyrightyear{2024}
 \acmYear{2024}
 \acmDOI{XXXXXXX.XXXXXXX}
-\acmSubmissionID{123-A56-BU3}
+%\acmSubmissionID{123-A56-BU3}
 
 \begin{document}
-\title{Kernel Development Using Rust: A Systematic Literature Review}
+%\title{Kernel Development Using Rust: A Systematic Literature Review}
+\title{Rusty Linux: Advances in Rust for Linux Kernel Development}
 
-\author{Anonymous Authors}
+%\author{Anonymous Authors}
 
 %% \author{Shane Panter}
 %%     \affiliation{%
@@ -48,23 +50,26 @@
 
   \textit{Context:} The integration of Rust into kernel development is a transformative endeavor aimed
   at enhancing system security and reliability by leveraging Rust's strong memory safety
-  guarantees. This systematic literature review examines the current state of research and practice
-  regarding the use of Rust in the kernel development.
-  \textit{Objective:} We aim to find the current edge of research regarding using Rust in Kernel
-  development so we can push the research forward and reduce the number of memory safety
+  guarantees. 
+  %This systematic literature review examines the current state of research and practice regarding the use of Rust in the kernel development.
+  \textit{Objective:} We aim to find the current advances in using Rust in Kernel
+  development to reduce the number of memory safety
   vulnerabilities in one of the most critical pieces of software that underpins all modern
   applications.
   \textit{Method:} By analyzing a broad spectrum of studies, we identify the advantages Rust offers,
-  such as reducing vulnerabilities like buffer overflows and use-after-free errors, which are
-  prevalent in C-based kernel development. The review also highlights the challenges faced,
-  including integration hurdles with existing C codebases, performance considerations, and the need
-  for community consensus on Rust's adoption.
+  %such as reducing vulnerabilities like buffer overflows and use-after-free errors, which are
+  %prevalent in C-based kernel development. The review also 
+  highlight the challenges faced,
+  %including integration hurdles with existing C codebases, performance considerations, 
+  and emphasise the need for community consensus on Rust's adoption.
   \textit{Results:} Our findings suggest that while the initial implementations of Rust in the kernel
-  shows promising results in terms of safety and stability, significant challenges remain. These
+  show promising results in terms of safety and stability, significant challenges remain. These challenges
   include achieving seamless interoperability with existing kernel components, maintaining
   performance, and ensuring adequate support and tooling for developers.
-  \textit{Conclusions:} In conclusion, this review provides a comprehensive overview of the
-  potential and challenges of incorporating Rust into kernel development. It underscores the need for
+  \textit{Conclusions:} This study 
+  %provides a comprehensive overview of the
+  %potential and challenges of incorporating Rust into kernel development. It 
+  underscores the need for
   continued research and practical implementation efforts to fully realize the benefits of Rust. By
   addressing these challenges, the integration of Rust could mark a significant step forward in the
   evolution of operating system development towards safer and more reliable systems.
@@ -115,18 +120,18 @@
 \section{Introduction}
 
 The 1995 movie Hackers~\cite{Wikipedia_contributors2024-zr} prescient predictions regarding the ease
-of breaking into computing systems in cyberspace have came to fruition. The White House Office of
+of breaking into computing systems in cyberspace have come to fruition. The White House Office of
 the National Cyber Director (ONCD) released a report calling for the technical community to
-proactively reduce the attack surface in cyberspace with a two pronged approach. First we need to
+proactively reduce the attack surface in cyberspace with a two-pronged approach. First, we need to
 address the root cause of many of the most heinous cyber attacks, memory unsafe programming
 languages~\cite{United_States_Gov2024-pp}. Second, we need to establish better cybersecurity quality
-metrics so we can have a better understanding of the cyber security landscape.
+metrics so we can have a better understanding of the cybersecurity landscape.
 
 In the ever-evolving landscape of software development, the reliability and security of computer
-systems stands as a paramount concern for all parties involved. Modern software is constructed by
+systems stand as a paramount concern for all parties involved. Modern software is constructed by
 building ever more complex abstractions, one on top of the other. Thus, if we aim to have a secure
-system we must start to peel back all the layers and tackle one of the fundamental abstractions in
-computer science, the programming language. Programming languages that provide and enforce memory
+system, we must start to peel back all the layers and tackle one of the fundamental abstractions in
+computer science: the programming language. Programming languages that provide and enforce memory
 safety eliminate whole classes of bugs such as buffer overflows, dangling pointers, and memory leaks
 which have been implicated in a myriad of security vulnerabilities and system crashes.
 
@@ -146,21 +151,21 @@ performance are critical.
 
 The potential integration of Rust into kernel development represents a significant shift in the
 landscape of operating system development. This shift prompts a comprehensive evaluation of both the
-opportunities and challenges associated with using Rust in such a foundational component of modern
+opportunities and challenges associated with using Rust as such a foundational component of modern
 computing. This systematic literature review aims to synthesize existing research and practical
 experiences related to the use of Rust in the kernel, providing a detailed understanding of
 the current state of this emerging field.
 
 This paper presents a systematic literature review (SLR) focusing on strategies and methodologies
 for integrating Rust into one of the most fundamental areas that are typically dominated by unsafe
-languages the operating system kernel. Our study aims to provide a comprehensive overview of
+languages, the operating system kernel. Our study aims to provide a comprehensive overview of
 existing research, identify gaps, and suggest future directions in this domain. Through a rigorous
 search process, we synthesized relevant studies and extracted key findings to offer insights into
 effective approaches for ensuring memory safety when working closely with hardware.
 
 \section{Research Methodology}
 
-For our research methodolgy we followed the advice of Kitchenham and Charters~\cite{Stuart2007-cc}
+For our research methodology we followed the advice of Kitchenham and Charters~\cite{Stuart2007-cc}
 and divided our review into the 3 discrete phases, planning the review, conducting the review, and
 reporting the review results. The following sections detail our review process.
 
