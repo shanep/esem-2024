@@ -48,25 +48,25 @@
 
 \begin{abstract}
 
-  \textit{Context:} The integration of Rust into kernel development is a transformative endeavor aimed
+  \textit{\textbf{Context:}} The integration of Rust into kernel development is a transformative endeavor aimed
   at enhancing system security and reliability by leveraging Rust's strong memory safety
   guarantees. 
   %This systematic literature review examines the current state of research and practice regarding the use of Rust in the kernel development.
-  \textit{Objective:} We aim to find the current advances in using Rust in Kernel
+  \textit{\textbf{Objective:}} We aim to find the current advances in using Rust in Kernel
   development to reduce the number of memory safety
   vulnerabilities in one of the most critical pieces of software that underpins all modern
   applications.
-  \textit{Method:} By analyzing a broad spectrum of studies, we identify the advantages Rust offers,
+  \textit{\textbf{Method:}} By analyzing a broad spectrum of studies, we identify the advantages Rust offers,
   %such as reducing vulnerabilities like buffer overflows and use-after-free errors, which are
   %prevalent in C-based kernel development. The review also 
   highlight the challenges faced,
   %including integration hurdles with existing C codebases, performance considerations, 
   and emphasise the need for community consensus on Rust's adoption.
-  \textit{Results:} Our findings suggest that while the initial implementations of Rust in the kernel
+  \textit{\textbf{Results:}} Our findings suggest that while the initial implementations of Rust in the kernel
   show promising results in terms of safety and stability, significant challenges remain. These challenges
   include achieving seamless interoperability with existing kernel components, maintaining
   performance, and ensuring adequate support and tooling for developers.
-  \textit{Conclusions:} This study 
+  \textit{\textbf{Conclusions:}} This study 
   %provides a comprehensive overview of the
   %potential and challenges of incorporating Rust into kernel development. It 
   underscores the need for
@@ -132,7 +132,7 @@ systems stand as a paramount concern for all parties involved. Modern software i
 building ever more complex abstractions, one on top of the other. Thus, if we aim to have a secure
 system, we must start to peel back all the layers and tackle one of the fundamental abstractions in
 computer science: the programming language. Programming languages that provide and enforce memory
-safety eliminate whole classes of bugs such as buffer overflows, dangling pointers, and memory leaks
+safety eliminate whole classes of bugs, such as buffer overflows, dangling pointers, and memory leaks
 which have been implicated in a myriad of security vulnerabilities and system crashes.
 
 Most operating system kernels are predominantly written in the C programming language with bits of
