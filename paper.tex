@@ -122,9 +122,9 @@
 The 1995 movie Hackers~\cite{Wikipedia_contributors2024-zr} prescient predictions regarding the ease
 of breaking into computing systems in cyberspace have come to fruition. The White House Office of
 the National Cyber Director (ONCD) released a report calling for the technical community to
-proactively reduce the attack surface in cyberspace with a two-pronged approach. First, we need to
-address the root cause of many of the most heinous cyber attacks, memory unsafe programming
-languages~\cite{United_States_Gov2024-pp}. Second, we need to establish better cybersecurity quality
+proactively reduce the attack surface in cyberspace with a two-pronged approach~\cite{United_States_Gov2024-pp}. First, we need to
+address the root cause of many of the most heinous cyber attacks: memory-unsafe programming
+languages. Second, we need to establish better cybersecurity quality
 metrics so we can have a better understanding of the cybersecurity landscape.
 
 In the ever-evolving landscape of software development, the reliability and security of computer
@@ -139,7 +139,7 @@ Most operating system kernels are predominantly written in the C programming lan
 assembly. C has been favored for its low-level capabilities and performance efficiency, crucial for
 kernel development. However, the inherent lack of memory safety in C has led to numerous security
 vulnerabilities, including buffer overflows and use-after-free errors, which have plagued operation
-system development for decades~\cite{noauthor_2019-bf}. Addressing these vulnerabilities is
+system development for decades~\cite{MSRC_Team2019-bf}. Addressing these vulnerabilities is
 paramount to enhancing the security and reliability of all operating systems.
 
 Rust, a systems programming language developed by Mozilla, has garnered significant attention for
@@ -147,72 +147,73 @@ its strong emphasis on memory safety without sacrificing performance. Rust's own
 compile-time checks effectively prevent common programming errors that lead to security
 vulnerabilities. What makes Rust unique is the fact that it accomplishes these tasks without the use
 of a garbage collector, making it an ideal candidate for kernel development where safety and
-performance are critical~\cite{}.
-
-
+performance are critical~\cite{Klabnik2024-id}.
 
 The potential integration of Rust into kernel development represents a significant shift in the
 landscape of operating system development. This shift prompts a comprehensive evaluation of both the
 opportunities and challenges associated with using Rust as such a foundational component of modern
-computing. This systematic literature review aims to synthesize existing research and practical
+computing. Therefore, we aim to synthesize existing research and practical
 experiences related to the use of Rust in the kernel, providing a detailed understanding of
 the current state of this emerging field.
 
-This paper presents a systematic literature review (SLR) focusing on strategies and methodologies
+This reflection paper presents a systematic literature review (SLR) focusing on strategies and methodologies
 for integrating Rust into one of the most fundamental areas that are typically dominated by unsafe
-languages, the operating system kernel. Our study aims to provide a comprehensive overview of
+languages, the operating system kernel. We aim to provide a comprehensive overview of
 existing research, identify gaps, and suggest future directions in this domain. Through a rigorous
 search process, we synthesized relevant studies and extracted key findings to offer insights into
 effective approaches for ensuring memory safety when working closely with hardware.
 
 \section{Research Methodology}
 
-For our research methodology we followed the advice of Kitchenham and Charters~\cite{Stuart2007-cc}
-and divided our review into the 3 discrete phases, planning the review, conducting the review, and
+For our research methodology, we followed the Kitchenham and Charters~\cite{Stuart2007-cc} methodology to conduct SLR in software engineering.
+We divided our review into three discrete phases, planning the review, conducting the review, and
 reporting the review results. The following sections detail our review process.
 
 \subsection{Planning}
 
-Before we start researching we must first confirm the need for a SLR. The recent report released by
+To begin our study, we must first confirm the need for a SLR. The recent report released by
 ONCD~\cite{United_States_Gov2024-pp} has conveniently done this job for us by compiling a report
-detailing the need for research in the domain of memory safety. While the ONCD report detailed a two
-pronged approach, for this SLR we will be focusing on a memory safe programming language,
-specifically Rust. While there are many modern memory safe programming languages available for
-software developers to use Rust is one of the few languages that is feasible to use when developing
-operating system kernels due to is lack of runtime and garbage collector. Even the Linux kernel is
+detailing the need for research in the domain of memory safety. While the ONCD report detailed a two-pronged approach, for this reflection paper, we will be focusing on a memory-safe programming language,
+specifically Rust. While there are many modern memory-safe programming languages available for
+software developers to use, Rust is one of the few languages that is feasible to use when developing
+operating system kernels due to its lack of runtime and garbage collector. Even the Linux kernel is
 in the early stages of adding real support for
 Rust~\cite{The_kernel_development_community_undated-iw} thus, we will focus on Rust as a primary
 candidate to replace the aging C programming language.
 
-\subsubsection{Research Questions}
+\subsubsection{\textbf{Research Questions}}
 \label{sec:researchQuestions}
 
 We have defined the following research questions to drive this study.
 
 \begin{itemize}
-    \item \textbf{RQ1:} What are the existing approaches and methodologies for implementing
+    \item \textbf{RQ1:} What are the existing approaches for implementing
       operating system kernels in Rust?
     \item \textbf{RQ2:} What are the performance implications of using Rust for operating system
-      kernel development in terms of throughput, latency, and resource utilization?
+      kernel development?
+      %in terms of throughput, latency, and resource utilization?
     \item \textbf{RQ3:} What are the major challenges, limitations, and lessons learned when
-      developing operating system kernels in Rust, particularly in comparison to other languages?
+      developing operating system kernels in Rust?% particularly in comparison to other languages?
 \end{itemize}
 
-\subsubsection{Search Strategy:}
+\subsection{Data Collection}
 
-We employed a robust multi-step search strategy across three digital databases, ACM Digital Library,
-IEEE Xplore, and Scopus in order to find all the current research that has been done. These
-databases cover a wide range of current software engineering and computer science literature. We
-leveraged the advanced search features of all three databases to search the titles and abstracts for
+\subsubsection{\textbf{Search Strategy.}}
+
+We employed a robust multi-step search strategy across three databases: ACM Digital Library,
+IEEE Xplore, and Scopus to find all the current research. 
+%These databases cover a wide range of current software engineering and computer science literature. 
+We leveraged the advanced search features of all three databases to search the titles and abstracts for
 keywords using boolean search operators.
 
-\subsubsection{Search criteria:}
 
-We search all three databases with the keywords listed in table~\ref{tab:keywords} between January
-1, 2019 and April 1, 2024. While both ACM and IEEE had mutually exclusive results Scopus had 44
+\subsubsection{\textbf{Search criteria.}}
+
+We searched all three databases with the keywords listed in table~\ref{tab:keywords} between January
+1, 2019 and April 1, 2024. While both ACM and IEEE had mutually exclusive results, Scopus had 44
 duplicates that needed to be removed. We then used Google Scholar for forward and backward
 snowballing. We choose to look at only the previous 5 years of research in order to capture the
-bleeding edge research that is currently being done.
+bleeding-edge research that is currently being done.
 
 \begin{table}
 \begin{tabular}{|| p{2cm}| p{4cm} | p{1cm} ||}
@@ -232,27 +233,27 @@ bleeding edge research that is currently being done.
 \label{tab:keywords}
 \end{table}
 
-\subsubsection{Inclusion and exclusion criteria:}
+\subsubsection{\textbf{Inclusion and exclusion criteria.}}
 
 Following the guidelines outlined by Kitchenham and Charters~\cite{Stuart2007-cc} we set the
 inclusion and exclusion criteria based on our research questions outlined in
 section~\ref{sec:researchQuestions}. We only consider papers that are written in English, published
 in conferences or journals, and within the time frame of 2019 and 2024. The published papers should
 describe using the Rust programming language for either developing a new kernel, extending an
-existing kernel, or authoring drivers. We will include any type of kernel architecture including
-monolithic kernel, microkernel, or unikernel in both the embedded and non-embedded space as long as
+existing kernel, or authoring drivers. We include any type of kernel architecture, including
+monolithic kernel, microkernel, or unikernel in both the embedded and non-embedded space, as long as
 the paper is using the Rust programming language in some way. Papers that describe solutions that
 reside 100\% in user space will be excluded. Early efforts to use Rust in kernel development
 were impacted by changes and updates in both the Rust language and compiler and relied on unstable
-features and thus are excluded from this review.
+features, which are thus excluded from this review.
 
-\subsection{Conducting the review}
+\subsection{Data Analysis}
 
-Once we had our initial collection of papers from the databases we merged all duplicate papers into
-one record and then started our first pass which consisted of reading the title and abstract and
+Once we had our initial collection of papers from the databases, we merged all duplicate papers into
+one record and then started our first pass, which consisted of reading the title and abstract and
 either marking the paper as \textit{include} or \textit{exclude}. Once the initial screening was
-completed we were left with 26 potential papers that we needed an in depth reading with an
-additional 2 papers found during forward and backward snowballing.
+completed we were left with 26 potential papers that we needed an in-depth reading with an
+additional 2 papers were found during forward and backward snowballing.
 
 \section{Results}
 
