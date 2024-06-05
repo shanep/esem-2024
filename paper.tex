@@ -163,9 +163,7 @@ effective approaches for ensuring memory safety when working closely with hardwa
 
 \section{Research Methodology}
 
-For our research methodology, we followed the Kitchenham and Charters~\cite{Stuart2007-cc} methodology to conduct SLR in software engineering.
-We divided our review into three discrete phases, planning the review, conducting the review, and
-reporting the review results. The following sections detail our review process.
+For our research methodology, we followed the Kitchenham and Charters~\cite{Stuart2007-cc} methodology to conduct SLR in software engineering. We divided our review into three discrete phases, planning the review, conducting the review, and reporting the review results. The following sections detail our review process.
 
 \subsection{Planning}
 
@@ -174,7 +172,7 @@ ONCD~\cite{United_States_Gov2024-pp} has conveniently done this job for us by co
 detailing the need for research in the domain of memory safety. While the ONCD report detailed a two-pronged approach, for this reflection paper, we will be focusing on a memory-safe programming language,
 specifically Rust. While there are many modern memory-safe programming languages available for
 software developers to use, Rust is one of the few languages that is feasible to use when developing
-operating system kernels due to its lack of runtime and garbage collector. Even the Linux kernel is
+operating system kernels due to its lack of runtime and garbage collector~\cite{Ojeda2021-ul}. Even the Linux kernel is
 in the early stages of adding real support for
 Rust~\cite{The_kernel_development_community_undated-iw} thus, we will focus on Rust as a primary
 candidate to replace the aging C programming language.
@@ -431,7 +429,7 @@ when compared to the original C implementation.
 The development of operating system kernels in Rust introduces several unique challenges and
 limitations compared to more traditional languages like C. These challenges arise from Rust’s strict
 safety guarantees, its relatively recent adoption in systems programming, and the inherent
-complexities of kernel development. This section discusses these challenges, limitations, and the
+complexities of kernel development~\cite{Ojeda2021-ul}. This section discusses these challenges, limitations, and the
 lessons learned from various projects and research efforts. We summarize our findings in
 table~\ref{tab:RQ3}.
 
@@ -458,6 +456,7 @@ authors argue that with these changes or inclusions to the Rust programming lang
 operating system kernels would be much easier and safer.
 
 \subsection{RQ4: Lessons Learned}
+
 Klimt et al.~\cite{Klimt2023-ob} details the lessons learned and challenges when implementing
 Theseus. First they found that it is impossible to write a complete operating system in 100\% safe
 Rust. For example, when writing a memory management system, raw pointers must be used to
@@ -471,8 +470,7 @@ important lessons learned was the insight that a linear type system itself canno
 the uniqueness of the resource represented, such as when a memory resource may overlap. The authors
 introduce the idea of using a hybrid approach of verification where they leverage both the linear
 type system and an SMT solver. The authors also explore the bootstrapping problem with rust
-systems. How do we ensure that ownership of memory is sound in the operating system itself? In
-operating systems written in C, the kernel provides the ownership root to applications running on
+systems. In operating systems written in C, the kernel provides the ownership root to applications running on
 top. Finding a new ownership root is an open research question with regard to using Rust for
 operating system development.
 
@@ -483,13 +481,7 @@ operating system development.
 % internal, external, and conclusion validity, each presenting distinct challenges to the robustness
 % and reliability of our findings.
 
-Definition Ambiguity: The term "Kernel development in Rust" encompasses a wide range of activities,
-from minor module development to complete subsystem rewrites. Variations in how researchers and
-developers interpret this integration could lead to inconsistent findings. Selection Criteria: The
-inclusion and exclusion criteria for selecting relevant studies might inadvertently bias the review
-towards certain types of research, such as those reporting successful integration while
-underrepresenting studies detailing challenges and failures. Compared to C, Rust is a brand new
-language that is still finding its way in the world.
+
 
 \textit{\textbf{Internal Threats.}} Internal validity refers to the degree to which the review accurately establishes
 causal relationships. Potential threats include:
@@ -501,6 +493,8 @@ causal relationships. Potential threats include:
   \item Quality of Studies: The methodological rigor of the included studies varies, and some may
     suffer from design flaws or biases that were not adequately controlled for, thus affecting the
     reliability of their findings.
+  \item  Selection Criteria: The inclusion and exclusion criteria for selecting relevant studies might inadvertently bias the review         towards certain types of research, such as those reporting successful integration while
+    underrepresenting studies detailing challenges and failures.
 \end{itemize}
 
 \textit{\textbf{External Threats.}} External validity pertains to the generalizability of the review's findings
@@ -513,6 +507,9 @@ beyond the specific context of the reviewed studies. Threats to external validit
   \item Temporal Changes: The rapidly evolving nature of both the Rust programming language and the
     Linux kernel means that findings from older studies may no longer be applicable, as improvements
     and changes in both domains can alter the landscape significantly.
+    \item Definition Ambiguity: The term "Kernel development in Rust" encompasses a wide range of activities,
+    from minor module development to complete subsystem rewrites. Variations in how researchers and
+    developers interpret this integration could lead to inconsistent findings.
 \end{itemize}
 
 
