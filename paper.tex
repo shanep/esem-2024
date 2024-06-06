@@ -294,7 +294,7 @@ SeL4 and CeriKOS both have proof code ratios of 19:1 and 20:1, respectively. Whi
 approach was novel drivers running in userspace are still not formally verified and don't have to be
 written in Rust.
 
-Unikernels present an ideal surface for prototyping Rust. Unikernels are designed to do one thing
+Unikernels present an ideal surface for prototyping Rust~\cite{Madhavapeddy2014-zw}. Unikernels are designed to do one thing
 and one thing only, thus limiting the complexity that a general-purpose operating system has to
 deal with. This reduced complexity was explored by Lankes et al.~\cite{Lankes2019-cm}. The authors
 detailed their experiences with rewriting an existing Unikernel, HermitCore, in Rust. The new
@@ -328,12 +328,11 @@ Comparing performance, throughput and latency between different systems with dif
 example, several of the operating systems written in Rust are a complete rethinking of
 how an operating system is designed~\cite{Boos2020-zh} while others run entirely in kernel space~\cite{Lankes2019-cm}. Additionally, direct comparisons between a Monolithic kernel, Micro-kernel, and Unikernel, or
 comparisons between a Real Time Operation System (RTOS) and a General Purpose Operating System, are
-not directly meaningful due to the vastly different goals of each system and the overhead that is imposed by the hardware~\cite{{Arnott2012-fl}. Therefore, we will focus
-more on the overall efforts that are specific to the Rust programming language and the challenges
+not directly meaningful due to the vastly different goals of each system and the overhead that is imposed by the hardware~\cite{Arnott2012-fl}. Therefore, we will focus more on the overall efforts that are specific to the Rust programming language and the challenges
 presented. We summarize our findings in table~\ref{tab:RQ2}.
 
-Culic et al.~\cite{Culic2022-bk} looked at latency issues in the Tock OS. Tock is a new operating
-system that is designed to run on embedded systems but does not provide Real-time capabilities. The
+Culic et al.~\cite{Culic2022-bk} looked at latency issues in Tock. Tock is a new operating
+system written in Rust that is designed to run on embedded systems but does not provide Real-time capabilities. The
 authors attempted to add real-time capabilities by integrating eBPF into the Tock kernel to improve
 the interrupt handler's response time. The Authors found that early work (still in the prototype
 stage) lowers the response times of the system and interrupts response times 3x.
