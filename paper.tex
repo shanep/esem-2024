@@ -163,7 +163,14 @@ effective approaches for ensuring memory safety when working closely with hardwa
 
 \section{Research Methodology}
 
-For our research methodology, we followed the Kitchenham and Charters~\cite{Stuart2007-cc} methodology to conduct SLR in software engineering. We divided our review into three discrete phases, planning the review, conducting the review, and reporting the review results. The following sections detail our review process.
+For our research methodology, we followed the Kitchenham and Charters~\cite{Stuart2007-cc} methodology to conduct SLR in software engineering. We divided our review into three discrete phases, planning the review, conducting the review, and reporting the review results. The following sections detail our review process and are diagrammed in figure~\ref{fig:process}.
+
+ \begin{figure*}
+    \centering
+     \includegraphics[width=7in]{process-diagram.pdf}
+     \caption{Process Diagram for Paper selection}
+     \label{fig:process}
+ \end{figure*}
 
 \subsection{Planning}
 
@@ -172,7 +179,7 @@ ONCD~\cite{United_States_Gov2024-pp} has conveniently done this job for us by co
 detailing the need for research in the domain of memory safety. While the ONCD report detailed a two-pronged approach, for this reflection paper, we will be focusing on a memory-safe programming language,
 specifically Rust. While there are many modern memory-safe programming languages available for
 software developers to use, Rust is one of the few languages that is feasible to use when developing
-operating system kernels due to its lack of runtime and garbage collector~\cite{Ojeda2021-ul}. Even the Linux kernel is
+operating system kernels due to its lack of runtime and garbage collector~\cite{Ojeda2021-ul}. The Linux kernel is currently
 in the early stages of adding real support for
 Rust~\cite{The_kernel_development_community_undated-iw} thus, we will focus on Rust as a primary
 candidate to replace the aging C programming language.
@@ -184,11 +191,19 @@ We have defined the following research questions to drive this study.
 
 \begin{itemize}
     \item \textbf{RQ1:} What are the existing approaches for implementing operating system kernels in Rust?
+    
+    All though Rust in the Linux kernel is very recent we would like to see what approaches researches have explored in any operating system. Experiential and research kernels can provide new ideas that can be integrated into the Linux kernel.
     \item \textbf{RQ2:} What are the performance implications of using Rust for operating system kernel development?
+
+    The C programming language has the advantage of 40 years of improvements and lessons learned regarding how to write fast code. Rust being a new language still has many unexplored areas with how to write fast code especially in kernel space.
       %in terms of throughput, latency, and resource utilization?
     \item \textbf{RQ3:} What are the major challenges and limitations when
       developing operating system kernels in Rust?% particularly in comparison to other languages?
+
+      Kernel space presents unique challenges for the software engineer using Rust. Rust was not designed to implement kernels and is more restrictive than C. Thus, this research question is looking for any stumbling blocks that have already been found.
     \item \textbf{RQ4:} What are the lessons learned when developing operating systems kernels in Rust?
+
+    After the work has been completed we want to find all the research that reflects on what went well and what didn't.
 \end{itemize}
 
 \subsection{Data Collection}
@@ -248,11 +263,11 @@ Once we had our initial collection of papers from the databases, we merged all d
 one record and then started our first pass, which consisted of reading the title and abstract and
 either marking the paper as \textit{include} or \textit{exclude}. Once the initial screening was
 completed we were left with 26 potential papers that we needed an in-depth reading with an
-additional 2 papers were found during forward and backward snowballing.
+additional 6 papers were found during forward and backward snowballing.
 
 \section{Results}
 
-In this section, we present our findings. We address each research question from \textbf{RQ1} - \textbf{RQ3}.
+In this section, we present our findings. We address each research question from \textbf{RQ1} - \textbf{RQ4}.
 
 \subsection{RQ1: Existing Approaches}
 
@@ -262,11 +277,11 @@ methodologies have emerged to leverage Rust for kernel development, each address
 aspects of kernel functionality and integration.  We found several approaches that researchers are
 taking to integrate Rust into kernel development. The first approach is a greenfield approach
 where the operating system architecture is redesigned and built from the ground up in order to fully
-leverage the Rust programming language. The second approach is the incremental integration of Rust
+leverage the Rust programming language~\cite{Culic2022-bk, Boos2020-zh}. The second approach is the incremental integration of Rust
 into existing kernels, such as the Linux
-kernel~\cite{The_kernel_development_community_undated-iw}. This methodology involves gradually
+kernel~\cite{The_kernel_development_community_undated-iw, Miller2021-pg, Oikawa2023-ms}. This methodology involves gradually
 rewriting or augmenting specific components of the kernel with Rust while maintaining compatibility
-with the existing C codebase. Table~\ref{tab:RQ1} summarizes our findings regarding what existing
+with the existing C codebase. Finally, researches are porting existing C kernels over to Rust and then evaluating the differences. Table~\ref{tab:RQ1} summarizes our findings regarding what existing
 approaches researchers are using to integrate rust into the kernel.
 
 For the first approach, Boos et al.~\cite{Boos2020-zh} created an experimental operating system
@@ -281,11 +296,9 @@ induced by interacting with other services. That state change can eventually cau
 system instability at some point in the future making it very difficult to track down the problem
 due to the separation between when the problem occurred and when it was observed. Theseus OS is an
 operating system that was designed to match the Rust language instead of the more traditional route
-of matching the hardware.
+of matching the hardware. Li and Sato~\cite{Li2024-yb} explored using Rust to write an exokernel named W-Kernel. The authors proposed a novel architecture for an OS by embedding a WebAssembly(WASM) runtime into the kernel that can run programs written in any language that can compile down to WASM.
 
-While single address space operating systems present a unique opportunity to push more
-responsibility into the compiler a more traditional micro-kernel implementation was taken by Chen X
-et al.~\cite{Chen2023-wb} and Liang et al.~\cite{Liang2021-bo}. By pushing most kernel functionality
+For the second approach researches take a more  traditional micro-kernel implementation~\cite{Chen2023-wb, Liang2021-bo}. By pushing most kernel functionality
 to user space, the authors limited the surface area that needs to be proved. Chen X et al.~\cite{Chen2023-wb} took
 their implementation one step further by formally verifying their new micro-kernel named Atmosphere
 by using both the liner type system of Rust in combination with a SMT solver. They were
@@ -294,16 +307,12 @@ SeL4 and CeriKOS both have proof code ratios of 19:1 and 20:1, respectively. Whi
 approach was novel drivers running in userspace are still not formally verified and don't have to be
 written in Rust.
 
-Unikernels present an ideal surface for prototyping Rust~\cite{Madhavapeddy2014-zw}. Unikernels are designed to do one thing
+Finally researchers have taken existing Unikernels written in C and ported them to to Rust. Unikernels are designed to do one thing
 and one thing only, thus limiting the complexity that a general-purpose operating system has to
-deal with. This reduced complexity was explored by Lankes et al.~\cite{Lankes2019-cm}. The authors
-detailed their experiences with rewriting an existing Unikernel, HermitCore, in Rust. The new
-Unikernel named RustyHermit consists of only 3.27\% unsafe Rust, with the rest
-of the code base consisting of safe Rust, dramatically decreasing the surface area where memory errors
-could originate.
+deal with~\cite{Madhavapeddy2014-zw}. This reduced complexity allowed  Lankes et al.~\cite{Lankes2019-cm} to take HermitCore and rewrite it in Rust. The new
+Unikernel named RustyHermit consists of only 3.27\% unsafe Rust, with the rest of the code base consisting of safe Rust, dramatically decreasing the surface area where memory errors could originate.
 
-Finally, Li and Sato~\cite{Li2024-yb} explored using Rust to write an exokernel named W-Kernel. The authors
-proposed a novel architecture for an OS by embedding a WebAssembly(WASM) runtime into the kernel that can run programs written in any language that can compile down to WASM.
+
 
 \begin{table*}
     \begin{tabular}{||l|l|l||}
