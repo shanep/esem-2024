@@ -324,13 +324,11 @@ proposed a novel architecture for an OS by embedding a WebAssembly(WASM) runtime
 
 \subsection{RQ2: Performance Implications}
 
-Comparing performance, throughput and latency between different systems is very difficult. For
-example, several of the operating systems written in Rust, such as Tock, are a complete rethinking of
-how an operating system is designed, and Rust for Linux (RFL) is still relatively new and has not had
-the benefit of decades of incremental performance improvements like components that are written in
-C. Additionally, direct comparisons between a Monolithic kernel, Micro-kernel, and Unikernel, or
+Comparing performance, throughput and latency between different systems with different architectures is very difficult. For
+example, several of the operating systems written in Rust are a complete rethinking of
+how an operating system is designed~\cite{Boos2020-zh} while others run entirely in kernel space~\cite{Lankes2019-cm}. Additionally, direct comparisons between a Monolithic kernel, Micro-kernel, and Unikernel, or
 comparisons between a Real Time Operation System (RTOS) and a General Purpose Operating System, are
-not directly meaningful due to the vastly different goals of each system. Therefore, we will focus
+not directly meaningful due to the vastly different goals of each system and the overhead that is imposed by the hardware~\cite{{Arnott2012-fl}. Therefore, we will focus
 more on the overall efforts that are specific to the Rust programming language and the challenges
 presented. We summarize our findings in table~\ref{tab:RQ2}.
 
