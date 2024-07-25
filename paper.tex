@@ -1,5 +1,5 @@
-%\documentclass[sigconf]{acmart}
-\documentclass[sigconf,review,anonymous]{acmart}
+\documentclass[sigconf]{acmart}
+%\documentclass[sigconf,review,anonymous]{acmart}
 \usepackage{listings, listings-rust}
 \usepackage{xcolor}
 \usepackage[raggedrightboxes]{ragged2e}
@@ -28,21 +28,23 @@
 
 %\author{Anonymous Authors}
 
-%% \author{Shane Panter}
-%%     \affiliation{%
-%%     \institution{Boise State University}
-%%     \city{Boise}
-%%     \state{Idaho}
-%%     \country{USA}}
-%%     \email{shanepanter@boisestate.edu}
+\author{Shane K. Panter}
+    \affiliation{%
+    \institution{Department of Computer Science}
+    \institution{Boise State University}
+    \city{Boise}
+    \state{Idaho}
+    \country{USA}}
+    \email{shanepanter@boisestate.edu}
 
-%% \author{Nasir U. Eisty}
-%%     \affiliation{%
-%%     \institution{Boise State University}
-%%     \city{Boise}
-%%     \state{Idaho}
-%%     \country{USA}}
-%%     \email{nasireisty@boisestate.edu}
+\author{Nasir U. Eisty}
+    \affiliation{%
+    \institution{Department of Computer Science}
+    \institution{Boise State University}
+    \city{Boise}
+    \state{Idaho}
+    \country{USA}}
+    \email{nasireisty@boisestate.edu}
 
 %\renewcommand{\shortauthors}{Panter et al.}
 
@@ -110,16 +112,16 @@
 %% the work being presented. Separate the keywords with commas.
 \keywords{Memory safety, Rust, Kernel, Operating System, Linux}
 
-\received{30 May 2024}
-\received[revised]{TBD}
-\received[accepted]{TBD}
+% \received{30 May 2024}
+% \received[revised]{TBD}
+\received[accepted]{22 July 2024}
 
 
 \maketitle
 
 \section{Introduction}
 
-The 1995 movie Hackers~\cite{Wikipedia_contributors2024-zr} prescient predictions regarding the ease
+The 1995 movie Hackers prescient predictions regarding the ease
 of breaking into computing systems in cyberspace have come to fruition. The White House Office of
 the National Cyber Director (ONCD) released a report calling for the technical community to
 proactively reduce the attack surface in cyberspace with a two-pronged approach~\cite{United_States_Gov2024-pp}. First, we need to
@@ -161,16 +163,18 @@ existing research, identify gaps, and suggest future directions in this domain. 
 search process, we synthesized relevant studies and extracted key findings to offer insights into
 effective approaches for ensuring memory safety when working closely with hardware.
 
-\section{Research Methodology}
-
-For our research methodology, we followed the Kitchenham and Charters~\cite{Stuart2007-cc} methodology to conduct SLR in software engineering. We divided our review into three discrete phases, planning the review, conducting the review, and reporting the review results. The following sections detail our review process and are diagrammed in figure~\ref{fig:process}.
-
  \begin{figure*}
     \centering
      \includegraphics[width=7in]{process-diagram.pdf}
      \caption{Process Diagram for Paper selection}
      \label{fig:process}
  \end{figure*}
+ 
+\section{Research Methodology}
+
+For our research methodology, we followed the Kitchenham and Charters~\cite{Stuart2007-cc} methodology to conduct SLR in software engineering. We divided our review into three discrete phases, planning the review, conducting the review, and reporting the review results. The following sections detail our review process and are diagrammed in figure~\ref{fig:process}.
+
+
 
 \subsection{Planning}
 
@@ -184,34 +188,32 @@ in the early stages of adding real support for
 Rust~\cite{The_kernel_development_community_undated-iw} thus, we will focus on Rust as a primary
 candidate to replace the aging C programming language.
 
-\subsubsection{\textbf{Research Questions}}
+\subsection{Research Questions}
 \label{sec:researchQuestions}
 
-We have defined the following research questions to drive this study.
+We have defined the following research questions:
 
 \begin{itemize}
-    \item \textbf{RQ1:} What are the existing approaches for implementing operating system kernels in Rust?
+    \item \textbf{RQ1: What are the existing approaches for implementing operating system kernels in Rust?}
     
-    All though Rust in the Linux kernel is very recent we would like to see what approaches researches have explored in any operating system. Experiential and research kernels can provide new ideas that can be integrated into the Linux kernel.
-    \item \textbf{RQ2:} What are the performance implications of using Rust for operating system kernel development?
+    Although Rust in the Linux kernel is recent, we want to see what approaches researchers have explored in any operating system. Experiential and research kernels can provide new ideas that can be integrated into the Linux kernel.
+    \item \textbf{RQ2: What are the performance implications of using Rust for operating system kernel development?}
 
-    The C programming language has the advantage of 40 years of improvements and lessons learned regarding how to write fast code. Rust being a new language still has many unexplored areas with how to write fast code especially in kernel space.
-      %in terms of throughput, latency, and resource utilization?
-    \item \textbf{RQ3:} What are the major challenges and limitations when
-      developing operating system kernels in Rust?% particularly in comparison to other languages?
+    The C programming language has the advantage of 40 years of improvements and lessons learned regarding how to write fast code. Rust, being a new language, still has many unexplored areas regarding how to write fast code, especially in kernel space. Therefore, we want to explore the performance implications of Rust for kernel development in terms of throughput, latency, and resource utilization.
+    \item \textbf{RQ3: What are the major challenges and limitations when developing operating system kernels in Rust?}% particularly in comparison to other languages?
 
-      Kernel space presents unique challenges for the software engineer using Rust. Rust was not designed to implement kernels and is more restrictive than C. Thus, this research question is looking for any stumbling blocks that have already been found.
-    \item \textbf{RQ4:} What are the lessons learned when developing operating systems kernels in Rust?
+      Kernel space presents unique challenges for the software engineer using Rust. Rust was not designed to implement kernels and is more restrictive than C. Thus, we want to identify if there are any stumbling blocks that have already been found when using Rust in kernel development.
+    \item \textbf{RQ4: What are the lessons learned when developing operating systems kernels in Rust?}
 
-    After the work has been completed we want to find all the research that reflects on what went well and what didn't.
+    Besides technical challenges and limitations, developers' perceptions are very important in software development. Therefore, through this research question, we want to find developers' reflections on what went well and what didn't go well while developing kernels in Rust.
 \end{itemize}
 
 \subsection{Data Collection}
 
 \subsubsection{\textbf{Search Strategy.}}
 
-We employed a robust multi-step search strategy across three databases: ACM Digital Library,
-IEEE Xplore, and Scopus to find all the current research. 
+We employed a robust multi-step search strategy across four databases: ACM Digital Library,
+IEEE Xplore, Scopus, and Springer Link to find all the current research. 
 %These databases cover a wide range of current software engineering and computer science literature. 
 We leveraged the advanced search features of all three databases to search the titles and abstracts for
 keywords using boolean search operators.
@@ -219,11 +221,10 @@ keywords using boolean search operators.
 
 \subsubsection{\textbf{Search criteria.}}
 
-We searched all three databases with the keywords listed in table~\ref{tab:keywords} between January
-1, 2019 and April 1, 2024. While both ACM and IEEE had mutually exclusive results, Scopus had 44
-duplicates that needed to be removed. We then used Google Scholar for forward and backward
-snowballing. We choose to look at only the previous 5 years of research in order to capture the
-bleeding-edge research that is currently being done.
+We searched all four databases with the keywords listed in table~\ref{tab:keywords} between January
+1, 2019 and April 1, 2024. We choose to look at only the previous 5 years of research in order to capture the
+bleeding-edge research that is currently being done. While both ACM and IEEE had mutually exclusive results, Scopus had 44
+duplicates that needed to be removed and Springer Link didn't have any new papers that were not also in ACM or IEEE. We then used Google Scholar to do forward and backward snowballing. 
 
 \begin{table}
 \begin{tabular}{|| p{2cm}| p{4cm} | p{1cm} ||}
@@ -237,6 +238,7 @@ bleeding-edge research that is currently being done.
  Scopus & TITLE-ABS-KEY ( ( "operating system" OR kernel OR linux ) AND rust ) AND PUBYEAR > 2018
  AND PUBYEAR < 2025 AND ( LIMIT-TO ( SUBJAREA , "COMP" ) ) AND ( LIMIT-TO ( LANGUAGE , "English" ) )
  & 87 \\
+ Springer Link & Operating System Rust Kernel (Conference Paper, Article, Research article) Subdiscipline: Software engineering/programming and operating systems & 29 \\
  \hline
 \end{tabular}
 \caption{Search Queries used for each Database.}
@@ -245,31 +247,47 @@ bleeding-edge research that is currently being done.
 
 \subsubsection{\textbf{Inclusion and exclusion criteria.}}
 
+\begin{table*}
+    \begin{tabular}{||l|l|l||}
+    \hline
+    Approach & Papers & Operating System in Rust\\
+    \hline\hline
+    Monolithic  & \cite{The_kernel_development_community_undated-iw}, \cite{Li2019-ru}, \cite{Miller2021-pg}, \cite{Oikawa2023-ms} & \href{https://docs.kernel.org/rust/}{Linux kernel v6.1+}\\
+    Micro-kernel & \cite{Chen2023-wb},\cite{Liang2021-bo}, \cite{Liu2024-xe}, \cite{Narayanan2020-gs}, \cite{Narayanan2019-fd} & Atmosphere, Redox, Redleaf\\
+    Embedded & \cite{Culic2022-bk}, \cite{Vishnunaryan2022-yd} & \href{https://github.com/tock/tock}{Tock}, \href{https://hubris.oxide.computer/}{Hubris}, \href{https://www.drone-os.com/}{Drone}, \href{https://bern-rtos.org/}{Bern}, HarSaRK \\
+    Unikernel & \cite{Lankes2019-cm},  \cite{Boos2020-zh}, \cite{Ijaz2023-da}, \cite{Sung2020-bb}  & RustyHermit, Theseus \\
+    Exokernel & \cite{Li2024-yb} & W-Kernel \\
+    \hline
+  \end{tabular}
+  \caption{Approaches and Methodologies for Rust in the Kernel}
+    \label{tab:RQ1}
+\end{table*}
+
 Following the guidelines outlined by Kitchenham and Charters~\cite{Stuart2007-cc} we set the
 inclusion and exclusion criteria based on our research questions outlined in
-section~\ref{sec:researchQuestions}. We only consider papers that are written in English, published
-in conferences, journals, workshops, and within the time frame of 2019 and 2024. The published papers should
+section~\ref{sec:researchQuestions}. We only considered papers that are written in English and published
+in conferences, journals, and workshops. The published papers should
 describe using the Rust programming language for either developing a new kernel, extending an
-existing kernel, or authoring drivers. We include any type of kernel architecture, including
+existing kernel, or authoring drivers. We included any type of kernel architecture, including
 monolithic kernel, microkernel, or unikernel in both the embedded and non-embedded space, as long as
 the paper is using the Rust programming language in some way. Papers that describe solutions that
-reside 100\% in user space will be excluded. Early efforts to use Rust in kernel development
+reside 100\% in user space or papers that relied too heavily on a component written in C were excluded. Early efforts to use Rust in kernel development
 were impacted by changes and updates in both the Rust language and compiler and relied on unstable
-features, which are thus excluded from this review.
+features, which were thus excluded from this review.
 
 \subsection{Data Analysis}
 
 Once we had our initial collection of papers from the databases, we merged all duplicate papers into
 one record and then started our first pass, which consisted of reading the title and abstract and
-either marking the paper as \textit{include} or \textit{exclude}. Once the initial screening was
-completed we were left with 26 potential papers that we needed an in-depth reading with an
-additional 6 papers were found during forward and backward snowballing.
+either marking the paper as \textit{include} or \textit{exclude}. Once we completed the initial screening, we were left with 26 papers that needed an in-depth reading and analysis. We found an additional 6 papers during forward and backward snowballing that were also reviewed, bringing the total number of papers to 32. The first author manually reviewed all 32 papers, built the first dataset, and conducted the analysis. The second author then verified all the data and results. Since the results were straightforward and came from a comparatively small number of papers, there were no discrepancies or missing results to solve. 
 
 \section{Results}
 
 In this section, we present our findings. We address each research question from \textbf{RQ1} - \textbf{RQ4}.
 
 \subsection{RQ1: Existing Approaches}
+
+
 
 The integration of Rust into operating system kernel development has garnered significant attention
 due to Rust's promise of memory safety and concurrency guarantees. Several approaches and
@@ -293,73 +311,26 @@ resources is enforced by the compiler, thus avoiding these checks during runtime
 performance. In addition to memory safety, Theseus has a goal of addressing the state spill
 problem. State spill happens when a single service in an operating system can harbor a state change
 induced by interacting with other services. That state change can eventually cause a system crash or
-system instability at some point in the future making it very difficult to track down the problem
+system instability at some point in the future, making it very difficult to track down the problem
 due to the separation between when the problem occurred and when it was observed. Theseus OS is an
 operating system that was designed to match the Rust language instead of the more traditional route
-of matching the hardware. Li and Sato~\cite{Li2024-yb} explored using Rust to write an exokernel named W-Kernel. The authors proposed a novel architecture for an OS by embedding a WebAssembly(WASM) runtime into the kernel that can run programs written in any language that can compile down to WASM.
+of matching the hardware. Li and Sato~\cite{Li2024-yb} explored using Rust to write an exokernel named W-Kernel. The authors proposed a novel architecture for an OS by embedding a WebAssembly (WASM) runtime into the kernel that can run programs written in any language that can compile down to WASM.
 
-For the second approach researches take a more  traditional micro-kernel implementation~\cite{Chen2023-wb, Liang2021-bo}. By pushing most kernel functionality
+For the second approach, researchers take a more traditional micro-kernel implementation~\cite{Chen2023-wb, Liang2021-bo}. By pushing most kernel functionality
 to user space, the authors limited the surface area that needs to be proved. Chen X et al.~\cite{Chen2023-wb} took
 their implementation one step further by formally verifying their new micro-kernel named Atmosphere
-by using both the liner type system of Rust in combination with a SMT solver. They were
+by using both the liner type system of Rust in combination with an SMT solver. They were
 able to get a 7.5:1 proof-to-code ratio, which is higher than other formerly verified micro-kernels
 SeL4 and CeriKOS both have proof code ratios of 19:1 and 20:1, respectively. While this
 approach was novel drivers running in userspace are still not formally verified and don't have to be
 written in Rust.
 
-Finally researchers have taken existing Unikernels written in C and ported them to to Rust. Unikernels are designed to do one thing
+Finally, researchers have taken existing Unikernels written in C and ported them to Rust. Unikernels are designed to do one thing
 and one thing only, thus limiting the complexity that a general-purpose operating system has to
 deal with~\cite{Madhavapeddy2014-zw}. This reduced complexity allowed  Lankes et al.~\cite{Lankes2019-cm} to take HermitCore and rewrite it in Rust. The new
 Unikernel named RustyHermit consists of only 3.27\% unsafe Rust, with the rest of the code base consisting of safe Rust, dramatically decreasing the surface area where memory errors could originate.
 
-
-
-\begin{table*}
-    \begin{tabular}{||l|l|l||}
-    \hline
-    Approach & Papers & Operating System in Rust\\
-    \hline\hline
-    Monolithic  & \cite{The_kernel_development_community_undated-iw}, \cite{Li2019-ru}, \cite{Miller2021-pg}, \cite{Oikawa2023-ms} & \href{https://docs.kernel.org/rust/}{Linux kernel v6.1+}\\
-    Micro-kernel & \cite{Chen2023-wb},\cite{Liang2021-bo}, \cite{Liu2024-xe}, \cite{Narayanan2020-gs}, \cite{Narayanan2019-fd} & Atmosphere, Redox, Redleaf\\
-    Embedded & \cite{Culic2022-bk}, \cite{Vishnunaryan2022-yd} & \href{https://github.com/tock/tock}{Tock}, \href{https://hubris.oxide.computer/}{Hubris}, \href{https://www.drone-os.com/}{Drone}, \href{https://bern-rtos.org/}{Bern}, HarSaRK \\
-    Unikernel & \cite{Lankes2019-cm},  \cite{Boos2020-zh}, \cite{Ijaz2023-da}, \cite{Sung2020-bb}  & RustyHermit, Theseus \\
-    Exokernel & \cite{Li2024-yb} & W-Kernel \\
-    \hline
-  \end{tabular}
-  \caption{Approaches and Methodologies for Rust in the Kernel}
-    \label{tab:RQ1}
-\end{table*}
-
-
 \subsection{RQ2: Performance Implications}
-
-Comparing performance, throughput and latency between different systems with different architectures is very difficult. For
-example, several of the operating systems written in Rust are a complete rethinking of
-how an operating system is designed~\cite{Boos2020-zh} while others run entirely in kernel space~\cite{Lankes2019-cm}. Additionally, direct comparisons between a Monolithic kernel, Micro-kernel, and Unikernel, or
-comparisons between a Real Time Operation System (RTOS) and a General Purpose Operating System, are
-not directly meaningful due to the vastly different goals of each system and the overhead that is imposed by the hardware~\cite{Arnott2012-fl}. Therefore, we will focus more on the overall efforts that are specific to the Rust programming language and the challenges
-presented. We summarize our findings in table~\ref{tab:RQ2}.
-
-Culic et al.~\cite{Culic2022-bk} looked at latency issues in Tock. Tock is a new operating
-system written in Rust that is designed to run on embedded systems but does not provide Real-time capabilities. The
-authors attempted to add real-time capabilities by integrating eBPF into the Tock kernel to improve
-the interrupt handler's response time. The Authors found that early work (still in the prototype
-stage) lowers the response times of the system and interrupts response times 3x.
-
-Gonzalez et al.~\cite{Gonzalez2023-ek} explored using the Rust for Linux Project to implement a
-native UDP driver in Rust in order to explore the performance of the Rust programming language. The
-authors were able to get a basic driver working with performance only slightly slower than C using
-the Rust for Linux (RFL) project. The RFL project is still too immature to get a full driver up and
-running, but it is at a stage where researchers can start experimenting with different approaches.
-
-Li et al.~\cite{Li2024-be} explored the feasibility of using Rust in kernel space. The authors took
-an existing component, the Out of Memory (OOM) and implemented a replacement using the Rust
-programming language. The non-encapsulated interface Rust component which was almost identical to
-the original C component, only introduced a 0.7\% overhead. The encapsulated Rust component, on the
-other hand, added a 3\% performance overhead. Another important aspect of the kernel is size, and we must
-be careful to keep the size of the Rust component as close as we can to the C component so we can
-still run on the same hardware. The authors found that there was only a 0.06\% size increase
-when compared to the original C implementation.
 
 \begin{table}
     \begin{tabular}{||l|l|l||}
@@ -371,13 +342,40 @@ when compared to the original C implementation.
     3 & Latency & \cite{Culic2022-bk} \\
     \hline
   \end{tabular}
-  \caption{Performance Implications of using Rust in the Kernel}
+  \caption{Performance Implications of Rust in the Kernel}
     \label{tab:RQ2}
 \end{table}
 
+Comparing performance, throughput and latency between different systems with different architectures is very difficult. For
+example, several of the operating systems written in Rust are a complete rethinking of
+how an operating system is designed~\cite{Boos2020-zh} while others run entirely in kernel space~\cite{Lankes2019-cm}. Additionally, direct comparisons between a Monolithic kernel, Micro-kernel, and Unikernel, or
+comparisons between a Real Time Operation System (RTOS) and a General Purpose Operating System, are
+not directly meaningful due to the vastly different goals of each system and the overhead that is imposed by the hardware~\cite{Arnott2012-fl}. Therefore, we will focus more on the overall efforts that are specific to the Rust programming language and the challenges
+presented. We summarize our findings in table~\ref{tab:RQ2}.
+
+Culic et al.~\cite{Culic2022-bk} looked at latency issues in Tock. Tock is a new operating
+system written in Rust that is designed to run on embedded systems but does not provide real-time capabilities. The
+authors attempted to add real-time capabilities by integrating eBPF into the Tock kernel to improve
+the interrupt handler's response time. The authors found that early work (still in the prototype
+stage) lowers the response times of the system and interrupts response times 3x.
+
+Gonzalez et al.~\cite{Gonzalez2023-ek} explored using the Rust for Linux Project to implement a
+native UDP driver in Rust in order to explore the performance of the Rust programming language. The
+authors were able to get a basic driver working with performance only slightly slower than C using
+the Rust for Linux (RFL) project. The RFL project is still too immature to get a full driver up and
+running, but it is at a stage where researchers can start experimenting with different approaches.
+
+Li et al.~\cite{Li2024-be} explored the feasibility of using Rust in kernel space. The authors took
+an existing component, the Out of Memory (OOM), and implemented a replacement using the Rust
+programming language. The non-encapsulated interface Rust component which was almost identical to
+the original C component, only introduced a 0.7\% overhead. The encapsulated Rust component, on the
+other hand, added a 3\% performance overhead. 
+
+
+
 \subsection{RQ3: Challenges and Limitations}
 
-\begin{table*}[htbp]
+\begin{table*}
     \begin{tabular}{p{1cm} p{5cm} p{10cm}}
         \hline
         No. & Challenge & Description\\
@@ -400,7 +398,7 @@ when compared to the original C implementation.
             \item Support typed assembly language for Rust
             \item Support trusted build environments
             \item Provide software-only stack guard with extensible probing interface
-            \item Develop zero-copy serialization of “plain- old” data structures
+            \item Develop zero-copy serialization of “plain-old” data structures
         \end{itemize}
         \\
         \hline
@@ -440,7 +438,9 @@ lessons learned from various projects and research efforts. We summarize our fin
 table~\ref{tab:RQ3}.
 
 A primary concern for programming languages that are used for operating system development is the
-size of the binary especially in an embedded environment.  Ayers et al.~\cite{Ayers2022-sf} focused
+size of the binary especially in an embedded environment, we must
+be careful to keep the size of the Rust component as close as we can to the C component so we can
+still run on the same hardware. Li et al.~\cite{Li2024-be} found that there was only a 0.06\% size increase when compared to the original C implementation.  Ayers et al.~\cite{Ayers2022-sf} focused
 on reducing the size of binaries produced by the rust compiler while working with Tock OS. They were
 able to identify several  causes of binary growth that are specific to the Rust programming language
 and have the following 5 recommendations when using Rust in a size-constrained environment:
@@ -464,7 +464,7 @@ operating system kernels would be much easier and safer.
 \subsection{RQ4: Lessons Learned}
 
 Klimt et al.~\cite{Klimt2023-ob} details the lessons learned and challenges when implementing
-Theseus. First they found that it is impossible to write a complete operating system in 100\% safe
+Theseus. First, they found that it is impossible to write a complete operating system in 100\% safe
 Rust. For example, when writing a memory management system, raw pointers must be used to
 modify the hardware. Despite the limitations imposed by the hardware, the authors describe how
 Theseus leveraged intralingual design to maximize the compiler's role in enforcing correctness. By
@@ -489,53 +489,58 @@ operating system development.
 
 
 
-\textit{\textbf{Internal Threats.}} Internal validity refers to the degree to which the review accurately establishes
-causal relationships. Potential threats include:
+\textit{\textbf{Internal Threats.}} 
+%Internal validity refers to the degree to which the review accurately establishes
+%causal relationships.
+Potential internal threats include:
 
 \begin{itemize}
-  \item Publication Bias: Studies demonstrating positive outcomes of using Rust for kernel
-    development may be more likely to be published and cited, leading to an overestimation of its
-    benefits.
-  \item Quality of Studies: The methodological rigor of the included studies varies, and some may
+  %\item Publication Bias: Studies demonstrating positive outcomes of using Rust for kernel
+    %development may be more likely to be published and cited, leading to an overestimation of its
+    %benefits.
+  \item \textit{Quality of Studies:} The methodological rigor of the included studies varies, and some may
     suffer from design flaws or biases that were not adequately controlled for, thus affecting the
     reliability of their findings.
-  \item  Selection Criteria: The inclusion and exclusion criteria for selecting relevant studies might inadvertently bias the review         towards certain types of research, such as those reporting successful integration while
-    underrepresenting studies detailing challenges and failures.
+  \item  \textit{Selection Criteria:} The inclusion and exclusion criteria for selecting relevant studies might inadvertently bias the review towards certain types of research, such as those reporting successful integration while underrepresenting studies detailing challenges and failures.
 \end{itemize}
 
-\textit{\textbf{External Threats.}} External validity pertains to the generalizability of the review's findings
-beyond the specific context of the reviewed studies. Threats to external validity include:
+\textit{\textbf{External Threats.}} 
+%External validity pertains to the generalizability of the review's findings
+%beyond the specific context of the reviewed studies. 
+Threats to external validity include:
 
 \begin{itemize}
-  \item Context-Specific Findings: Many studies focus on specific kernel modules or use-cases, which
+  \item \textit{Context-Specific Findings:} Many studies focus on specific kernel modules or use-cases, which
     may not be representative of the broader kernel environment. The success of Rust in isolated
     components does not necessarily translate to the entire kernel.
-  \item Temporal Changes: The rapidly evolving nature of both the Rust programming language and the
+  \item \textit{Temporal Changes:} The rapidly evolving nature of both the Rust programming language and the
     Linux kernel means that findings from older studies may no longer be applicable, as improvements
     and changes in both domains can alter the landscape significantly.
-    \item Definition Ambiguity: The term "Kernel development in Rust" encompasses a wide range of activities,
+    \item \textit{Definition Ambiguity:} The term ``Kernel development in Rust'' encompasses a wide range of activities,
     from minor module development to complete subsystem rewrites. Variations in how researchers and
     developers interpret this integration could lead to inconsistent findings.
 \end{itemize}
 
 
-\textbf{\textit{Conclusion Threats}.} Conclusion validity involves the degree to which the conclusions drawn from the
-review are credible and supported by the data. Potential threats include:
+\textbf{\textit{Conclusion Threats}.}
+%Conclusion validity involves the degree to which the conclusions drawn from the
+%review are credible and supported by the data.
+Potential conclusion threats include:
 
 \begin{itemize}
-  \item Heterogeneity of Studies: The diverse methodologies, metrics, and contexts of the included studies
+  \item \textit{Heterogeneity of Studies:} The diverse methodologies, metrics, and contexts of the included studies
     can lead to challenges in synthesizing findings and drawing unified conclusions. For example, it
     is very difficult to directly compare a micro-kernel, Unikernel, and hybrid Kernel.
-  \item Reviewer Bias: Personal biases of the reviewers in interpreting data and making judgments
+  \item \textit{Reviewer Bias:} Personal biases of the reviewers in interpreting data and making judgments
     about study quality and relevance may skew the results
 \end{itemize}
 
-Efforts were made to minimize this through predefined criteria and multiple reviewers, but some
+We made efforts to minimize this through predefined criteria and multiple reviewers, but some
 degree of subjectivity is inevitable.  In addressing these threats, we employed rigorous methods for
 study selection, data extraction, and analysis, and we remain transparent about the
-limitations. Future reviews could mitigate these threats further by incorporating a broader range of
-sources, using more precise definitions, and employing meta-analytic techniques to quantitatively
-synthesize findings. Despite these threats, our review provides a valuable synthesis of the current
+limitations. 
+%Future studies could mitigate these threats further by incorporating a broader range of sources, using more precise definitions, and employing meta-analytic techniques to quantitatively synthesize findings. 
+Despite these threats, our results provide a valuable synthesis of the current
 state of research on the use of Rust in kernel development, highlighting both its potential benefits
 and the challenges that need to be addressed.
 
