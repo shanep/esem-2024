@@ -1,8 +1,7 @@
-# ESEIW 2024
+# Rusty Linux: Advances in Rust for Linux Kernel Development
 
-This repository contains the data and code used in the paper "ESEIW 2024: Emerging Results, Vision, and Reflection Papers" accepted at ESEIW 2024.
-
-- Accepted for publication on 22 July 2024 at [ESEIW 2024](https://conf.researchr.org/details/esem-2024/esem-2024-emerging-results-vision-and-reflection-papers/16/Rusty-Linux-Advances-in-Rust-for-Linux-Kernel-Development)
+- Proceedings of the 18th ACM / IEEE International Symposium on Empirical Software Engineering and Measurement
+- Accepted for publication on 22 July 2024 at [ESEM 2024](https://conf.researchr.org/details/esem-2024/esem-2024-emerging-results-vision-and-reflection-papers/16/Rusty-Linux-Advances-in-Rust-for-Linux-Kernel-Development)
 - Preprint: [arXiv](https://arxiv.org/pdf/2407.18431)
 
 BibTeX entry:
