@@ -35,7 +35,7 @@
 
 \begin{abstract}
 
-  \textit{\textbf{Context:}} The integration of Rust into kernel development is a transformative endeavor aimed at enhancing system security and reliability by leveraging Rust's strong memory safety guarantees. 
+  \textit{\textbf{Context:}} The integration of Rust into kernel development is a transformative endeavor aimed at enhancing system security and reliability by leveraging Rust's strong memory safety guarantees.
   \textit{\textbf{Objective:}} We aim to find the current advances in using Rust in Kernel development to reduce the number of memory safety vulnerabilities in one of the most critical pieces of software that underpins all modern applications.
   \textit{\textbf{Method:}} By analyzing a broad spectrum of studies, we identify the advantages Rust offers, highlight the challenges faced, and emphasise the need for community consensus on Rust's adoption.
   \textit{\textbf{Results:}} Our findings suggest that while the initial implementations of Rust in the kernel show promising results in terms of safety and stability, significant challenges remain. These challenges include achieving seamless interoperability with existing kernel components, maintaining performance, and ensuring adequate support and tooling for developers.
@@ -140,7 +140,7 @@ effective approaches for ensuring memory safety when working closely with hardwa
      \Description{The process that we followed for selecting papers}
      \label{fig:process}
  \end{figure*}
- 
+
 \section{Research Methodology}
 
 For our research methodology, we followed the Kitchenham and Charters~\cite{Stuart2007-cc} methodology to conduct a SLR in software engineering. We divided our review into three discrete phases, planning the review, conducting the review, and reporting the review results. The following sections detail our review process and are diagrammed in figure~\ref{fig:process}.
@@ -166,12 +166,12 @@ We have defined the following research questions:
 
 \begin{itemize}
     \item \textbf{RQ1: What are the existing approaches for implementing operating system kernels in Rust?}
-    
+
     Although Rust in the Linux kernel is recent, we want to see what approaches researchers have explored in any operating system. Experiential and research kernels can provide new ideas that can be integrated into the Linux kernel.
     \item \textbf{RQ2: What are the performance implications of using Rust for operating system kernel development?}
 
     The C programming language has the advantage of 40 years of improvements and lessons learned regarding how to write fast code. Rust, being a new language, still has many unexplored areas regarding how to write fast code, especially in kernel space. Therefore, we want to explore the performance implications of Rust for kernel development in terms of throughput, latency, and resource utilization.
-    \item \textbf{RQ3: What are the major challenges and limitations when developing operating system kernels in Rust?}% particularly in comparison to other languages?
+    \item \textbf{RQ3: What are the major challenges and limitations when developing operating system kernels in Rust?}
 
       Kernel space presents unique challenges for the software engineer using Rust. Rust was not designed to implement kernels and is more restrictive than C. Thus, we want to identify if there are any stumbling blocks that have already been found when using Rust in kernel development.
     \item \textbf{RQ4: What are the lessons learned when developing operating systems kernels in Rust?}
@@ -184,8 +184,7 @@ We have defined the following research questions:
 \subsubsection{\textbf{Search Strategy.}}
 
 We employed a robust multi-step search strategy across four databases: ACM Digital Library,
-IEEE Xplore, Scopus, and Springer Link to find all the current research. 
-%These databases cover a wide range of current software engineering and computer science literature. 
+IEEE Xplore, Scopus, and Springer Link to find all the current research.
 We leveraged the advanced search features of all three databases to search the titles and abstracts for
 keywords using boolean search operators.
 
@@ -195,7 +194,7 @@ keywords using boolean search operators.
 We searched all four databases with the keywords listed in table~\ref{tab:keywords} between January
 1, 2019 and April 1, 2024. We choose to look at only the previous 5 years of research in order to capture the
 bleeding-edge research that is currently being done. While both ACM and IEEE had mutually exclusive results, Scopus had 44
-duplicates that needed to be removed and Springer Link didn't have any new papers that were not also in ACM or IEEE. We then used Google Scholar to do forward and backward snowballing. 
+duplicates that needed to be removed and Springer Link didn't have any new papers that were not also in ACM or IEEE. We then used Google Scholar to do forward and backward snowballing.
 
 \begin{table}
 \begin{tabular}{|| p{2cm}| p{4cm} | p{1cm} ||}
@@ -247,15 +246,13 @@ features, which were thus excluded from this review.
 
 \subsection{Data Analysis}
 
-Once we had our initial collection of papers from the databases, we merged all duplicate papers into one record and then started our first pass, which consisted of reading the title and abstract and either marking the paper as \textit{include} or \textit{exclude}. Once we completed the initial screening, we were left with 22 papers that needed an in-depth reading and analysis. We found an additional 6 papers during forward and backward snowballing that were also reviewed, bringing the total number of papers to 28. The first author manually reviewed all 28 papers, built the first dataset, and conducted the analysis. The second author then verified all the data and results. Since the results were straightforward and came from a comparatively small number of papers, there were no discrepancies or missing results to solve. 
+Once we had our initial collection of papers from the databases, we merged all duplicate papers into one record and then started our first pass, which consisted of reading the title and abstract and either marking the paper as \textit{include} or \textit{exclude}. Once we completed the initial screening, we were left with 22 papers that needed an in-depth reading and analysis. We found an additional 6 papers during forward and backward snowballing that were also reviewed, bringing the total number of papers to 28. The first author manually reviewed all 28 papers, built the first dataset, and conducted the analysis. The second author then verified all the data and results. Since the results were straightforward and came from a comparatively small number of papers, there were no discrepancies or missing results to solve.
 
 \section{Results}
 
 In this section, we present our findings. We address each research question from \textbf{RQ1} - \textbf{RQ4}.
 
 \subsection{RQ1: Existing Approaches}
-
-
 
 The integration of Rust into operating system kernel development has garnered significant attention
 due to Rust's promise of memory safety and concurrency guarantees. Several approaches and
@@ -293,7 +290,7 @@ SeL4 and CeriKOS both have proof code ratios of 19:1 and 20:1, respectively. Whi
 approach was novel drivers running in userspace are still not formally verified and don't have to be
 written in Rust.
 
-Finally, researchers have taken existing Unikernels written in C and ported them to Rust. Unikernels are designed to do one thing
+Finally, researchers have taken existing unikernels written in C and ported them to Rust. Unikernels are designed to do one thing
 and one thing only, thus limiting the complexity that a general-purpose operating system has to
 deal with~\cite{Madhavapeddy2014-zw}. This reduced complexity allowed  Lankes et al.~\cite{Lankes2019-cm} to take HermitCore and rewrite it in Rust. The new
 Unikernel named RustyHermit consists of only 3.27\% unsafe Rust, with the rest of the code base consisting of safe Rust, dramatically decreasing the surface area where memory errors could originate.
@@ -337,9 +334,7 @@ Li et al.~\cite{Li2024-be} explored the feasibility of using Rust in kernel spac
 an existing component, the Out of Memory (OOM), and implemented a replacement using the Rust
 programming language. The non-encapsulated interface Rust component which was almost identical to
 the original C component, only introduced a 0.7\% overhead. The encapsulated Rust component, on the
-other hand, added a 3\% performance overhead. 
-
-
+other hand, added a 3\% performance overhead.
 
 \subsection{RQ3: Challenges and Limitations}
 
@@ -450,32 +445,16 @@ operating system development.
 
 \section{Threats to Validity}
 
-% In conducting this systematic literature review on the use of Rust for operating system development,
-% several potential threats to validity must be acknowledged. These threats are categorized into
-% internal, external, and conclusion validity, each presenting distinct challenges to the robustness
-% and reliability of our findings.
-
-
-
-\textit{\textbf{Internal Threats.}} 
-%Internal validity refers to the degree to which the review accurately establishes
-%causal relationships.
-Potential internal threats include:
+\textit{\textbf{Internal Threats.}} Potential internal threats include:
 
 \begin{itemize}
-  %\item Publication Bias: Studies demonstrating positive outcomes of using Rust for kernel
-    %development may be more likely to be published and cited, leading to an overestimation of its
-    %benefits.
   \item \textit{Quality of Studies:} The methodological rigor of the included studies varies, and some may
     suffer from design flaws or biases that were not adequately controlled for, thus affecting the
     reliability of their findings.
   \item  \textit{Selection Criteria:} The inclusion and exclusion criteria for selecting relevant studies might inadvertently bias the review towards certain types of research, such as those reporting successful integration while underrepresenting studies detailing challenges and failures.
 \end{itemize}
 
-\textit{\textbf{External Threats.}} 
-%External validity pertains to the generalizability of the review's findings
-%beyond the specific context of the reviewed studies. 
-Threats to external validity include:
+\textit{\textbf{External Threats.}} Threats to external validity include:
 
 \begin{itemize}
   \item \textit{Context-Specific Findings:} Many studies focus on specific kernel modules or use-cases, which
@@ -490,10 +469,7 @@ Threats to external validity include:
 \end{itemize}
 
 
-\textbf{\textit{Conclusion Threats}.}
-%Conclusion validity involves the degree to which the conclusions drawn from the
-%review are credible and supported by the data.
-Potential conclusion threats include:
+\textbf{\textit{Conclusion Threats}.} Potential conclusion threats include:
 
 \begin{itemize}
   \item \textit{Heterogeneity of Studies:} The diverse methodologies, metrics, and contexts of the included studies
@@ -506,9 +482,7 @@ Potential conclusion threats include:
 We made efforts to minimize this through predefined criteria and multiple reviewers, but some
 degree of subjectivity is inevitable.  In addressing these threats, we employed rigorous methods for
 study selection, data extraction, and analysis, and we remain transparent about the
-limitations. 
-%Future studies could mitigate these threats further by incorporating a broader range of sources, using more precise definitions, and employing meta-analytic techniques to quantitatively synthesize findings. 
-Despite these threats, our results provide a valuable synthesis of the current
+limitations. Despite these threats, our results provide a valuable synthesis of the current
 state of research on the use of Rust in kernel development, highlighting both its potential benefits
 and the challenges that need to be addressed.
 
