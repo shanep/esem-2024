@@ -1,20 +1,22 @@
 # Makefile for ACM paper ID will be assigned by the publisher upon acceptance
 PAPER_ID = 50
 PROCEDINGS = esem24
-DIR = $PROCEDINGS-$PAPER_ID
+TAPS := $(PROCEDINGS)-$(PAPER_ID)
+
 %.pdf: %.tex
 	latexmk -pdf $<
 
-all: paper.pdf
+paper: paper.pdf
 
-taps: paper.pdf
-	mkdir -p $DIR/pdf
-	mv paper.pdf $DIR/pdf/
-	mkdir -p $DIR/source
-	cp paper.tex $DIR/source/
-	cp paper.bib $DIR/source/
-	cp process-diagram.pdf $DIR/source/
-	zip -r $DIR.zip $DIR/
+taps: paper
+	mkdir -p $(TAPS)/pdf
+	mv paper.pdf $(TAPS)/pdf/
+	mkdir -p $(TAPS)/source
+	cp paper.tex $(TAPS)/source/
+	cp paper.bib $(TAPS)/source/
+	cp paper.bbl $(TAPS)/source/
+	cp process-diagram.pdf $(TAPS)/source/
+	zip -r $(TAPS).zip $(TAPS)/
 
 .PHONY: bib
 bib:
@@ -22,4 +24,6 @@ bib:
 
 .PHONY: clean
 clean:
-	git clean -xfd
+	latexmk -c
+	rm -f *.bbl
+	rm -rf $(TAPS) $(TAPS).zip
