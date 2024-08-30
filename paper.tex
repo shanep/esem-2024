@@ -36,7 +36,7 @@
 \begin{abstract}
 
   \textit{\textbf{Context:}} The integration of Rust into kernel development is a transformative endeavor aimed at enhancing system security and reliability by leveraging Rust's strong memory safety guarantees. 
-  \textit{\textbf{Objective:}} We aim to find the current advances in using Rust in Kerneldevelopment to reduce the number of memory safety vulnerabilities in one of the most critical pieces of software that underpins all modern applications.
+  \textit{\textbf{Objective:}} We aim to find the current advances in using Rust in Kernel development to reduce the number of memory safety vulnerabilities in one of the most critical pieces of software that underpins all modern applications.
   \textit{\textbf{Method:}} By analyzing a broad spectrum of studies, we identify the advantages Rust offers, highlight the challenges faced, and emphasise the need for community consensus on Rust's adoption.
   \textit{\textbf{Results:}} Our findings suggest that while the initial implementations of Rust in the kernel show promising results in terms of safety and stability, significant challenges remain. These challenges include achieving seamless interoperability with existing kernel components, maintaining performance, and ensuring adequate support and tooling for developers.
   \textit{\textbf{Conclusions:}} This study  underscores the need for
@@ -143,7 +143,7 @@ effective approaches for ensuring memory safety when working closely with hardwa
  
 \section{Research Methodology}
 
-For our research methodology, we followed the Kitchenham and Charters~\cite{Stuart2007-cc} methodology to conduct SLR in software engineering. We divided our review into three discrete phases, planning the review, conducting the review, and reporting the review results. The following sections detail our review process and are diagrammed in figure~\ref{fig:process}.
+For our research methodology, we followed the Kitchenham and Charters~\cite{Stuart2007-cc} methodology to conduct a SLR in software engineering. We divided our review into three discrete phases, planning the review, conducting the review, and reporting the review results. The following sections detail our review process and are diagrammed in figure~\ref{fig:process}.
 
 
 
@@ -247,9 +247,7 @@ features, which were thus excluded from this review.
 
 \subsection{Data Analysis}
 
-Once we had our initial collection of papers from the databases, we merged all duplicate papers into
-one record and then started our first pass, which consisted of reading the title and abstract and
-either marking the paper as \textit{include} or \textit{exclude}. Once we completed the initial screening, we were left with 26 papers that needed an in-depth reading and analysis. We found an additional 6 papers during forward and backward snowballing that were also reviewed, bringing the total number of papers to 32. The first author manually reviewed all 32 papers, built the first dataset, and conducted the analysis. The second author then verified all the data and results. Since the results were straightforward and came from a comparatively small number of papers, there were no discrepancies or missing results to solve. 
+Once we had our initial collection of papers from the databases, we merged all duplicate papers into one record and then started our first pass, which consisted of reading the title and abstract and either marking the paper as \textit{include} or \textit{exclude}. Once we completed the initial screening, we were left with 22 papers that needed an in-depth reading and analysis. We found an additional 6 papers during forward and backward snowballing that were also reviewed, bringing the total number of papers to 28. The first author manually reviewed all 28 papers, built the first dataset, and conducted the analysis. The second author then verified all the data and results. Since the results were straightforward and came from a comparatively small number of papers, there were no discrepancies or missing results to solve. 
 
 \section{Results}
 
