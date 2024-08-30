@@ -1,6 +1,7 @@
 # Makefile for ACM paper ID will be assigned by the publisher upon acceptance
 PAPER_ID = 50
 PROCEDINGS = esem24
+PAPER_PILE_BIB = https://paperpile.com/eb/zeDiJmjbZP
 TAPS := $(PROCEDINGS)-$(PAPER_ID)
 
 %.pdf: %.tex
@@ -8,9 +9,10 @@ TAPS := $(PROCEDINGS)-$(PAPER_ID)
 
 paper: paper.pdf
 
+# Create a zip file for the TAPS submission
 taps: paper
 	mkdir -p $(TAPS)/pdf
-	mv paper.pdf $(TAPS)/pdf/
+	cp paper.pdf $(TAPS)/pdf/
 	mkdir -p $(TAPS)/source
 	cp paper.tex $(TAPS)/source/
 	cp paper.bib $(TAPS)/source/
@@ -18,9 +20,10 @@ taps: paper
 	cp process-diagram.pdf $(TAPS)/source/
 	zip -r $(TAPS).zip $(TAPS)/
 
+# Download the paperpile bib file if needed
 .PHONY: bib
 bib:
-	wget --content-disposition -N https://paperpile.com/eb/zeDiJmjbZP
+	wget --content-disposition -N $(PAPER_PILE_BIB)
 
 .PHONY: clean
 clean:
