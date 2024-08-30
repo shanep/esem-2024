@@ -1,32 +1,18 @@
 \documentclass[sigconf]{acmart}
-%\documentclass[sigconf,review,anonymous]{acmart}
-\usepackage{listings, listings-rust}
-\usepackage{xcolor}
-\usepackage[raggedrightboxes]{ragged2e}
-
-\pagestyle{plain}
-
-
-
-
-\NewDocumentCommand{\codeword}{v}{%
-\texttt{\textcolor{blue}{#1}}
-}
-
-\lstset{language=Rust, keywordstyle={\bfseries \color{blue}}}
+% Camera Ready documentation
+% https://www.acm.org/binaries/content/assets/publications/taps/latex-best_practices-06-may-2020.pdf
 
 %% Rights management information.
-\setcopyright{acmlicensed}
 \copyrightyear{2024}
 \acmYear{2024}
-\acmDOI{XXXXXXX.XXXXXXX}
-%\acmSubmissionID{123-A56-BU3}
+\setcopyright{rightsretained}
+\acmConference[ESEM '24]{Proceedings of the 18th ACM / IEEE International Symposium on Empirical Software Engineering and Measurement}{October 24--25, 2024}{Barcelona, Spain}
+\acmBooktitle{Proceedings of the 18th ACM / IEEE International Symposium on Empirical Software Engineering and Measurement (ESEM '24), October 24--25, 2024, Barcelona, Spain}
+\acmDOI{10.1145/3674805.3690756}
+\acmISBN{979-8-4007-1047-6/24/10}
 
 \begin{document}
-%\title{Kernel Development Using Rust: A Systematic Literature Review}
 \title{Rusty Linux: Advances in Rust for Linux Kernel Development}
-
-%\author{Anonymous Authors}
 
 \author{Shane K. Panter}
     \affiliation{%
@@ -46,35 +32,15 @@
     \country{USA}}
     \email{nasireisty@boisestate.edu}
 
-%\renewcommand{\shortauthors}{Panter et al.}
 
 \begin{abstract}
 
-  \textit{\textbf{Context:}} The integration of Rust into kernel development is a transformative endeavor aimed
-  at enhancing system security and reliability by leveraging Rust's strong memory safety
-  guarantees. 
-  %This systematic literature review examines the current state of research and practice regarding the use of Rust in the kernel development.
-  \textit{\textbf{Objective:}} We aim to find the current advances in using Rust in Kernel
-  development to reduce the number of memory safety
-  vulnerabilities in one of the most critical pieces of software that underpins all modern
-  applications.
-  \textit{\textbf{Method:}} By analyzing a broad spectrum of studies, we identify the advantages Rust offers,
-  %such as reducing vulnerabilities like buffer overflows and use-after-free errors, which are
-  %prevalent in C-based kernel development. The review also 
-  highlight the challenges faced,
-  %including integration hurdles with existing C codebases, performance considerations, 
-  and emphasise the need for community consensus on Rust's adoption.
-  \textit{\textbf{Results:}} Our findings suggest that while the initial implementations of Rust in the kernel
-  show promising results in terms of safety and stability, significant challenges remain. These challenges
-  include achieving seamless interoperability with existing kernel components, maintaining
-  performance, and ensuring adequate support and tooling for developers.
-  \textit{\textbf{Conclusions:}} This study 
-  %provides a comprehensive overview of the
-  %potential and challenges of incorporating Rust into kernel development. It 
-  underscores the need for
-  continued research and practical implementation efforts to fully realize the benefits of Rust. By
-  addressing these challenges, the integration of Rust could mark a significant step forward in the
-  evolution of operating system development towards safer and more reliable systems.
+  \textit{\textbf{Context:}} The integration of Rust into kernel development is a transformative endeavor aimed at enhancing system security and reliability by leveraging Rust's strong memory safety guarantees. 
+  \textit{\textbf{Objective:}} We aim to find the current advances in using Rust in Kerneldevelopment to reduce the number of memory safety vulnerabilities in one of the most critical pieces of software that underpins all modern applications.
+  \textit{\textbf{Method:}} By analyzing a broad spectrum of studies, we identify the advantages Rust offers, highlight the challenges faced, and emphasise the need for community consensus on Rust's adoption.
+  \textit{\textbf{Results:}} Our findings suggest that while the initial implementations of Rust in the kernel show promising results in terms of safety and stability, significant challenges remain. These challenges include achieving seamless interoperability with existing kernel components, maintaining performance, and ensuring adequate support and tooling for developers.
+  \textit{\textbf{Conclusions:}} This study  underscores the need for
+  continued research and practical implementation efforts to fully realize the benefits of Rust. By addressing these challenges, the integration of Rust could mark a significant step forward in the evolution of operating system development towards safer and more reliable systems.
 
 \end{abstract}
 
@@ -84,27 +50,33 @@
 %%
 \begin{CCSXML}
 <ccs2012>
-<concept>
-<concept_id>10002944.10011122.10002945</concept_id>
-<concept_desc>General and reference~Surveys and overviews</concept_desc>
-<concept_significance>500</concept_significance>
-</concept>
-<concept>
-<concept_id>10011007.10011006.10011008.10011024</concept_id>
-<concept_desc>Software and its engineering~Language features</concept_desc>
-<concept_significance>500</concept_significance>
-</concept>
-<concept>
-<concept_id>10010520.10010521</concept_id>
-<concept_desc>Computer systems organization~Architectures</concept_desc>
-<concept_significance>500</concept_significance>
-</concept>
-</ccs2012>
+   <concept>
+       <concept_id>10002944.10011122.10002945</concept_id>
+       <concept_desc>General and reference~Surveys and overviews</concept_desc>
+       <concept_significance>500</concept_significance>
+       </concept>
+   <concept>
+       <concept_id>10002978.10003006.10003007</concept_id>
+       <concept_desc>Security and privacy~Operating systems security</concept_desc>
+       <concept_significance>500</concept_significance>
+       </concept>
+   <concept>
+       <concept_id>10011007.10010940.10010941.10010949</concept_id>
+       <concept_desc>Software and its engineering~Operating systems</concept_desc>
+       <concept_significance>300</concept_significance>
+       </concept>
+   <concept>
+       <concept_id>10011007.10011006.10011008.10011024</concept_id>
+       <concept_desc>Software and its engineering~Language features</concept_desc>
+       <concept_significance>500</concept_significance>
+       </concept>
+ </ccs2012>
 \end{CCSXML}
 
 \ccsdesc[500]{General and reference~Surveys and overviews}
+\ccsdesc[500]{Security and privacy~Operating systems security}
+\ccsdesc[300]{Software and its engineering~Operating systems}
 \ccsdesc[500]{Software and its engineering~Language features}
-\ccsdesc[500]{Computer systems organization~Architectures}
 
 
 %%
@@ -112,8 +84,6 @@
 %% the work being presented. Separate the keywords with commas.
 \keywords{Memory safety, Rust, Kernel, Operating System, Linux}
 
-% \received{30 May 2024}
-% \received[revised]{TBD}
 \received[accepted]{22 July 2024}
 
 
@@ -167,6 +137,7 @@ effective approaches for ensuring memory safety when working closely with hardwa
     \centering
      \includegraphics[width=7in]{process-diagram.pdf}
      \caption{Process Diagram for Paper selection}
+     \Description{The process that we followed for selecting papers}
      \label{fig:process}
  \end{figure*}
  
@@ -231,8 +202,7 @@ duplicates that needed to be removed and Springer Link didn't have any new paper
  \hline
  Database & Query & Results \\
  \hline\hline
- ACM  & (Abstract:("operating system" kernel linux OS) AND Abstract:(rust) )OR (Title:("operating
- system" OS kernel linux) AND Title:(rust))  & 30 \\
+ ACM  & (Abstract:("operating system" OR Kernel OR linux OR OS) AND Abstract:(Rust)) OR (Title:("operating system" OR OS OR kernel OR linux) AND Title:(Rust))  & 30 \\
  IEEE & ("All Metadata":"operating system" AND "All Metadata":rust) OR ("All Metadata":kernel AND
  "All Metadata":rust) OR ("All Metadata":linux AND "All Metadata":rust) & 39 \\
  Scopus & TITLE-ABS-KEY ( ( "operating system" OR kernel OR linux ) AND rust ) AND PUBYEAR > 2018
@@ -248,6 +218,7 @@ duplicates that needed to be removed and Springer Link didn't have any new paper
 \subsubsection{\textbf{Inclusion and exclusion criteria.}}
 
 \begin{table*}
+    \caption{Approaches and Methodologies for Rust in the Kernel}
     \begin{tabular}{||l|l|l||}
     \hline
     Approach & Papers & Operating System in Rust\\
@@ -259,8 +230,7 @@ duplicates that needed to be removed and Springer Link didn't have any new paper
     Exokernel & \cite{Li2024-yb} & W-Kernel \\
     \hline
   \end{tabular}
-  \caption{Approaches and Methodologies for Rust in the Kernel}
-    \label{tab:RQ1}
+  \label{tab:RQ1}
 \end{table*}
 
 Following the guidelines outlined by Kitchenham and Charters~\cite{Stuart2007-cc} we set the
@@ -333,6 +303,7 @@ Unikernel named RustyHermit consists of only 3.27\% unsafe Rust, with the rest o
 \subsection{RQ2: Performance Implications}
 
 \begin{table}
+    \caption{Performance Implications of Rust in the Kernel}
     \begin{tabular}{||l|l|l||}
     \hline
     No. & Implication & Studies that Reported the challenge\\
@@ -342,8 +313,7 @@ Unikernel named RustyHermit consists of only 3.27\% unsafe Rust, with the rest o
     3 & Latency & \cite{Culic2022-bk} \\
     \hline
   \end{tabular}
-  \caption{Performance Implications of Rust in the Kernel}
-    \label{tab:RQ2}
+  \label{tab:RQ2}
 \end{table}
 
 Comparing performance, throughput and latency between different systems with different architectures is very difficult. For
@@ -376,6 +346,7 @@ other hand, added a 3\% performance overhead.
 \subsection{RQ3: Challenges and Limitations}
 
 \begin{table*}
+    \caption{Challenges Unique to the Rust Programming Language}
     \begin{tabular}{p{1cm} p{5cm} p{10cm}}
         \hline
         No. & Challenge & Description\\
@@ -426,8 +397,7 @@ other hand, added a 3\% performance overhead.
         \\
     \hline
   \end{tabular}
-  \caption{Challenges Unique to the Rust Programming Language}
-    \label{tab:RQ3}
+  \label{tab:RQ3}
 \end{table*}
 
 The development of operating system kernels in Rust introduces several unique challenges and
@@ -577,8 +547,6 @@ integration challenges, refining interoperability mechanisms, and expanding the 
 evidence on Rust's impact within the kernel environment. As the community navigates these
 challenges, the evolution of Rust in the kernel may well mark a transformative period in the pursuit
 of safer, more reliable operating systems.
-
-\balance
 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{paper.bib}

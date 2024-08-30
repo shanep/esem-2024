@@ -14,7 +14,8 @@
   howpublished = "\url{https://docs.kernel.org/rust/index.html}",
   note         = "Accessed: 2024-4-1",
   keywords     = "slr-paper-rust-kernel;slr-rust-read;slr-forward-snowball",
-  language     = "en"
+  language     = "en",
+  year = 2024
 }
 
 @ARTICLE{Li2024-be,
@@ -32,34 +33,14 @@
 % The entry below contains non-ASCII chars that could not be converted
 % to a LaTeX equivalent.
 @ARTICLE{Culic2022-bk,
-  title    = "A {Low-Latency} Optimization of a {Rust-Based} Secure Operating
-              System for Embedded Devices",
-  author   = "Culic, Ioana and Vochescu, Alexandru and Radovici, Alexandru",
-  abstract = "Critical systems such as drone control or power grid control
-              applications rely on embedded devices capable of a real-time
-              response. While much research and advancements have been made to
-              implement low-latency and real-time characteristics, the security
-              aspect has been left aside. All current real-time operating
-              systems available for industrial embedded devices are implemented
-              in the C programming language, which makes them prone to memory
-              safety issues. As a response to this, Tock, an innovative secure
-              operating system for embedded devices written completely in Rust,
-              has recently appeared. The only downside of Tock is that it lacks
-              the low-latency real-time component. Therefore, the purpose of
-              this research is to leverage the extended Berkeley Packet Filter
-              technology used for efficient network traffic processing and to
-              add the low-latency capability to Tock. The result is a secure
-              low-latency operating system for embedded devices and
-              microcontrollers capable of handling interrupts at latencies as
-              low as 60 µs.",
-  journal  = "Sensors",
-  volume   =  22,
-  number   =  22,
-  month    =  nov,
-  year     =  2022,
-  keywords = "RTOS; Tock; eBPF; embedded; low-latency; real-time; rust;
-              security;slr-paper-rust-kernel;slr-rust-read;slr-forward-snowball;scopus",
-  language = "en"
+  title={A Low-Latency Optimization of a Rust-Based Secure Operating System for Embedded Devices},
+  author={Culic, Ioana and Vochescu, Alexandru and Radovici, Alexandru},
+  journal={Sensors},
+  volume={22},
+  number={22},
+  pages={8700},
+  year={2022},
+  publisher={MDPI}
 }
 
 % The entry below contains non-ASCII chars that could not be converted
@@ -85,26 +66,29 @@
 }
 
 @INPROCEEDINGS{Miller2021-pg,
-  title    = "High velocity kernel file systems with bento",
-  booktitle = "19th USENIX Conference on File and Storage Technologies",
-  author   = "Miller, Samantha and Zhang, Kaiyuan and Chen, Mengqi and
-              Jennings, Ryan and Chen, Ang and Zhuo, Danyang and Anderson,
-              Thomas",
-  pages    = "65 -- 78",
-  month    = feb,
-  year     =  2021,
-  keywords = "slr-paper-rust-kernel;slr-rust-read;slr-forward-snowball;scopus"
+    author = {Samantha Miller and Kaiyuan Zhang and Mengqi Chen and Ryan Jennings and Ang Chen and Danyang Zhuo and Thomas Anderson},
+    title = {High Velocity Kernel File Systems with Bento},
+    booktitle = {19th USENIX Conference on File and Storage Technologies (FAST 21)},
+    year = {2021},
+    isbn = {978-1-939133-20-5},
+    pages = {65--79},
+    url = {https://www.usenix.org/conference/fast21/presentation/miller},
+    publisher = {USENIX Association},
+    month = feb,
+    address = "virtual"
 }
 
 @INPROCEEDINGS{Boos2020-zh,
-  title     = "Theseus: an experiment in operating system structure and state
-               management",
-  booktitle = "14th {USENIX} Symposium on Operating Systems Design and
-               Implementation ({OSDI} 20)",
-  author    = "Boos, Kevin and Liyanage, Namitha and Ijaz, Ramla and Zhong, Lin",
-  pages     = "1--19",
-  year      =  2020,
-  keywords  = "slr-paper-rust-kernel;slr-rust-read;slr-forward-snowball;backward-snowball;scopus"
+    author = {Kevin Boos and Namitha Liyanage and Ramla Ijaz and Lin Zhong},
+    title = {Theseus: an Experiment in Operating System Structure and State Management},
+    booktitle = {14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20)},
+    year = {2020},
+    isbn = {978-1-939133-19-9},
+    pages = {1--19},
+    url = {https://www.usenix.org/conference/osdi20/presentation/boos},
+    publisher = {USENIX Association},
+    month = nov,
+    address = "virtual"
 }
 
 @ARTICLE{Vishnunaryan2022-yd,
@@ -155,10 +139,14 @@
               Rust micro-kernel systems or even the Linux kernel.",
   pages    = "272 -- 273",
   year     =  2021,
+  organization={IEEE},
   keywords = "Linux; Fault detection; Conferences; Reliability engineering;
               Feature extraction; Hardware; Software reliability; Operating
               Systems; reliability; fault
-              tolerance;slr-paper-rust-kernel;slr-rust-read;slr-forward-snowball;scopus;IEEE"
+              tolerance;slr-paper-rust-kernel;slr-rust-read;slr-forward-snowball;scopus;IEEE",
+  publisher = {IEEE},
+  address = {Wuhan University of Technology},
+  location = {China}
 }
 
 @MISC{Klabnik2024-id,
@@ -272,7 +260,8 @@
   address   = "New York, NY, USA",
   keywords  = "Rust, Linux Kernel, Device
                Drivers;slr-paper-rust-kernel;slr-rust-read;slr-forward-snowball;acm.bib;scopus",
-  location  = "Canterbury, CA, United Kingdom"
+  location  = "Canterbury, CA, United Kingdom",
+  pages={1--10},
 }
 
 @INPROCEEDINGS{Li2024-yb,
@@ -617,15 +606,16 @@
 }
 
 @INPROCEEDINGS{Narayanan2020-gs,
-  title    = "Red Leaf: Isolation and communication in a safe operating system",
-  booktitle = "14th USENIX Symposium on Operating Systems Design and Implementation",
-  author   = "Narayanan, Vikram and Detweiler, David and Huang, Tianjiao and
-              Appel, Dan and Li, Zhaofeng and Zellweger, Gerd and Burtsev,
-              Anton",
-  pages    = "21 -- 39",
-  month    = Nov,
-  year     =  2020,
-  keywords = "slr-paper-rust-kernel;slr-rust-read;slr-forward-snowball;scopus"
+    author = {Vikram Narayanan and Tianjiao Huang and David Detweiler and Dan Appel and Zhaofeng Li and Gerd Zellweger and Anton Burtsev},
+    title = {{RedLeaf}: Isolation and Communication in a Safe Operating System},
+    booktitle = {14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20)},
+    year = {2020},
+    isbn = {978-1-939133-19-9},
+    pages = {21--39},
+    url = {https://www.usenix.org/conference/osdi20/presentation/narayanan-vikram},
+    publisher = {USENIX Association},
+    month = nov,
+    address= "virtual"
 }
 
 @INPROCEEDINGS{Ayers2022-sf,
