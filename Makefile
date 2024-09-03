@@ -20,6 +20,14 @@ taps: paper
 	cp process-diagram.pdf $(TAPS)/source/
 	zip -r $(TAPS).zip $(TAPS)/
 
+arxiv: paper
+	mkdir -p arxiv
+	cp paper.tex arxiv
+	cp paper.bib arxiv
+	cp paper.bbl arxiv
+	cp process-diagram.pdf arxiv
+	zip -r arxiv.zip arxiv/
+
 # Download the paperpile bib file if needed
 .PHONY: bib
 bib:
