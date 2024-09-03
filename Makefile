@@ -27,6 +27,5 @@ bib:
 
 .PHONY: clean
 clean:
-	latexmk -c
-	rm -f *.bbl
+	rm -f paper.pdf *.synctex.gz *.bbl *.run.xml *.blg *.aux *.log *.out *.fls *.fdb_latexmk
 	rm -rf $(TAPS) $(TAPS).zip
