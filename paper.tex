@@ -286,8 +286,8 @@ to user space, the authors limited the surface area that needs to be proved. Che
 their implementation one step further by formally verifying their new micro-kernel named Atmosphere
 by using both the liner type system of Rust in combination with an SMT solver. They were
 able to get a 7.5:1 proof-to-code ratio, which is higher than other formerly verified micro-kernels
-SeL4 and CeriKOS both have proof code ratios of 19:1 and 20:1, respectively. While this
-approach was novel drivers running in userspace are still not formally verified and don't have to be
+SeL4 and CeriKOS both of which have proof code ratios of 19:1 and 20:1, respectively. While this
+approach was novel, drivers running in userspace are still not formally verified and don't have to be
 written in Rust.
 
 Finally, researchers have taken existing unikernels written in C and ported them to Rust. Unikernels are designed to do one thing
