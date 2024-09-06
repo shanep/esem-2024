@@ -36,4 +36,4 @@ bib:
 .PHONY: clean
 clean:
 	rm -f paper.pdf *.synctex.gz *.bbl *.run.xml *.blg *.aux *.log *.out *.fls *.fdb_latexmk
-	rm -rf $(TAPS) $(TAPS).zip
+	rm -rf $(TAPS) $(TAPS).zip arxiv arxiv.zip
