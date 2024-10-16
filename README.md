@@ -9,15 +9,20 @@
 If you would like to cite this paper in your work, please use the following:
 
 ```bibtex
-@inproceedings{panter2024rustylinuxadvancesrust,
-  title={Rusty Linux: Advances in Rust for Linux Kernel Development},
-  author={Shane K. Panter and Nasir U. Eisty},
-  booktitle={2024 ESEM Emerging Results, Vision and Reflection Papers Track},
-  year={2024},
-  organization={ACM},
-  eprint={2407.18431},
-  archivePrefix={arXiv},
-  primaryClass={cs.SE},
-  url={https://arxiv.org/abs/2407.18431},
+@inproceedings{10.1145/3674805.3690756,
+	author = {Panter, Shane and Eisty, Nasir},
+	title = {Rusty Linux: Advances in Rust for Linux Kernel Development},
+	year = {2024},
+	isbn = {9798400710476},
+	publisher = {Association for Computing Machinery},
+	address = {New York, NY, USA},
+	url = {https://doi.org/10.1145/3674805.3690756},
+	doi = {10.1145/3674805.3690756},
+	booktitle = {Proceedings of the 18th ACM/IEEE International Symposium on Empirical Software Engineering and Measurement},
+	pages = {496–502},
+	numpages = {7},
+	keywords = {Kernel, Linux, Memory safety, Operating System, Rust},
+	location = {Barcelona, Spain},
+	series = {ESEM '24}
 }
 ```
