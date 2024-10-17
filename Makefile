@@ -11,14 +11,17 @@ FIGURE_DIR := figures
 FIGURE_SRC := $(wildcard $(FIGURE_DIR)/*.tex)
 FIGURES := $(FIGURE_SRC:.tex=.pdf)
 
-all: $(FIGURES) paper slides handouts
+all: $(FIGURES) paper slides slide-handouts
 
 paper: paper.pdf
 
 slides: slides.pdf
 
-handouts: slides.tex
+slide-handouts: slides.tex
 	latexmk -pdf -cd -pdflatex='pdflatex %O -interaction=nonstopmode -synctex=1 "\PassOptionsToClass{handout}{beamer}\input{%S}"' --jobname=$@ $<
+
+proofs: paper.pdf slides.pdf slide-handouts
+	mv *.pdf $@/
 
 # Create a zip file for the TAPS submission
 taps: paper
