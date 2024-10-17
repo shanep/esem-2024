@@ -4,7 +4,12 @@
 %%% End:
 
 \documentclass{beamer}
+
 \usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{tikz}
+
+\usetikzlibrary {arrows.meta}
 
 \usetheme{Berkeley}
 
@@ -59,20 +64,180 @@
 \section{Introduction}
 \begin{frame}
   \frametitle{Introduction}
-  \includegraphics[width=3in]{images/CCP-from-northwest.jpg}
+  \begin{tikzpicture}
+    \node [inner sep=0pt,,outer sep=0pt,clip,rounded corners=0.5cm] (boise) at (0,0){
+      \includegraphics[width=0.8\textwidth]{images/boise-map.jpg}};
+
+    \node [inner sep=0pt,,outer sep=0pt,clip,rounded corners=0.5cm] (ccp) at (3,-1){
+      \includegraphics[width=0.45\textwidth]{images/CCP-from-northwest.jpg} };
+    \draw[line width=4pt,
+    arrows = {-Computer Modern Rightarrow[line cap=butt]}]       (ccp)   -- (-2.2,.8);
+
+  \end{tikzpicture}
+
   \begin{block}{Boise State University}
     The Computer Science Department is located in Beautiful downtown Boise Idaho, United States!
   \end{block}
 
 \end{frame}
 
+\subsection{Our Research}
 
-\section{Methodology}
+
 \begin{frame}
-  \frametitle{Process Diagram}
-    \includegraphics[width=4in]{figures/process-diagram.pdf}
+  \frametitle{Our Research}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      We aim to find the current advances in using Rust in Kernel development to reduce the number of
+      memory safety vulnerabilities in one of the most critical pieces of software that underpins all
+      modern applications.
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{figure}
+        \caption{A rusty computer\footnotemark[1]}
+        \includegraphics[width=.8\textwidth]{images/rusty.jpeg}\footnotemark[1]
+      \end{figure}
+    \end{column}
+  \end{columns}
+  \footnotetext[1]{AI Prompt: A rusty computer with a penguin next to it}
+  \href{https://github.com/shanep/esem-2024/blob/master/proofs/esem24-50.pdf}{\beamergotobutton{Paper
+    Link}}
 \end{frame}
 
+\section{Methodology}
+
+\subsection{Research Questions}
+\begin{frame}
+  \frametitle{Research Questions}
+  \begin{itemize}
+  \item<1-> \textbf{RQ1:} What are the existing approaches for implementing operating system kernels in Rust?
+  \item<2-> \textbf{RQ2:} What are the performance implications of using Rust for operating system kernel development?
+  \item<3-> \textbf{RQ3:} What are the major challenges and limitations when developing operating system kernels in Rust?
+  \item<4-> \textbf{RQ4:} What are the lessons learned when developing operating systems kernels in Rust?
+
+  \end{itemize}
+\end{frame}
+
+\subsection{Process Diagram}
+\begin{frame}
+  \frametitle{Process Diagram}
+  \includegraphics[width=4in]{figures/process-diagram.pdf}
+\end{frame}
 \section{Results}
+
+\begin{frame}
+  \frametitle{Results}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      Our findings!
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{figure}
+        \caption{Super happy researcher!\footnotemark[1]}
+        \includegraphics[width=.8\textwidth]{images/results.jpeg}\footnotemark[1]
+      \end{figure}
+    \end{column}
+  \end{columns}
+  \footnotetext[1]{AI Prompt: scientist getting research results and is super happy in a cyberpunk
+    universe with lots of computers showing matrix code on them}
+\end{frame}
+
+\subsection{RQ1: Existing Approaches}
+\begin{frame}
+  \frametitle{RQ1}
+  \begin{table}
+    \caption{Approaches and Methodologies for Rust in the Kernel}
+    \begin{tabular}{||l|l|l||}
+      \hline
+      Approach & Papers & Operating System in Rust\\
+      \hline\hline
+      Monolithic   & 4 & Linux Kernel v6.1+\\
+      Micro-kernel & 5 & Atmosphere, Redox, Redleaf\\
+      Embedded     & 2 & Tock, Hubris, Drone, Bern, HarSaRK \\
+      Unikernel & 4 & RustyHermit, Theseus \\
+      Exokernel & 1 & W-Kernel \\
+      \hline
+    \end{tabular}
+    \label{tab:RQ1}
+  \end{table}
+
+\end{frame}
+
+\subsection{RQ2: Performance Implications}
+\begin{frame}
+  \frametitle{RQ2}
+  \begin{table}
+    \caption{Performance Implications of Rust in the Kernel}
+    \begin{tabular}{||l|l|l||}
+      \hline
+      No. & Implication & Studies that Reported the challenge\\
+      \hline\hline
+      1 & Performance & 3\\
+      2 & Throughput & 1\\
+      3 & Latency & 1 \\
+      \hline
+    \end{tabular}
+    \label{tab:RQ2}
+  \end{table}
+\end{frame}
+
+
+\subsection{RQ3: Challenges and Limitations}
+\begin{frame}
+  \frametitle{RQ3: Challenges and Limitations}
+  \begin{itemize}
+  \item<1-> Binary Size - Rust can produce larger binaries
+  \item<2-> Missing Features - Rust still evolving and adding features
+  \item<3-> Soundness - How to deal with raw memory
+  \item<4-> Panics - What happens when things go wrong?
+  \item<5-> C Interop - Specific to mixed language kernels
+  \end{itemize}
+\end{frame}
+
+\subsection{RQ4: Lessons Learned}
+
+\begin{frame}
+  \frametitle{RQ4: Lessons Learned}
+  \begin{itemize}
+  \item<1-> Impossible to use 100$\%$ rust
+  \item<2-> Rust is not as expressive as other formal verification techniques
+  \item<3-> Ownership root - An OS provides memory to rust so if the OS is itself written in rust
+    who is the root owner?
+  \end{itemize}
+
+\end{frame}
+
+
+\section{Conclusion}
+
+\begin{frame}
+  \frametitle{Conclusion}
+  \begin{itemize}
+  \item<1-> We are still in the early stages of figuring out who to do kernel dev in Rust
+  \item<2-> High potential for enhanced security and stability
+  \item<3-> Need to address integration issues (FFI)
+  \item<4-> Need to expand the body of empirical evidence on Rust's impact!
+  \end{itemize}
+
+\end{frame}
+
+\section{Questions?}
+
+\begin{frame}
+  \frametitle{Questions?}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      Questions?
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{figure}
+        \caption{Happy People\footnotemark[1]}
+        \includegraphics[width=.8\textwidth]{images/questions.jpeg}\footnotemark[1]
+      \end{figure}
+    \end{column}
+  \end{columns}
+  \footnotetext[1]{AI Prompt: People attending a conference who all want to ask a question and are really excited!}
+\end{frame}
+
 
 \end{document}
