@@ -11,11 +11,14 @@ FIGURE_DIR := figures
 FIGURE_SRC := $(wildcard $(FIGURE_DIR)/*.tex)
 FIGURES := $(FIGURE_SRC:.tex=.pdf)
 
-all: $(FIGURES) paper slides
+all: $(FIGURES) paper slides handouts
 
 paper: paper.pdf
 
 slides: slides.pdf
+
+handouts: slides.tex
+	latexmk -pdf -cd -pdflatex='pdflatex %O -interaction=nonstopmode -synctex=1 "\PassOptionsToClass{handout}{beamer}\input{%S}"' --jobname=$@ $<
 
 # Create a zip file for the TAPS submission
 taps: paper
@@ -36,13 +39,13 @@ arxiv: paper
 	cp figures/*.pdf arxiv/figures/
 	zip -r arxiv.zip arxiv/
 
-checkcites: paper
+checkcites: paper slides
 	checkcites --unused $^
 
 .PHONY: clean help
 clean:
 	cd $(FIGURE_DIR) && latexmk -c; rm -f *.synctex.gz && cd ..
-	latexmk -C; rm -f *.bbl
+	rm -f *.bbl *.aux *.fls *.log *.nav *.out *.snm *.snctex.gz *.xcp *.vrb *.toc *.synctex.gz *.fdb_latexmk *.pdf
 
 help:
 	@echo "all   - build all figures and paper"
