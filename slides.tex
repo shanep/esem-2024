@@ -122,15 +122,58 @@
 \section{Methodology}
 
 \subsection{Research Questions}
-\begin{frame}
-  \frametitle{Research Questions}
-  \begin{itemize}
-  \item<1-> \textbf{RQ1:} What are the existing approaches for implementing operating system kernels in Rust?
-  \item<2-> \textbf{RQ2:} What are the performance implications of using Rust for operating system kernel development?
-  \item<3-> \textbf{RQ3:} What are the major challenges and limitations when developing operating system kernels in Rust?
-  \item<4-> \textbf{RQ4:} What are the lessons learned when developing operating systems kernels in Rust?
 
-  \end{itemize}
+\subsubsection{RQ1}
+\begin{frame}
+  \frametitle{RQ1}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \textbf{RQ1:} What are the existing approaches for implementing operating system kernels in Rust?\footnotemark[2]
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \includegraphics[width=.8\textwidth]{images/rq1.jpeg}
+    \end{column}
+  \end{columns}
+  \footnotetext[2]{Fun side note: What happens if we put our research questions into an AI image generator?}
+\end{frame}
+
+\subsubsection{RQ2}
+\begin{frame}
+  \frametitle{RQ2}
+    \begin{columns}
+      \begin{column}{0.5\textwidth}
+        \textbf{RQ2:} What are the performance implications of using Rust for operating system kernel development?
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \includegraphics[width=.8\textwidth]{images/rq2.jpeg}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\subsubsection{RQ3}
+\begin{frame}
+  \frametitle{RQ3}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \textbf{RQ3:} What are the major challenges and limitations when developing operating system kernels in Rust?
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \includegraphics[width=.8\textwidth]{images/rq3.jpeg}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\subsubsection{RQ4}
+\begin{frame}
+  \frametitle{RQ4}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \textbf{RQ4:} What are the lessons learned when developing operating systems kernels in Rust?
+      \end{column}
+    \begin{column}{0.5\textwidth}
+      \includegraphics[width=.8\textwidth]{images/rq4.jpeg}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \subsection{Process Diagram}
@@ -217,7 +260,7 @@
     \item Rust still evolving and adding features
     \item Makes it difficult to integrate into the classroom due to the rapid evolution
     \end{itemize}
-  \item<3-> Soundness - How to deal with raw memory?
+  \item<3-> Soundness - How to deal with raw memory without sacrificing safety?
   \item<4-> Panics - What happens when things go wrong?
   \item<5-> C Interop - Specific to mixed language kernels
   \end{itemize}
@@ -228,7 +271,8 @@
 \begin{frame}
   \frametitle{RQ4: Lessons Learned}
   \begin{itemize}
-  \item<1-> Impossible to use 100$\%$ rust
+  \item<1-> Impossible to use 100$\%$ rust - Same with C, some low level asm is needed to setup initial stack
+    pointer, etc.
   \item<2-> Rust is not as expressive as other formal verification techniques
   \item<3-> Ownership root - An OS provides memory to rust so if the OS is itself written in rust
     who is the root owner?
