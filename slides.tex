@@ -170,8 +170,7 @@
       Micro-kernel & 5 & Atmosphere, Redox, Redleaf\\
       Embedded     & 2 & Tock, Hubris, Drone, Bern, HarSaRK \\
       Unikernel & 4 & RustyHermit, Theseus \\
-      Exokernel & 1 & W-Kernel \\
-      \hline
+       \hline
     \end{tabular}
     \label{tab:RQ1}
   \end{table}
@@ -194,6 +193,13 @@
     \end{tabular}
     \label{tab:RQ2}
   \end{table}
+
+  \begin{itemize}
+  \item Performance issues - Caused by the safe $->$ unsafe transition layer
+  \item Throughput issues - Caused by immature and or missing bindings within the FFI layer
+  \item Latency issues - Caused by the interrupt layer written in Rust
+  \end{itemize}
+
 \end{frame}
 
 
@@ -201,9 +207,17 @@
 \begin{frame}
   \frametitle{RQ3: Challenges and Limitations}
   \begin{itemize}
-  \item<1-> Binary Size - Rust can produce larger binaries
-  \item<2-> Missing Features - Rust still evolving and adding features
-  \item<3-> Soundness - How to deal with raw memory
+  \item<1-> Binary Size
+    \begin{itemize}
+    \item Rust can produce larger binaries
+    \item The same issue that C++ templates have!
+    \end{itemize}
+  \item<2-> Missing Features
+    \begin{itemize}
+    \item Rust still evolving and adding features
+    \item Makes it difficult to integrate into the classroom due to the rapid evolution
+    \end{itemize}
+  \item<3-> Soundness - How to deal with raw memory?
   \item<4-> Panics - What happens when things go wrong?
   \item<5-> C Interop - Specific to mixed language kernels
   \end{itemize}
@@ -218,6 +232,8 @@
   \item<2-> Rust is not as expressive as other formal verification techniques
   \item<3-> Ownership root - An OS provides memory to rust so if the OS is itself written in rust
     who is the root owner?
+    \begin{itemize}
+      \item Research is needed for hardware support (CHERI)
   \end{itemize}
 
 \end{frame}
@@ -231,7 +247,8 @@
   \item<1-> We are still in the early stages of figuring out who to do kernel dev in Rust
   \item<2-> High potential for enhanced security and stability
   \item<3-> Need to address integration issues (FFI)
-  \item<4-> Need to expand the body of empirical evidence on Rust's impact!
+  \item<4-> Need to expand the body of empirical evidence on Rust's impact! (Or more generally low
+    level memory safe languages)
   \end{itemize}
 
 \end{frame}
