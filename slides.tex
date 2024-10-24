@@ -93,7 +93,7 @@
     \begin{column}{0.5\textwidth}
       We aim to find the current advances in using Rust in Kernel development to reduce the number of
       memory safety vulnerabilities in one of the most critical pieces of software that underpins all
-      modern applications.
+      modern applications (SLR).
     \end{column}
     \begin{column}{0.5\textwidth}
       \begin{figure}
@@ -233,7 +233,9 @@
   \item<3-> Ownership root - An OS provides memory to rust so if the OS is itself written in rust
     who is the root owner?
     \begin{itemize}
-      \item Research is needed for hardware support (CHERI)
+    \item Open research question if this can even be done in software
+    \item Researchers looking at hardware support (CHERI)
+    \end{itemize}
   \end{itemize}
 
 \end{frame}

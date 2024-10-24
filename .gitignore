@@ -300,6 +300,7 @@ TSWLatexianTemp*
 # Uncomment the next line to have this generated file ignored.
 #*Notes.bib
 /paper.pdf
+/slides.pdf
 .DS_Store
 esem24-50*
 arxiv/
